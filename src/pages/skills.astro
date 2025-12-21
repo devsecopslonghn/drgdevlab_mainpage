@@ -1,35 +1,99 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-const cloudPlatforms = [
-  {
-    title: 'AWS',
-    badges: ['EC2', 'S3', 'Lambda', 'VPC'],
-    desc: 'Thiết kế hệ thống High Availability và Serverless architectures.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDiznOrK_f0JKEhSpUTrAT6CktYgx3JY7iwq1BTfqiShwphAuDjuTNqVwfVp4kXUP_JuYwZfM91KRxJHGNx1kXxyi25UTf6Ur3Gr08M58bY7BN5nIf0ZXBsi7xXwDenJVJULvzvZec7KJYPYTw-bTAkkO_p4ueEWAJy0QI91ekSwRsvHPaXdyJv1TdUdQhaxDgzoNQWurBPdue0nnIbohTRTHKSIqIadIXGqg5k7NWo5iaT-Yzbak86kG80kWWzNlUscLdRSDkyjWqE'
-  },
-  {
-    title: 'Azure',
-    badges: ['DevOps', 'VM', 'AKS'],
-    desc: 'Quản lý hybrid cloud và tích hợp Azure DevOps pipelines cho doanh nghiệp.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDPBpISPp9bneL7D9iZ78FK7ULYeJfgu94wf_5Iz8E5GxsWF6A802l3AAa2GRMAM7YpfIa7L0cio7xa3AHovtkCQ3GKe-0Hl4H6QNZ_Gh_HNSYLRoqYYpxh694_IDCfAJU5-qssrVCUbf835D8HFf5nR9Tom8qQS99X_e2rbUPE3rLMF5BSg3RBZuBYUz9vqDtToad07074TITqaiK_lYlmqE4AzPhrlj_FG8sPmrkRR-1WKJQGkBtZVIEba0H_AKjaueKDNJyRqg7W'
-  },
-  {
-    title: 'Google Cloud',
-    badges: ['GKE', 'Cloud Build'],
-    desc: 'Triển khai Kubernetes clusters và tối ưu hóa chi phí vận hành.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuD4Q3Ir1abAcvnG0GdN7BMtbJ-hFPZ81ARBUZz_65AIXTOKB97FEmlxdDQrOhR0FVXdbEmt3ds-QdoHJk2cQw6RmI3c9EVObgZEFmcmEXL2MnnPxsPjqmzW39oRzn_HmGUG5p3edIHXsLc5b-7S44WXJaLIUcdxV1lnGvg7yo7G4YPlHv3_ckogI_OMBtZnd8NFAVoroAMR8Bhu8TdBwouupuiBDfcN4C7zWBkvgdX9HQ5NAeRuWvSSpJGIwgyIP88uc581ZoZ9YfYY'
-  }
-];
+const lang = Astro.url.searchParams.get('lang') === 'vi' ? 'vi' : 'en';
 
-const containerSkills = [
-  { title: 'Docker', level: 'Expert', desc: 'Multi-stage builds, Docker Compose, Optimization', icon: 'deployed_code' },
-  { title: 'Kubernetes (K8s)', level: 'Advanced', desc: 'EKS/AKS, Helm Charts, Operators, Ingress', icon: 'hub' },
-  { title: 'Terraform', level: 'Advanced', desc: 'Infrastructure as Code, Modules, State Mgmt', icon: 'all_inclusive' }
-];
+const cloudPlatforms = {
+  en: [
+    {
+      title: 'AWS',
+      badges: ['EC2', 'S3', 'Lambda', 'VPC'],
+      desc: 'Design high availability systems and serverless architectures.',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDiznOrK_f0JKEhSpUTrAT6CktYgx3JY7iwq1BTfqiShwphAuDjuTNqVwfVp4kXUP_JuYwZfM91KRxJHGNx1kXxyi25UTf6Ur3Gr08M58bY7BN5nIf0ZXBsi7xXwDenJVJULvzvZec7KJYPYTw-bTAkkO_p4ueEWAJy0QI91ekSwRsvHPaXdyJv1TdUdQhaxDgzoNQWurBPdue0nnIbohTRTHKSIqIadIXGqg5k7NWo5iaT-Yzbak86kG80kWWzNlUscLdRSDkyjWqE'
+    },
+    {
+      title: 'Azure',
+      badges: ['DevOps', 'VM', 'AKS'],
+      desc: 'Operate hybrid cloud and integrate Azure DevOps pipelines for enterprises.',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDPBpISPp9bneL7D9iZ78FK7ULYeJfgu94wf_5Iz8E5GxsWF6A802l3AAa2GRMAM7YpfIa7L0cio7xa3AHovtkCQ3GKe-0Hl4H6QNZ_Gh_HNSYLRoqYYpxh694_IDCfAJU5-qssrVCUbf835D8HFf5nR9Tom8qQS99X_e2rbUPE3rLMF5BSg3RBZuBYUz9vqDtToad07074TITqaiK_lYlmqE4AzPhrlj_FG8sPmrkRR-1WKJQGkBtZVIEba0H_AKjaueKDNJyRqg7W'
+    },
+    {
+      title: 'Google Cloud',
+      badges: ['GKE', 'Cloud Build'],
+      desc: 'Deploy Kubernetes clusters and optimize operating costs.',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuD4Q3Ir1abAcvnG0GdN7BMtbJ-hFPZ81ARBUZz_65AIXTOKB97FEmlxdDQrOhR0FVXdbEmt3ds-QdoHJk2cQw6RmI3c9EVObgZEFmcmEXL2MnnPxsPjqmzW39oRzn_HmGUG5p3edIHXsLc5b-7S44WXJaLIUcdxV1lnGvg7yo7G4YPlHv3_ckogI_OMBtZnd8NFAVoroAMR8Bhu8TdBwouupuiBDfcN4C7zWBkvgdX9HQ5NAeRuWvSSpJGIwgyIP88uc581ZoZ9YfYY'
+    }
+  ],
+  vi: [
+    {
+      title: 'AWS',
+      badges: ['EC2', 'S3', 'Lambda', 'VPC'],
+      desc: 'Thiết kế hệ thống High Availability và kiến trúc serverless.',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDiznOrK_f0JKEhSpUTrAT6CktYgx3JY7iwq1BTfqiShwphAuDjuTNqVwfVp4kXUP_JuYwZfM91KRxJHGNx1kXxyi25UTf6Ur3Gr08M58bY7BN5nIf0ZXBsi7xXwDenJVJULvzvZec7KJYPYTw-bTAkkO_p4ueEWAJy0QI91ekSwRsvHPaXdyJv1TdUdQhaxDgzoNQWurBPdue0nnIbohTRTHKSIqIadIXGqg5k7NWo5iaT-Yzbak86kG80kWWzNlUscLdRSDkyjWqE'
+    },
+    {
+      title: 'Azure',
+      badges: ['DevOps', 'VM', 'AKS'],
+      desc: 'Quản lý hybrid cloud và tích hợp Azure DevOps pipelines cho doanh nghiệp.',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDPBpISPp9bneL7D9iZ78FK7ULYeJfgu94wf_5Iz8E5GxsWF6A802l3AAa2GRMAM7YpfIa7L0cio7xa3AHovtkCQ3GKe-0Hl4H6QNZ_Gh_HNSYLRoqYYpxh694_IDCfAJU5-qssrVCUbf835D8HFf5nR9Tom8qQS99X_e2rbUPE3rLMF5BSg3RBZuBYUz9vqDtToad07074TITqaiK_lYlmqE4AzPhrlj_FG8sPmrkRR-1WKJQGkBtZVIEba0H_AKjaueKDNJyRqg7W'
+    },
+    {
+      title: 'Google Cloud',
+      badges: ['GKE', 'Cloud Build'],
+      desc: 'Triển khai Kubernetes clusters và tối ưu hóa chi phí vận hành.',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuD4Q3Ir1abAcvnG0GdN7BMtbJ-hFPZ81ARBUZz_65AIXTOKB97FEmlxdDQrOhR0FVXdbEmt3ds-QdoHJk2cQw6RmI3c9EVObgZEFmcmEXL2MnnPxsPjqmzW39oRzn_HmGUG5p3edIHXsLc5b-7S44WXJaLIUcdxV1lnGvg7yo7G4YPlHv3_ckogI_OMBtZnd8NFAVoroAMR8Bhu8TdBwouupuiBDfcN4C7zWBkvgdX9HQ5NAeRuWvSSpJGIwgyIP88uc581ZoZ9YfYY'
+    }
+  ]
+};
+
+const containerSkills = {
+  en: [
+    {
+      title: 'Docker',
+      level: 'Expert',
+      desc: 'Multi-stage builds, Docker Compose, image optimization',
+      icon: 'deployed_code'
+    },
+    {
+      title: 'Kubernetes (K8s)',
+      level: 'Advanced',
+      desc: 'EKS/AKS, Helm Charts, Operators, Ingress',
+      icon: 'hub'
+    },
+    {
+      title: 'Terraform',
+      level: 'Advanced',
+      desc: 'Infrastructure as Code, modules, state management',
+      icon: 'all_inclusive'
+    }
+  ],
+  vi: [
+    {
+      title: 'Docker',
+      level: 'Expert',
+      desc: 'Multi-stage builds, Docker Compose, tối ưu image',
+      icon: 'deployed_code'
+    },
+    {
+      title: 'Kubernetes (K8s)',
+      level: 'Advanced',
+      desc: 'EKS/AKS, Helm Charts, Operators, Ingress',
+      icon: 'hub'
+    },
+    {
+      title: 'Terraform',
+      level: 'Advanced',
+      desc: 'IaC, modules, quản lý state',
+      icon: 'all_inclusive'
+    }
+  ]
+};
 
 const scripting = [
   { title: 'Bash / Shell', value: '95%', icon: 'terminal', widthClass: 'w-[95%]' },
@@ -54,41 +118,68 @@ const certifications = [
   { title: 'CKA', subtitle: 'Certified Kubernetes Administrator', color: 'text-blue-500' },
   { title: 'HashiCorp', subtitle: 'Terraform Associate', color: 'text-purple-500' }
 ];
+
+const labels = {
+  en: {
+    title: 'Professional skills',
+    intro:
+      'Three years of building automation, optimizing CI/CD, and managing scalable cloud infrastructure. Focused on reliability, security, and performance.',
+    badges: ['AWS Certified', '3+ Years Exp', '50+ Projects Deployed'],
+    cloudTitle: 'Cloud Platforms & Infrastructure',
+    containerTitle: 'Container & Orchestration',
+    scriptingTitle: 'Scripting & Programming',
+    cicdTitle: 'CI/CD & Monitoring',
+    certTitle: 'Certifications'
+  },
+  vi: {
+    title: 'Kỹ năng chuyên môn',
+    intro:
+      '3 năm kinh nghiệm xây dựng hệ thống tự động hóa, tối ưu hóa CI/CD và quản lý hạ tầng đám mây mở rộng. Tập trung vào tính ổn định, bảo mật và hiệu năng.',
+    badges: ['AWS Certified', '3+ Years Exp', '50+ Projects Deployed'],
+    cloudTitle: 'Cloud Platforms & Infrastructure',
+    containerTitle: 'Container & Orchestration',
+    scriptingTitle: 'Scripting & Programming',
+    cicdTitle: 'CI/CD & Monitoring',
+    certTitle: 'Certifications'
+  }
+};
+
+const tLabels = labels[lang];
+const tCloud = cloudPlatforms[lang];
+const tContainer = containerSkills[lang];
 ---
 
-<BaseLayout title="Kỹ năng chuyên môn - DevOps Portfolio" description="Tổng hợp kỹ năng Cloud, IaC, CI/CD và lập trình">
+<BaseLayout
+  title={lang === 'en' ? 'Skills - DevOps Portfolio' : 'Kỹ năng chuyên môn - DevOps Portfolio'}
+  description={lang === 'en' ? 'Cloud, IaC, CI/CD and programming skills' : 'Tổng hợp kỹ năng Cloud, IaC, CI/CD và lập trình'}
+  lang={lang}
+>
   <section class="px-4 py-8 lg:px-10">
     <div class="mx-auto flex w-full max-w-[960px] flex-col gap-10">
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-2">
-          <h1 class="text-4xl font-black leading-tight tracking-[-0.033em] lg:text-5xl">Kỹ năng chuyên môn</h1>
-          <p class="max-w-[720px] text-base font-normal leading-normal text-slate-500 dark:text-text-secondary">
-            3 năm kinh nghiệm xây dựng hệ thống tự động hóa, tối ưu hóa quy trình CI/CD và quản lý cơ sở hạ tầng đám mây mở rộng. Tập trung vào tính ổn định, bảo mật và hiệu năng.
-          </p>
+          <h1 class="text-4xl font-black leading-tight tracking-[-0.033em] lg:text-5xl">{tLabels.title}</h1>
+          <p class="max-w-[720px] text-base font-normal leading-normal text-slate-500 dark:text-text-secondary">{tLabels.intro}</p>
         </div>
         <div class="flex flex-wrap gap-4 pt-2">
-          <div class="flex items-center gap-2 rounded-full border border-slate-200 dark:border-surface-border bg-white dark:bg-[#1a202c] px-4 py-1.5">
-            <span class="material-symbols-outlined text-primary text-[20px]">verified</span>
-            <span class="text-sm font-medium">AWS Certified</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-full border border-slate-200 dark:border-surface-border bg-white dark:bg-[#1a202c] px-4 py-1.5">
-            <span class="material-symbols-outlined text-primary text-[20px]">stars</span>
-            <span class="text-sm font-medium">3+ Years Exp</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-full border border-slate-200 dark:border-surface-border bg-white dark:bg-[#1a202c] px-4 py-1.5">
-            <span class="material-symbols-outlined text-primary text-[20px]">rocket_launch</span>
-            <span class="text-sm font-medium">50+ Projects Deployed</span>
-          </div>
+          {tLabels.badges.map((badge, idx) => (
+            <div class="flex items-center gap-2 rounded-full border border-slate-200 dark:border-surface-border bg-white dark:bg-[#1a202c] px-4 py-1.5">
+              <span class="material-symbols-outlined text-primary text-[20px]">
+                {idx === 0 ? 'verified' : idx === 1 ? 'stars' : 'rocket_launch'}
+              </span>
+              <span class="text-sm font-medium">{badge}</span>
+            </div>
+          ))}
         </div>
       </div>
 
       <div class="flex flex-col gap-6">
         <div class="flex items-center gap-3 border-b border-slate-200 dark:border-surface-border pb-3">
           <span class="material-symbols-outlined text-primary text-3xl">cloud</span>
-          <h2 class="text-2xl font-bold leading-tight">Cloud Platforms &amp; Infrastructure</h2>
+          <h2 class="text-2xl font-bold leading-tight">{tLabels.cloudTitle}</h2>
         </div>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {cloudPlatforms.map((cloud) => (
+          {tCloud.map((cloud) => (
             <div class="group flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-surface-border bg-white dark:bg-[#161b26] p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
               <div class="relative h-32 w-full overflow-hidden rounded-lg">
                 <img src={cloud.image} alt={cloud.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -111,13 +202,13 @@ const certifications = [
       </div>
 
       <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
-        <div class="flex flex-col gap-6">
-          <div class="flex items-center gap-3 border-b border-slate-200 dark:border-surface-border pb-3">
-            <span class="material-symbols-outlined text-primary text-3xl">view_in_ar</span>
-            <h2 class="text-2xl font-bold leading-tight">Container &amp; Orchestration</h2>
-          </div>
-          <div class="flex flex-col gap-4">
-            {containerSkills.map((skill) => (
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 dark:border-surface-border pb-3">
+              <span class="material-symbols-outlined text-primary text-3xl">view_in_ar</span>
+              <h2 class="text-2xl font-bold leading-tight">{tLabels.containerTitle}</h2>
+            </div>
+            <div class="flex flex-col gap-4">
+              {tContainer.map((skill) => (
               <div class="flex items-center gap-4 rounded-xl border border-slate-200 dark:border-surface-border bg-white dark:bg-[#161b26] p-4 shadow-sm">
                 <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400">
                   <span class="material-symbols-outlined text-[28px]">{skill.icon}</span>
@@ -138,7 +229,7 @@ const certifications = [
         <div class="flex flex-col gap-6">
           <div class="flex items-center gap-3 border-b border-slate-200 dark:border-surface-border pb-3">
             <span class="material-symbols-outlined text-primary text-3xl">code</span>
-            <h2 class="text-2xl font-bold leading-tight">Scripting &amp; Programming</h2>
+            <h2 class="text-2xl font-bold leading-tight">{tLabels.scriptingTitle}</h2>
           </div>
           <div class="flex flex-col justify-center gap-8 rounded-xl border border-slate-200 dark:border-surface-border bg-white dark:bg-[#161b26] p-6 shadow-sm h-full">
             {scripting.map((item) => (
@@ -161,7 +252,7 @@ const certifications = [
       <div class="flex flex-col gap-6">
         <div class="flex items-center gap-3 border-b border-slate-200 dark:border-surface-border pb-3">
           <span class="material-symbols-outlined text-primary text-3xl">settings_suggest</span>
-          <h2 class="text-2xl font-bold leading-tight">CI/CD &amp; Monitoring</h2>
+          <h2 class="text-2xl font-bold leading-tight">{tLabels.cicdTitle}</h2>
         </div>
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {cicd.map((tool) => (
@@ -178,7 +269,7 @@ const certifications = [
       <div class="flex flex-col gap-6 pb-12">
         <div class="flex items-center gap-3 border-b border-slate-200 dark:border-surface-border pb-3">
           <span class="material-symbols-outlined text-primary text-3xl">workspace_premium</span>
-          <h2 class="text-2xl font-bold leading-tight">Certifications</h2>
+          <h2 class="text-2xl font-bold leading-tight">{tLabels.certTitle}</h2>
         </div>
         <div class="flex flex-wrap gap-4">
           {certifications.map((cert) => (

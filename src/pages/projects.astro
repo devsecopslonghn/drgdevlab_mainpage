@@ -1,65 +1,142 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-const filters = ['All', 'AWS', 'Kubernetes', 'Python', 'Ansible'];
+const lang = Astro.url.searchParams.get('lang') === 'vi' ? 'vi' : 'en';
 
-const projects = [
-  {
-    title: 'K8s Custom Auto Scaler',
-    icon: 'deployed_code',
-    description:
-      'Giải pháp tự động mở rộng Kubernetes dùng số liệu Prometheus tùy chỉnh để tối ưu chi phí trên AWS EKS.',
-    tags: ['Go', 'Kubernetes', 'Helm'],
-    stars: 128,
-    forks: 42,
-    badge: 'OPEN SOURCE',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAXtPnkFS5sudbQqbFhhg11qvKxpyK6nzJxoq9PemD2ZOD2OnF-GvzGEeouJ0Tg0364BBpeKW4-3tNtQQpx3q9hkoJEcp5akvN_5b3yf5eHoWXLtdHvyEM4VpWf_2HotbRACavL4pbZ1zjsP_6EdVf-cDeLUbD27WrpJVRq5E3RxQrX2bD9dxHPNbVRru9R8a0WkQmf2_Z7iXWjxGTqedQPjAY8YVs10u5Zg8GKD6StM7Sg02e-_f6uc9RPGUycB9gLbgYsiYc4JSwA'
+const filters = {
+  en: ['All', 'AWS', 'Kubernetes', 'Python', 'Ansible'],
+  vi: ['Tất cả', 'AWS', 'Kubernetes', 'Python', 'Ansible']
+};
+
+const projects = {
+  en: [
+    {
+      title: 'K8s Custom Auto Scaler',
+      icon: 'deployed_code',
+      description:
+        'Autoscaling for Kubernetes using custom Prometheus metrics to optimize costs on AWS EKS.',
+      tags: ['Go', 'Kubernetes', 'Helm'],
+      stars: 128,
+      forks: 42,
+      badge: 'OPEN SOURCE',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuAXtPnkFS5sudbQqbFhhg11qvKxpyK6nzJxoq9PemD2ZOD2OnF-GvzGEeouJ0Tg0364BBpeKW4-3tNtQQpx3q9hkoJEcp5akvN_5b3yf5eHoWXLtdHvyEM4VpWf_2HotbRACavL4pbZ1zjsP_6EdVf-cDeLUbD27WrpJVRq5E3RxQrX2bD9dxHPNbVRru9R8a0WkQmf2_Z7iXWjxGTqedQPjAY8YVs10u5Zg8GKD6StM7Sg02e-_f6uc9RPGUycB9gLbgYsiYc4JSwA'
+    },
+    {
+      title: 'Secure AWS Modules',
+      icon: 'cloud_circle',
+      description:
+        'Terraform module library that hardens VPC, EC2, RDS, and ALB with CIS benchmark alignment.',
+      tags: ['Terraform', 'HCL', 'AWS'],
+      stars: 85,
+      forks: 12,
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuA7Ehf1dWTnAYXGgzlj5iqw4ZixC0b1op24cFBQe53XqQJUpJdlG2y_aDWigl5zxXoikcgrGR5hr9sB8K5F7a7-xfELLMBRRyTX4GhhOdpCC_Npom-Xpbnqc-shVw2LbHvAYrwqki0EW5_V2A7RTRFKaSp_C12msojuRIv6D2X7BkIONdkxFeKjC4rAnhNeDVHjVenmliGZKp2nUPgp1Vsvq-drGk1sVlxeLE6HYlXz9HzfRPkBpMbK8SGxvrNDUJb-ZME779ZCQCYb'
+    },
+    {
+      title: 'Shared Jenkins Lib',
+      icon: 'conveyor_belt',
+      description:
+        'Shared pipeline library standardizing CI/CD for microservices, integrating SonarQube and container scanning.',
+      tags: ['Groovy', 'Jenkins', 'Docker'],
+      stars: 45,
+      forks: 8,
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuAW0Z6WKIWEbwOaTvlzeQ1gxZNnnyps1yO2CIIl4CxbgdfEaR-qO97hPoMHobGDB_zD9U1M9Z52eseFUr717dkiIzajSSfRo4Kvi4p6sO4C11bFSLZO_S1fMi9S6tAMefMZIB4kAInGO_xO7tcGjykp2DHWeSIDPXvYJkOuW9B7lh2anjwUsF_UwJcba456cJFSBIKTfBN-1jmiaepcezxm38GE4wPGYtA92TZXY0wDe_e4tftBlKAPSbmkqDFjjtd95FSZyUtKw6CYb'
+    },
+    {
+      title: 'Serverless Portfolio',
+      icon: 'bolt',
+      description:
+        'Serverless personal site using AWS Lambda, API Gateway, DynamoDB with GitHub Actions CI/CD.',
+      tags: ['AWS', 'Lambda', 'GitHub Actions'],
+      stars: 22,
+      forks: 4,
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuD9N-HKkxmZc4Q05oPH0vKM5M8OywjvJsDtG_B2UluQS-FFQVS9UfIkuYSremScxrbJgcF4QqcUxSZohkkJaMHwwNYXce9dEoOq1su9Rh3ct1ib8pM5hH3m7fbQ6Pvc0P_em6kyLuw1zVUg0gH5hjRCZxC6GFJsC-6br5EJAX-bHX0tgxmDbH0Ill_jgYiW5x4yA0F2MjwbErthP_36XxgjbyiRvdKoDRxngwliw0PTCTaayB2OyHZ0Y2MgR_e-E7Hm6oLbRiwkh5TAA'
+    }
+  ],
+  vi: [
+    {
+      title: 'K8s Custom Auto Scaler',
+      icon: 'deployed_code',
+      description:
+        'Giải pháp tự động mở rộng Kubernetes dùng số liệu Prometheus tùy chỉnh để tối ưu chi phí trên AWS EKS.',
+      tags: ['Go', 'Kubernetes', 'Helm'],
+      stars: 128,
+      forks: 42,
+      badge: 'OPEN SOURCE',
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuAXtPnkFS5sudbQqbFhhg11qvKxpyK6nzJxoq9PemD2ZOD2OnF-GvzGEeouJ0Tg0364BBpeKW4-3tNtQQpx3q9hkoJEcp5akvN_5b3yf5eHoWXLtdHvyEM4VpWf_2HotbRACavL4pbZ1zjsP_6EdVf-cDeLUbD27WrpJVRq5E3RxQrX2bD9dxHPNbVRru9R8a0WkQmf2_Z7iXWjxGTqedQPjAY8YVs10u5Zg8GKD6StM7Sg02e-_f6uc9RPGUycB9gLbgYsiYc4JSwA'
+    },
+    {
+      title: 'Secure AWS Modules',
+      icon: 'cloud_circle',
+      description:
+        'Thư viện Terraform modules chuẩn hóa bảo mật cho VPC, EC2, RDS và ALB, tuân thủ tiêu chuẩn CIS Benchmark.',
+      tags: ['Terraform', 'HCL', 'AWS'],
+      stars: 85,
+      forks: 12,
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuA7Ehf1dWTnAYXGgzlj5iqw4ZixC0b1op24cFBQe53XqQJUpJdlG2y_aDWigl5zxXoikcgrGR5hr9sB8K5F7a7-xfELLMBRRyTX4GhhOdpCC_Npom-Xpbnqc-shVw2LbHvAYrwqki0EW5_V2A7RTRFKaSp_C12msojuRIv6D2X7BkIONdkxFeKjC4rAnhNeDVHjVenmliGZKp2nUPgp1Vsvq-drGk1sVlxeLE6HYlXz9HzfRPkBpMbK8SGxvrNDUJb-ZME779ZCQCYb'
+    },
+    {
+      title: 'Shared Jenkins Lib',
+      icon: 'conveyor_belt',
+      description:
+        'Thư viện pipeline dùng chung chuẩn hóa CI/CD cho microservices, tích hợp SonarQube và Docker scanning.',
+      tags: ['Groovy', 'Jenkins', 'Docker'],
+      stars: 45,
+      forks: 8,
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuAW0Z6WKIWEbwOaTvlzeQ1gxZNnnyps1yO2CIIl4CxbgdfEaR-qO97hPoMHobGDB_zD9U1M9Z52eseFUr717dkiIzajSSfRo4Kvi4p6sO4C11bFSLZO_S1fMi9S6tAMefMZIB4kAInGO_xO7tcGjykp2DHWeSIDPXvYJkOuW9B7lh2anjwUsF_UwJcba456cJFSBIKTfBN-1jmiaepcezxm38GE4wPGYtA92TZXY0wDe_e4tftBlKAPSbmkqDFjjtd95FSZyUtKw6CYb'
+    },
+    {
+      title: 'Serverless Portfolio',
+      icon: 'bolt',
+      description:
+        'Website cá nhân serverless dùng AWS Lambda, API Gateway và DynamoDB; CI/CD bằng GitHub Actions.',
+      tags: ['AWS', 'Lambda', 'GitHub Actions'],
+      stars: 22,
+      forks: 4,
+      image:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuD9N-HKkxmZc4Q05oPH0vKM5M8OywjvJsDtG_B2UluQS-FFQVS9UfIkuYSremScxrbJgcF4QqcUxSZohkkJaMHwwNYXce9dEoOq1su9Rh3ct1ib8pM5hH3m7fbQ6Pvc0P_em6kyLuw1zVUg0gH5hjRCZxC6GFJsC-6br5EJAX-bHX0tgxmDbH0Ill_jgYiW5x4yA0F2MjwbErthP_36XxgjbyiRvdKoDRxngwliw0PTCTaayB2OyHZ0Y2MgR_e-E7Hm6oLbRiwkh5TAA'
+    }
+  ]
+};
+
+const labels = {
+  en: {
+    heading: 'Projects',
+    subheading:
+      'A collection of IaC assets, automation scripts, and CI/CD pipelines I have built over the last three years.',
+    searchPlaceholder: 'Search projects (e.g. terraform, aws...)',
+    github: 'GitHub'
   },
-  {
-    title: 'Secure AWS Modules',
-    icon: 'cloud_circle',
-    description:
-      'Thư viện Terraform modules chuẩn hóa bảo mật cho VPC, EC2, RDS và ALB, tuân thủ tiêu chuẩn CIS Benchmark.',
-    tags: ['Terraform', 'HCL', 'AWS'],
-    stars: 85,
-    forks: 12,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuA7Ehf1dWTnAYXGgzlj5iqw4ZixC0b1op24cFBQe53XqQJUpJdlG2y_aDWigl5zxXoikcgrGR5hr9sB8K5F7a7-xfELLMBRRyTX4GhhOdpCC_Npom-Xpbnqc-shVw2LbHvAYrwqki0EW5_V2A7RTRFKaSp_C12msojuRIv6D2X7BkIONdkxFeKjC4rAnhNeDVHjVenmliGZKp2nUPgp1Vsvq-drGk1sVlxeLE6HYlXz9HzfRPkBpMbK8SGxvrNDUJb-ZME779ZCQCYb'
-  },
-  {
-    title: 'Shared Jenkins Lib',
-    icon: 'conveyor_belt',
-    description:
-      'Thư viện pipeline dùng chung chuẩn hóa CI/CD cho microservices, tích hợp SonarQube và Docker scanning.',
-    tags: ['Groovy', 'Jenkins', 'Docker'],
-    stars: 45,
-    forks: 8,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAW0Z6WKIWEbwOaTvlzeQ1gxZNnnyps1yO2CIIl4CxbgdfEaR-qO97hPoMHobGDB_zD9U1M9Z52eseFUr717dkiIzajSSfRo4Kvi4p6sO4C11bFSLZO_S1fMi9S6tAMefMZIB4kAInGO_xO7tcGjykp2DHWeSIDPXvYJkOuW9B7lh2anjwUsF_UwJcba456cJFSBIKTfBN-1jmiaepcezxm38GE4wPGYtA92TZXY0wDe_e4tftBlKAPSbmkqDFjjtd95FSZyUtKw6CYb'
-  },
-  {
-    title: 'Serverless Portfolio',
-    icon: 'bolt',
-    description:
-      'Website cá nhân serverless dùng AWS Lambda, API Gateway và DynamoDB; CI/CD bằng GitHub Actions.',
-    tags: ['AWS', 'Lambda', 'GitHub Actions'],
-    stars: 22,
-    forks: 4,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuD9N-HKkxmZc4Q05oPH0vKM5M8OywjvJsDtG_B2UluQS-FFQVS9UfIkuYSremScxrbJgcF4QqcUxSZohkkJaMHwwNYXce9dEoOq1su9Rh3ct1ib8pM5hH3m7fbQ6Pvc0P_em6kyLuw1zVUg0gH5hjRCZxC6GFJsC-6br5EJAX-bHX0tgxmDbH0Ill_jgYiW5x4yA0F2MjwbErthP_36XxgjbyiRvdKoDRxngwliw0PTCTaayB2OyHZ0Y2MgR_e-E7Hm6oLbRiwkh5TAA'
+  vi: {
+    heading: 'Dự án cá nhân',
+    subheading:
+      'Bộ sưu tập các dự án IaC, script tự động hóa và CI/CD pipelines tôi đã xây dựng trong suốt 3 năm làm việc và nghiên cứu.',
+    searchPlaceholder: 'Tìm kiếm dự án (vd: terraform, aws...)',
+    github: 'GitHub'
   }
-];
+};
+
+const tLabels = labels[lang];
+const tFilters = filters[lang];
+const tProjects = projects[lang];
 ---
 
-<BaseLayout title="Dự án cá nhân - DevOps Portfolio" description="Danh mục dự án IaC, CI/CD và tự động hóa">
+<BaseLayout
+  title={lang === 'en' ? 'Projects - DevOps Portfolio' : 'Dự án cá nhân - DevOps Portfolio'}
+  description={lang === 'en' ? 'Portfolio projects for IaC, CI/CD and automation' : 'Danh mục dự án IaC, CI/CD và tự động hóa'}
+  lang={lang}
+>
   <section class="flex flex-col items-center py-10 px-4 md:px-10">
     <div class="w-full max-w-[1024px] flex flex-col gap-8">
       <div class="flex flex-col gap-4">
-        <h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">Dự án cá nhân</h1>
-        <p class="text-text-secondary text-lg font-normal leading-relaxed max-w-2xl">
-          Bộ sưu tập các dự án Infrastructure as Code, script tự động hóa và CI/CD pipelines tôi đã xây dựng trong suốt 3 năm làm việc và nghiên cứu.
-        </p>
+        <h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">{tLabels.heading}</h1>
+        <p class="text-text-secondary text-lg font-normal leading-relaxed max-w-2xl">{tLabels.subheading}</p>
       </div>
 
       <div class="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
@@ -70,13 +147,13 @@ const projects = [
             </div>
             <input
               class="flex w-full bg-transparent border-none text-white focus:ring-0 placeholder:text-[#585f6f] px-2 text-base"
-              placeholder="Tìm kiếm dự án (vd: terraform, aws...)"
+              placeholder={tLabels.searchPlaceholder}
               value=""
             />
           </label>
         </div>
         <div class="flex gap-2 flex-wrap">
-          {filters.map((filter, index) => (
+          {tFilters.map((filter, index) => (
             <button
               class={`flex h-9 items-center justify-center px-4 rounded-lg text-sm font-medium transition-all ${
                 index === 0
@@ -91,7 +168,7 @@ const projects = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-        {projects.map((project) => (
+        {tProjects.map((project) => (
           <div class="group flex flex-col bg-card-dark rounded-xl overflow-hidden border border-surface-border hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(19,91,236,0.15)]">
             <div class="h-48 w-full relative">
               <img src={project.image} alt={project.title} class="absolute inset-0 h-full w-full object-cover" />
@@ -123,7 +200,7 @@ const projects = [
                   </span>
                 </div>
                 <button class="flex items-center gap-2 text-white bg-primary hover:bg-primary-hover px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                  <span>GitHub</span>
+                  <span>{tLabels.github}</span>
                   <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
                 </button>
               </div>

@@ -5,15 +5,16 @@ import '@styles/global.css';
 
 const {
   title = 'DevOps Portfolio',
-  description = 'DevOps engineer portfolio built with Astro and Tailwind'
+  description = 'DevOps engineer portfolio built with Astro and Tailwind',
+  lang = 'en'
 } = Astro.props;
 
 const canonical = Astro.url?.href ?? '';
-const prefetchPaths = ['skills', 'projects', 'experience', 'contact'];
+const prefetchPaths = ['skills', 'projects', 'experience', 'contact'].map((path) => `${path}?lang=${lang}`);
 ---
 
 <!DOCTYPE html>
-<html lang="vi" class="dark">
+<html lang={lang} class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,10 +35,10 @@ const prefetchPaths = ['skills', 'projects', 'experience', 'contact'];
     ))}
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header />
+    <Header lang={lang} />
     <main class="flex-1 flex flex-col">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

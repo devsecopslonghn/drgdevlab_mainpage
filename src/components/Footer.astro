@@ -1,18 +1,37 @@
+---
+const { lang = 'en' } = Astro.props;
+const text = {
+  en: {
+    rights: 'All rights reserved.',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+    email: 'Email'
+  },
+  vi: {
+    rights: 'Đã đăng ký bản quyền.',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+    email: 'Email'
+  }
+};
+const current = text[lang === 'vi' ? 'vi' : 'en'];
+---
+
 <footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-surface-border py-8">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="text-slate-500 text-sm">© 2024 DevOps Portfolio. All rights reserved.</p>
+    <p class="text-slate-500 text-sm">© 2024 DevOps Portfolio. {current.rights}</p>
     <div class="flex gap-6 text-slate-400">
       <a class="hover:text-primary transition-colors flex items-center gap-1 text-sm" href="https://github.com/devsecopslonghn" target="_blank" rel="noreferrer">
         <span class="material-symbols-outlined text-base">code</span>
-        GitHub
+        {current.github}
       </a>
       <a class="hover:text-primary transition-colors flex items-center gap-1 text-sm" href="https://www.linkedin.com/in/longhn0710" target="_blank" rel="noreferrer">
         <span class="material-symbols-outlined text-base">work</span>
-        LinkedIn
+        {current.linkedin}
       </a>
       <a class="hover:text-primary transition-colors flex items-center gap-1 text-sm" href="mailto:longhn0710@gmail.com">
         <span class="material-symbols-outlined text-base">mail</span>
-        Email
+        {current.email}
       </a>
     </div>
   </div>

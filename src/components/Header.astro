@@ -1,18 +1,49 @@
 ---
+const { lang = 'en' } = Astro.props;
+const currentLang = lang === 'vi' ? 'vi' : 'en';
+const toggleLang = currentLang === 'en' ? 'vi' : 'en';
+
+const copy = {
+  en: {
+    about: 'About',
+    skills: 'Skills',
+    projects: 'Projects',
+    experience: 'Experience',
+    contact: 'Contact',
+    cv: 'Download CV',
+    homeAlt: 'Back to homepage',
+    toggleLabel: 'Tiếng Việt',
+    menu: 'Open menu'
+  },
+  vi: {
+    about: 'Giới thiệu',
+    skills: 'Kỹ năng',
+    projects: 'Dự án',
+    experience: 'Kinh nghiệm',
+    contact: 'Liên hệ',
+    cv: 'Tải CV',
+    homeAlt: 'Về trang chủ',
+    toggleLabel: 'English',
+    menu: 'Mở menu'
+  }
+};
+
 const links = [
-  { label: 'Giới thiệu', href: '/' },
-  { label: 'Kỹ năng', href: '/skills' },
-  { label: 'Dự án', href: '/projects' },
-  { label: 'Kinh nghiệm', href: '/experience' },
-  { label: 'Liên hệ', href: '/contact' }
+  { label: copy[currentLang].about, href: '/' },
+  { label: copy[currentLang].skills, href: '/skills' },
+  { label: copy[currentLang].projects, href: '/projects' },
+  { label: copy[currentLang].experience, href: '/experience' },
+  { label: copy[currentLang].contact, href: '/contact' }
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const buildHref = (href) => `${href}${href.includes('?') ? '&' : '?'}lang=${currentLang}`;
+const toggleHref = `${currentPath}?lang=${toggleLang}`;
 ---
 
 <header class="w-full border-b border-slate-200 dark:border-surface-border sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3" aria-label="Về trang chủ">
+    <a href={buildHref('/')} class="flex items-center gap-3" aria-label={copy[currentLang].homeAlt}>
       <div class="flex items-center justify-center size-9 rounded bg-primary/10 text-primary">
         <span class="material-symbols-outlined text-xl">terminal</span>
       </div>
@@ -24,7 +55,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         return (
           <a
             class={`text-sm font-medium transition-colors ${active ? 'text-primary' : 'text-slate-600 dark:text-slate-300 hover:text-primary'}`}
-            href={item.href}
+            href={buildHref(item.href)}
             data-astro-prefetch
           >
             {item.label}
@@ -33,10 +64,21 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       })}
     </nav>
     <div class="flex items-center gap-3">
-      <button class="hidden md:inline-flex items-center justify-center h-10 px-4 rounded-lg bg-primary hover:bg-primary-hover text-white text-sm font-semibold transition-all shadow-[0_0_14px_-4px_rgba(19,91,236,0.6)]">
-        Tải CV
-      </button>
-      <button class="md:hidden p-2 text-slate-500 hover:text-primary transition-colors" aria-label="Mở menu">
+      <a
+        class="inline-flex items-center justify-center h-10 px-3 rounded-lg border border-surface-border text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-primary/60 transition-colors"
+        href={toggleHref}
+      >
+        {copy[currentLang].toggleLabel}
+      </a>
+      <a
+        class="hidden md:inline-flex items-center justify-center h-10 px-4 rounded-lg bg-primary hover:bg-primary-hover text-white text-sm font-semibold transition-all shadow-[0_0_14px_-4px_rgba(19,91,236,0.6)]"
+        href="/resume/Long%20Ho%20Devops%202yrs%20resume.pdf"
+        target="_blank"
+        rel="noreferrer"
+      >
+        {copy[currentLang].cv}
+      </a>
+      <button class="md:hidden p-2 text-slate-500 hover:text-primary transition-colors" aria-label={copy[currentLang].menu}>
         <span class="material-symbols-outlined">menu</span>
       </button>
     </div>

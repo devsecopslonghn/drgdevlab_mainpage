@@ -1,66 +1,134 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-const experiences = [
-  {
-    role: 'Senior DevOps Engineer',
-    company: 'TechCorp',
-    period: '2022 - Hiện tại',
-    icon: 'cloud_done',
-    summary:
-      'Thiết kế và duy trì hạ tầng đám mây trên AWS. Dẫn dắt chuyển đổi Microservices và áp dụng văn hóa DevOps.',
-    achievements: [
-      'Xây dựng pipeline CI/CD tự động với Jenkins, giảm 40% thời gian triển khai.',
-      'Quản lý hạ tầng IaC bằng Terraform, giảm thiểu sai sót cấu hình thủ công.',
-      'Tối ưu chi phí AWS qua Spot Instances và Auto Scaling, tiết kiệm 20% ngân sách.'
-    ],
-    stack: ['AWS', 'Terraform', 'Jenkins', 'Python', 'Prometheus']
+const lang = Astro.url.searchParams.get('lang') === 'vi' ? 'vi' : 'en';
+
+const experiences = {
+  en: [
+    {
+      role: 'Senior DevOps Engineer',
+      company: 'TechCorp',
+      period: '2022 - Present',
+      icon: 'cloud_done',
+      summary: 'Designed and operated AWS infrastructure. Led microservices migration and DevOps culture rollout.',
+      achievements: [
+        'Built automated CI/CD with Jenkins, cutting deployment time by 40%.',
+        'Managed IaC with Terraform to remove manual config drift.',
+        'Optimized AWS spend via Spot Instances and Auto Scaling, saving ~20%.'
+      ],
+      stack: ['AWS', 'Terraform', 'Jenkins', 'Python', 'Prometheus']
+    },
+    {
+      role: 'DevOps Engineer',
+      company: 'CloudSolutions',
+      period: '2021 - 2022',
+      icon: 'deployed_code',
+      summary: 'Modernized apps, moved monoliths to microservices, and ran production Kubernetes.',
+      achievements: [
+        'Containerized 15+ legacy apps with Docker.',
+        'Provisioned and operated EKS for staging/production.',
+        'Centralized monitoring with ELK, halving time-to-detect incidents.'
+      ],
+      stack: ['Docker', 'Kubernetes', 'GitLab CI', 'ELK Stack']
+    },
+    {
+      role: 'Junior System Admin',
+      company: 'StartUpOne',
+      period: '2020 - 2021',
+      icon: 'terminal',
+      summary: 'Managed Linux servers, supported users, and secured data. Started with automation tooling.',
+      achievements: [
+        'Wrote Bash scripts for scheduled backups.',
+        'Installed and tuned Nginx for the company website.',
+        'Resolved 95% of system incidents within two hours.'
+      ],
+      stack: ['Linux (Ubuntu/CentOS)', 'Bash Scripting', 'Nginx', 'MySQL']
+    }
+  ],
+  vi: [
+    {
+      role: 'Senior DevOps Engineer',
+      company: 'TechCorp',
+      period: '2022 - Hiện tại',
+      icon: 'cloud_done',
+      summary: 'Thiết kế và duy trì hạ tầng AWS. Dẫn dắt chuyển đổi Microservices và văn hóa DevOps.',
+      achievements: [
+        'Xây dựng pipeline CI/CD tự động với Jenkins, giảm 40% thời gian triển khai.',
+        'Quản lý hạ tầng IaC bằng Terraform, giảm thiểu sai sót cấu hình thủ công.',
+        'Tối ưu chi phí AWS qua Spot Instances và Auto Scaling, tiết kiệm ~20%.'
+      ],
+      stack: ['AWS', 'Terraform', 'Jenkins', 'Python', 'Prometheus']
+    },
+    {
+      role: 'DevOps Engineer',
+      company: 'CloudSolutions',
+      period: '2021 - 2022',
+      icon: 'deployed_code',
+      summary: 'Hiện đại hóa ứng dụng, chuyển đổi monolith sang microservices và vận hành Kubernetes production.',
+      achievements: [
+        'Container hóa 15+ ứng dụng legacy với Docker.',
+        'Triển khai, quản trị EKS cho Staging/Production.',
+        'Thiết lập giám sát tập trung bằng ELK Stack, rút ngắn 50% thời gian phát hiện lỗi.'
+      ],
+      stack: ['Docker', 'Kubernetes', 'GitLab CI', 'ELK Stack']
+    },
+    {
+      role: 'Junior System Admin',
+      company: 'StartUpOne',
+      period: '2020 - 2021',
+      icon: 'terminal',
+      summary: 'Quản trị máy chủ Linux, hỗ trợ người dùng và đảm bảo an toàn dữ liệu, bắt đầu với tự động hóa.',
+      achievements: [
+        'Viết script Bash tự động hóa backup định kỳ.',
+        'Cài đặt, cấu hình Nginx cho website công ty.',
+        'Giải quyết 95% sự cố hệ thống trong 2 giờ.'
+      ],
+      stack: ['Linux (Ubuntu/CentOS)', 'Bash Scripting', 'Nginx', 'MySQL']
+    }
+  ]
+};
+
+const labels = {
+  en: {
+    title: 'Work experience',
+    description:
+      'Three years focused on automation, cloud infrastructure, and system reliability. Highlights of my roles and outcomes.',
+    achievements: 'Key achievements',
+    ctaTitle: 'Want to learn more?',
+    ctaBody: 'Download my full CV to see detailed projects and certifications.',
+    download: 'Download full CV (PDF)'
   },
-  {
-    role: 'DevOps Engineer',
-    company: 'CloudSolutions',
-    period: '2021 - 2022',
-    icon: 'deployed_code',
-    summary:
-      'Hiện đại hóa ứng dụng, chuyển đổi Monolithic sang Microservices. Vận hành Kubernetes Production.',
-    achievements: [
-      'Container hóa 15+ ứng dụng legacy với Docker.',
-      'Triển khai, quản trị EKS cho Staging/Production.',
-      'Thiết lập giám sát tập trung bằng ELK Stack, rút ngắn 50% thời gian phát hiện lỗi.'
-    ],
-    stack: ['Docker', 'Kubernetes', 'GitLab CI', 'ELK Stack']
-  },
-  {
-    role: 'Junior System Admin',
-    company: 'StartUpOne',
-    period: '2020 - 2021',
-    icon: 'terminal',
-    summary:
-      'Quản trị máy chủ Linux, hỗ trợ người dùng và đảm bảo an toàn dữ liệu. Làm quen công cụ tự động hóa.',
-    achievements: [
-      'Viết script Bash tự động hóa backup định kỳ.',
-      'Cài đặt, cấu hình Nginx cho website công ty.',
-      'Giải quyết 95% sự cố hệ thống trong 2 giờ.'
-    ],
-    stack: ['Linux (Ubuntu/CentOS)', 'Bash Scripting', 'Nginx', 'MySQL']
+  vi: {
+    title: 'Kinh nghiệm làm việc',
+    description:
+      'Ba năm tập trung vào tự động hóa, hạ tầng đám mây và tối ưu hệ thống. Dưới đây là tóm tắt các vị trí và giá trị tôi mang lại.',
+    achievements: 'Thành tựu nổi bật',
+    ctaTitle: 'Bạn muốn tìm hiểu chi tiết hơn?',
+    ctaBody: 'Tải xuống CV đầy đủ của tôi để xem toàn bộ quá trình làm việc và chứng chỉ.',
+    download: 'Tải CV đầy đủ (PDF)'
   }
-];
+};
+
+const t = labels[lang];
+const items = experiences[lang];
 ---
 
-<BaseLayout title="Kinh nghiệm làm việc - DevOps Portfolio" description="Timeline kinh nghiệm DevOps, hạ tầng và tự động hóa">
+<BaseLayout
+  title={lang === 'en' ? 'Work experience - DevOps Portfolio' : 'Kinh nghiệm làm việc - DevOps Portfolio'}
+  description={lang === 'en' ? 'DevOps experience timeline' : 'Timeline kinh nghiệm DevOps'}
+  lang={lang}
+>
   <section class="flex-1 w-full px-4 py-10 md:px-6 md:py-16">
     <div class="mx-auto max-w-4xl flex flex-col gap-12">
       <div class="flex flex-col gap-4 text-center md:text-left">
         <h1 class="text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-          Kinh nghiệm làm việc
+          {t.title}
         </h1>
-        <p class="text-text-secondary text-lg font-normal max-w-2xl leading-relaxed">
-          Hành trình 3 năm chuyên sâu về tự động hóa, hạ tầng đám mây và tối ưu hóa hệ thống. Dưới đây là tóm tắt các vị trí tôi đã đảm nhiệm và những giá trị tôi mang lại.
-        </p>
+        <p class="text-text-secondary text-lg font-normal max-w-2xl leading-relaxed">{t.description}</p>
       </div>
 
       <div class="relative flex flex-col gap-0 md:gap-4 px-2">
-        {experiences.map((item, index) => (
+        {items.map((item, index) => (
           <div class="group relative grid grid-cols-[1fr] md:grid-cols-[60px_1fr] gap-x-6">
             <div class="hidden md:flex flex-col items-center pt-2">
               <div class={`flex size-12 items-center justify-center rounded-full border-2 ${index === 0 ? 'border-primary shadow-[0_0_15px_rgba(19,91,236,0.3)]' : 'border-surface-border'} bg-background-dark z-10`}>
@@ -91,7 +159,7 @@ const experiences = [
                 <div class="rounded-xl bg-background-dark/50 p-4 border border-surface-border/50">
                   <h4 class="text-sm font-semibold text-white mb-3 flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary text-sm">emoji_events</span>
-                    Thành tựu nổi bật
+                    {t.achievements}
                   </h4>
                   <ul class="space-y-2.5">
                     {item.achievements.map((achievement) => (
@@ -117,11 +185,16 @@ const experiences = [
 
       <div class="flex justify-center pt-10 border-t border-surface-border">
         <div class="flex flex-col items-center gap-4 text-center">
-          <h3 class="text-xl font-bold text-white">Bạn muốn tìm hiểu chi tiết hơn?</h3>
-          <p class="text-text-secondary max-w-md">Tải xuống CV đầy đủ của tôi để xem toàn bộ quá trình làm việc và các chứng chỉ kỹ thuật.</p>
-          <button class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary-hover text-white text-base font-bold leading-normal tracking-[0.015em] transition-all">
-            <span class="truncate">Tải CV đầy đủ (PDF)</span>
-          </button>
+          <h3 class="text-xl font-bold text-white">{t.ctaTitle}</h3>
+          <p class="text-text-secondary max-w-md">{t.ctaBody}</p>
+          <a
+            class="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary-hover text-white text-base font-bold leading-normal tracking-[0.015em] transition-all"
+            href="/resume/Long%20Ho%20Devops%202yrs%20resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="truncate">{t.download}</span>
+          </a>
         </div>
       </div>
     </div>

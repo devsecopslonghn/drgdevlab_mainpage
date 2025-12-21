@@ -3,6 +3,28 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
 import TechGrid from '@components/TechGrid.astro';
 
+const langParam = Astro.url.searchParams.get('lang');
+const lang = langParam === 'vi' ? 'vi' : 'en';
+
+const heroCopy = {
+  en: {
+    badge: "Hi, I'm",
+    name: 'Long Ho',
+    role: 'DevOps',
+    highlight: 'Engineer',
+    description:
+      'Builds cloud platforms, standardizes CI/CD, and runs reliable systems so product teams ship fast, securely, and cost-effectively.'
+  },
+  vi: {
+    badge: 'Xin chào, tôi là',
+    name: 'Long Ho',
+    role: 'DevOps',
+    highlight: 'Engineer',
+    description:
+      'Xây dựng nền tảng cloud, chuẩn hóa CI/CD và vận hành hệ thống tin cậy để đội ngũ sản phẩm triển khai nhanh, an toàn và tối ưu chi phí.'
+  }
+};
+
 const techItems = [
   { icon: 'cloud_queue', label: 'AWS', color: 'group-hover:text-[#FF9900]' },
   { icon: 'view_in_ar', label: 'Kubernetes', color: 'group-hover:text-[#326CE5]' },
@@ -10,22 +32,315 @@ const techItems = [
   { icon: 'layers', label: 'Docker', color: 'group-hover:text-[#2496ED]' },
   { icon: 'terminal', label: 'Python', color: 'group-hover:text-[#3776AB]' }
 ];
+
+const valueProps = {
+  en: [
+    {
+      title: 'Reliability first',
+      desc: 'Define SLO/SLI, clear alerting, and chaos drills to avoid unplanned downtime.',
+      icon: 'health_and_safety'
+    },
+    {
+      title: 'Security & compliance',
+      desc: 'IAM guardrails, secret scanning, and CIS/NIST baselines baked into IaC and pipelines.',
+      icon: 'encrypted'
+    },
+    {
+      title: 'Cloud cost optimization',
+      desc: 'Per-env cost tracking, rightsizing, Spot/RI adoption, and automatic off-switch for sandboxes.',
+      icon: 'savings'
+    },
+    {
+      title: 'Automation that ships',
+      desc: 'Reusable Helm/Terraform modules, pipeline templates for microservices, and policy-as-code.',
+      icon: 'bolt'
+    }
+  ],
+  vi: [
+    {
+      title: 'Ưu tiên Reliability',
+      desc: 'Đặt SLO/SLI, alerting rõ ràng và diễn tập sự cố để giảm downtime ngoài kế hoạch.',
+      icon: 'health_and_safety'
+    },
+    {
+      title: 'Bảo mật & tuân thủ',
+      desc: 'Quản trị IAM, secret scanning và baseline CIS/NIST tích hợp ngay từ IaC và pipeline.',
+      icon: 'encrypted'
+    },
+    {
+      title: 'Tối ưu chi phí cloud',
+      desc: 'Theo dõi cost theo môi trường, rightsizing, Spot/RI và tự động tắt môi trường thử nghiệm.',
+      icon: 'savings'
+    },
+    {
+      title: 'Automation thực chiến',
+      desc: 'Helm/Terraform modules tái sử dụng, template pipeline cho microservices và policy-as-code.',
+      icon: 'bolt'
+    }
+  ]
+};
+
+const serviceTracks = {
+  en: [
+    {
+      title: 'Cloud Architecture & IaC',
+      badge: 'AWS / Azure',
+      desc: 'Design landing zones, multi-account model, and zero-trust networking.',
+      bullets: ['Hardened Terraform/terragrunt modules', 'Secrets & IAM with least privilege', 'Blueprints for DR and backup']
+    },
+    {
+      title: 'CI/CD & Platform Engineering',
+      badge: 'Jenkins / GitHub Actions',
+      desc: 'Standardize pipelines so builds, scans, and deployments stay fast.',
+      bullets: ['Pipeline templates for microservices', 'Artifact caching, SBOM, image signing', 'Canary/blue-green + progressive delivery']
+    },
+    {
+      title: 'Observability & SRE',
+      badge: 'Prometheus / Grafana',
+      desc: 'See the whole system and react fast when incidents happen.',
+      bullets: ['Unified dashboards for metrics/logs/traces', 'Runbooks, on-call, lightweight auto-remediation', 'Tuned alerts that avoid noise']
+    }
+  ],
+  vi: [
+    {
+      title: 'Cloud Architecture & IaC',
+      badge: 'AWS / Azure',
+      desc: 'Thiết kế landing zone, mô hình nhiều tài khoản và mạng zero-trust.',
+      bullets: ['Terraform/terragrunt modules chuẩn hóa', 'Quản lý secret & IAM theo least privilege', 'Blueprint cho DR và backup']
+    },
+    {
+      title: 'CI/CD & Platform Engineering',
+      badge: 'Jenkins / GitHub Actions',
+      desc: 'Chuẩn hóa pipeline để build, scan và deploy nhanh hơn.',
+      bullets: ['Template pipeline cho microservices', 'Artifact caching, SBOM, image signing', 'Canary/blue-green + progressive delivery']
+    },
+    {
+      title: 'Observability & SRE',
+      badge: 'Prometheus / Grafana',
+      desc: 'Nhìn rõ hệ thống và phản ứng nhanh khi có sự cố.',
+      bullets: ['Dashboard metrics/logs/traces hợp nhất', 'Runbook, on-call, auto-remediation nhẹ', 'Hiệu chỉnh alert tránh spam']
+    }
+  ]
+};
+
+const workflow = {
+  en: [
+    {
+      title: 'Discovery & audit',
+      detail: 'Review current state, SLOs, security, and cost to set priorities.',
+      icon: 'manage_search'
+    },
+    {
+      title: 'Architecture design',
+      detail: 'Sketch target state, technical decisions, and rollout plan.',
+      icon: 'architecture'
+    },
+    {
+      title: 'Implementation & automation',
+      detail: 'IaC + pipelines with testing, safe rollout via canary/blue-green.',
+      icon: 'rocket_launch'
+    },
+    {
+      title: 'Operate & handover',
+      detail: 'Dashboards, runbooks, and enablement so your team can own it.',
+      icon: 'handshake'
+    }
+  ],
+  vi: [
+    {
+      title: 'Khảo sát & Audit',
+      detail: 'Review hiện trạng, SLO, bảo mật và chi phí để xác định ưu tiên.',
+      icon: 'manage_search'
+    },
+    {
+      title: 'Thiết kế kiến trúc',
+      detail: 'Phác thảo target state, quyết định kỹ thuật và lộ trình triển khai.',
+      icon: 'architecture'
+    },
+    {
+      title: 'Triển khai & tự động hóa',
+      detail: 'IaC + pipeline, kiểm thử, rollout an toàn qua canary/blue-green.',
+      icon: 'rocket_launch'
+    },
+    {
+      title: 'Vận hành & chuyển giao',
+      detail: 'Dashboard, tài liệu runbook và hướng dẫn đội ngũ tiếp nhận.',
+      icon: 'handshake'
+    }
+  ]
+};
+
+const labels = {
+  en: {
+    heroPrimary: 'View Projects',
+    heroSecondary: 'Contact Me',
+    techTitle: 'Technologies I work with',
+    valueTag: 'Value delivered',
+    valueHeading: 'Optimize infrastructure and DevOps flow',
+    valueBody:
+      'My goal is to help products launch faster, run more reliably, and cost less by combining cloud platforms, IaC, and SRE principles.',
+    experienceCta: 'View experience timeline',
+    coreTag: 'Core capabilities',
+    coreHeading: 'How I can help your team',
+    coreBody:
+      'From cloud architecture and IaC standards to CI/CD setup and operations visibility, I provide clear frameworks so dev teams ship features quickly and safely.',
+    processTag: 'Collaboration process',
+    processHeading: 'From current state to steady operations',
+    processBody:
+      'Transparent steps so you see progress: quick audit, target design, automated implementation, and complete operational handover.',
+    contactCta: 'Start a conversation',
+    projectCta: 'See example projects'
+  },
+  vi: {
+    heroPrimary: 'Xem dự án',
+    heroSecondary: 'Liên hệ',
+    techTitle: 'Công nghệ tôi sử dụng',
+    valueTag: 'Giá trị mang lại',
+    valueHeading: 'Tối ưu hạ tầng và quy trình DevOps',
+    valueBody:
+      'Mục tiêu của tôi là giúp sản phẩm ra mắt nhanh hơn, chạy ổn định hơn và tiết kiệm hơn bằng cách kết hợp nền tảng cloud, IaC và các nguyên tắc SRE.',
+    experienceCta: 'Xem hành trình kinh nghiệm',
+    coreTag: 'Năng lực cốt lõi',
+    coreHeading: 'Tôi có thể giúp gì cho đội ngũ của bạn?',
+    coreBody:
+      'Từ thiết kế kiến trúc cloud, chuẩn hóa IaC đến thiết lập CI/CD và giám sát vận hành, tôi cung cấp khung làm việc để đội dev triển khai nhanh và an toàn.',
+    processTag: 'Quy trình cộng tác',
+    processHeading: 'Đi từ hiện trạng đến vận hành ổn định',
+    processBody:
+      'Minh bạch từng bước: audit nhanh, thiết kế mục tiêu, triển khai tự động hóa và chuyển giao vận hành đầy đủ.',
+    contactCta: 'Bắt đầu trao đổi',
+    projectCta: 'Xem ví dụ dự án'
+  }
+};
+
+const tHero = heroCopy[lang];
+const tLabels = labels[lang];
+const tValue = valueProps[lang];
+const tServices = serviceTracks[lang];
+const tWorkflow = workflow[lang];
 ---
 
-<BaseLayout title="DevOps Engineer Portfolio" description="Giới thiệu cá nhân và kỹ năng DevOps">
+<BaseLayout
+  title="DevOps Engineer Portfolio"
+  description={lang === 'en' ? 'DevOps portfolio for cloud, IaC, and CI/CD' : 'Hồ sơ DevOps về cloud, IaC và CI/CD'}
+  lang={lang}
+>
   <Hero
-    badge="Hello, I'm"
-    name="Alex"
-    role="DevOps"
-    highlight="Engineer"
-    description="Bridging the gap between development and operations với 3 năm kinh nghiệm triển khai hạ tầng đám mây, tự động hóa CI/CD và tối ưu reliability."
-    primaryCta={{ label: 'View Projects', href: '/projects' }}
-    secondaryCta={{ label: 'Contact Me', href: '/contact' }}
+    badge={tHero.badge}
+    name={tHero.name}
+    role={tHero.role}
+    highlight={tHero.highlight}
+    description={tHero.description}
+    primaryCta={{ label: tLabels.heroPrimary, href: `/projects?lang=${lang}` }}
+    secondaryCta={{ label: tLabels.heroSecondary, href: `/contact?lang=${lang}` }}
     portrait="https://lh3.googleusercontent.com/aida-public/AB6AXuD_-2Ewbhk8F7wgMj9Uazg3YSY9CqJS8KxYHo6CwDf1vRxO7_3llJqdnE_m5pztgLyXox-aBAJ14ZtxkGzpSVjTPfzrH3Ut7dJOyUjFVszBj4xyRPLo83I6wBH_XclibseH2R7nZ2TAFspA2U2lRS5u2sTq-sMq5mQvr_6GNElXxcgFKdDwx1dd6jTrFSExHxtpQtO5VvVh78whdtJ6cpWhSTlg44rG1Bh1PJwh4KzUstspYGk7inYkEbqgH-pECbItS2hVn4w39ybO"
     stats={[
-      { value: '3+', label: 'Years Exp' },
-      { value: '50+', label: 'Projects' }
+      { value: '3+', label: lang === 'en' ? 'Years Exp' : 'Năm kinh nghiệm' },
+      { value: '50+', label: lang === 'en' ? 'Projects' : 'Dự án' }
     ]}
   />
-  <TechGrid title="Technologies I work with" items={techItems} />
+  <TechGrid title={tLabels.techTitle} items={techItems} />
+
+  <section class="bg-gradient-to-b from-background-dark via-[#0e1420] to-background-dark py-14 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl flex flex-col gap-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div class="space-y-2">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{tLabels.valueTag}</p>
+          <h2 class="text-3xl sm:text-4xl font-black leading-tight">{tLabels.valueHeading}</h2>
+          <p class="text-text-secondary max-w-2xl">{tLabels.valueBody}</p>
+        </div>
+        <a
+          class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-hover"
+          href={`/experience?lang=${lang}`}
+        >
+          {tLabels.experienceCta}
+          <span class="material-symbols-outlined text-base">arrow_outward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tValue.map((item) => (
+          <div class="flex flex-col gap-3 bg-card-dark border border-surface-border rounded-xl p-5 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <div class="flex items-center justify-between">
+              <span class="material-symbols-outlined text-primary text-3xl">{item.icon}</span>
+              <span class="h-2 w-2 rounded-full bg-green-400/70"></span>
+            </div>
+            <h3 class="text-lg font-bold text-white">{item.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 px-4 sm:px-6 lg:px-8 border-t border-surface-border bg-background-dark">
+    <div class="mx-auto max-w-6xl flex flex-col gap-8">
+      <div class="flex flex-col gap-3">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{tLabels.coreTag}</p>
+        <h2 class="text-3xl sm:text-4xl font-black leading-tight text-white">{tLabels.coreHeading}</h2>
+        <p class="text-text-secondary max-w-3xl">{tLabels.coreBody}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {tServices.map((service) => (
+          <div class="flex flex-col gap-4 bg-card-dark border border-surface-border rounded-xl p-6 hover:border-primary/50 transition-colors duration-300">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold tracking-wide text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+                {service.badge}
+              </span>
+              <span class="material-symbols-outlined text-text-secondary">arrow_outward</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-xl font-bold text-white">{service.title}</h3>
+              <p class="text-sm text-text-secondary leading-relaxed">{service.desc}</p>
+            </div>
+            <ul class="flex flex-col gap-2 text-sm text-gray-300">
+              {service.bullets.map((bullet) => (
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-[18px] text-green-400 mt-0.5">check_circle</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl flex flex-col gap-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="space-y-2">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{tLabels.processTag}</p>
+          <h2 class="text-3xl sm:text-4xl font-black leading-tight">{tLabels.processHeading}</h2>
+          <p class="text-text-secondary max-w-2xl">{tLabels.processBody}</p>
+        </div>
+        <div class="flex gap-3">
+          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg bg-primary hover:bg-primary-hover text-white font-semibold transition-colors" href="/contact">
+            {tLabels.contactCta}
+          </a>
+          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg border border-surface-border text-white hover:border-primary/60" href="/projects">
+            {tLabels.projectCta}
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tWorkflow.map((step, index) => (
+          <div class="relative flex flex-col gap-3 bg-card-dark border border-surface-border rounded-xl p-5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">{index + 1}</span>
+                <span class="material-symbols-outlined text-text-secondary">{step.icon}</span>
+              </div>
+              <span class="h-2 w-2 rounded-full bg-emerald-400/70"></span>
+            </div>
+            <h3 class="text-lg font-bold text-white">{step.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">{step.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
