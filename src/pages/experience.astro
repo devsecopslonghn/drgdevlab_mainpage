@@ -1,0 +1,129 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const experiences = [
+  {
+    role: 'Senior DevOps Engineer',
+    company: 'TechCorp',
+    period: '2022 - Hiện tại',
+    icon: 'cloud_done',
+    summary:
+      'Thiết kế và duy trì hạ tầng đám mây trên AWS. Dẫn dắt chuyển đổi Microservices và áp dụng văn hóa DevOps.',
+    achievements: [
+      'Xây dựng pipeline CI/CD tự động với Jenkins, giảm 40% thời gian triển khai.',
+      'Quản lý hạ tầng IaC bằng Terraform, giảm thiểu sai sót cấu hình thủ công.',
+      'Tối ưu chi phí AWS qua Spot Instances và Auto Scaling, tiết kiệm 20% ngân sách.'
+    ],
+    stack: ['AWS', 'Terraform', 'Jenkins', 'Python', 'Prometheus']
+  },
+  {
+    role: 'DevOps Engineer',
+    company: 'CloudSolutions',
+    period: '2021 - 2022',
+    icon: 'deployed_code',
+    summary:
+      'Hiện đại hóa ứng dụng, chuyển đổi Monolithic sang Microservices. Vận hành Kubernetes Production.',
+    achievements: [
+      'Container hóa 15+ ứng dụng legacy với Docker.',
+      'Triển khai, quản trị EKS cho Staging/Production.',
+      'Thiết lập giám sát tập trung bằng ELK Stack, rút ngắn 50% thời gian phát hiện lỗi.'
+    ],
+    stack: ['Docker', 'Kubernetes', 'GitLab CI', 'ELK Stack']
+  },
+  {
+    role: 'Junior System Admin',
+    company: 'StartUpOne',
+    period: '2020 - 2021',
+    icon: 'terminal',
+    summary:
+      'Quản trị máy chủ Linux, hỗ trợ người dùng và đảm bảo an toàn dữ liệu. Làm quen công cụ tự động hóa.',
+    achievements: [
+      'Viết script Bash tự động hóa backup định kỳ.',
+      'Cài đặt, cấu hình Nginx cho website công ty.',
+      'Giải quyết 95% sự cố hệ thống trong 2 giờ.'
+    ],
+    stack: ['Linux (Ubuntu/CentOS)', 'Bash Scripting', 'Nginx', 'MySQL']
+  }
+];
+---
+
+<BaseLayout title="Kinh nghiệm làm việc - DevOps Portfolio" description="Timeline kinh nghiệm DevOps, hạ tầng và tự động hóa">
+  <section class="flex-1 w-full px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-4xl flex flex-col gap-12">
+      <div class="flex flex-col gap-4 text-center md:text-left">
+        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+          Kinh nghiệm làm việc
+        </h1>
+        <p class="text-text-secondary text-lg font-normal max-w-2xl leading-relaxed">
+          Hành trình 3 năm chuyên sâu về tự động hóa, hạ tầng đám mây và tối ưu hóa hệ thống. Dưới đây là tóm tắt các vị trí tôi đã đảm nhiệm và những giá trị tôi mang lại.
+        </p>
+      </div>
+
+      <div class="relative flex flex-col gap-0 md:gap-4 px-2">
+        {experiences.map((item, index) => (
+          <div class="group relative grid grid-cols-[1fr] md:grid-cols-[60px_1fr] gap-x-6">
+            <div class="hidden md:flex flex-col items-center pt-2">
+              <div class={`flex size-12 items-center justify-center rounded-full border-2 ${index === 0 ? 'border-primary shadow-[0_0_15px_rgba(19,91,236,0.3)]' : 'border-surface-border'} bg-background-dark z-10`}>
+                <span class={`material-symbols-outlined ${index === 0 ? 'text-primary' : 'text-text-secondary'}`}>{item.icon}</span>
+              </div>
+              <div class={`h-full w-[2px] ${index === experiences.length - 1 ? 'bg-gradient-to-b from-surface-border to-transparent' : 'bg-gradient-to-b from-primary via-surface-border to-surface-border'} my-2`}></div>
+            </div>
+
+            <div class={`relative ${index === experiences.length - 1 ? 'pb-4' : 'pb-12 md:pb-16'} pl-8 md:pl-0 border-l-2 border-surface-border md:border-l-0`}>
+              <div class="absolute -left-[17px] top-0 flex md:hidden size-9 items-center justify-center rounded-full border-2 border-surface-border bg-background-dark z-10">
+                <span class="material-symbols-outlined text-text-secondary text-sm">{item.icon}</span>
+              </div>
+              <div class="flex flex-col gap-5 rounded-2xl border border-surface-border bg-card-dark p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+                  <div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors">{item.role}</h3>
+                    <div class="flex items-center gap-2 mt-1 text-text-secondary">
+                      <span class="material-symbols-outlined text-[18px]">business</span>
+                      <span class="text-base font-medium">{item.company}</span>
+                    </div>
+                  </div>
+                  <span class={`self-start inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ${index === 0 ? 'bg-primary/10 text-primary border border-primary/20' : 'bg-white/5 text-gray-300 border border-white/10'}`}>
+                    <span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                    {item.period}
+                  </span>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">{item.summary}</p>
+                <div class="rounded-xl bg-background-dark/50 p-4 border border-surface-border/50">
+                  <h4 class="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-sm">emoji_events</span>
+                    Thành tựu nổi bật
+                  </h4>
+                  <ul class="space-y-2.5">
+                    {item.achievements.map((achievement) => (
+                      <li class="flex items-start gap-3">
+                        <span class={`material-symbols-outlined text-[18px] mt-0.5 ${index === 0 ? 'text-green-500' : 'text-primary'}`}>
+                          {index === 0 ? 'check_circle' : 'check'}
+                        </span>
+                        <span class="text-sm text-gray-400">{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-2">
+                  {item.stack.map((tech) => (
+                    <span class="px-3 py-1 rounded-md bg-surface-border text-xs font-medium text-gray-300 border border-[#3b4354]">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex justify-center pt-10 border-t border-surface-border">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <h3 class="text-xl font-bold text-white">Bạn muốn tìm hiểu chi tiết hơn?</h3>
+          <p class="text-text-secondary max-w-md">Tải xuống CV đầy đủ của tôi để xem toàn bộ quá trình làm việc và các chứng chỉ kỹ thuật.</p>
+          <button class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary-hover text-white text-base font-bold leading-normal tracking-[0.015em] transition-all">
+            <span class="truncate">Tải CV đầy đủ (PDF)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

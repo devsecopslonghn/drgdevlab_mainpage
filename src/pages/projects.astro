@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const filters = ['All', 'AWS', 'Kubernetes', 'Python', 'Ansible'];
+
+const projects = [
+  {
+    title: 'K8s Custom Auto Scaler',
+    icon: 'deployed_code',
+    description:
+      'Giải pháp tự động mở rộng Kubernetes dùng số liệu Prometheus tùy chỉnh để tối ưu chi phí trên AWS EKS.',
+    tags: ['Go', 'Kubernetes', 'Helm'],
+    stars: 128,
+    forks: 42,
+    badge: 'OPEN SOURCE',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuAXtPnkFS5sudbQqbFhhg11qvKxpyK6nzJxoq9PemD2ZOD2OnF-GvzGEeouJ0Tg0364BBpeKW4-3tNtQQpx3q9hkoJEcp5akvN_5b3yf5eHoWXLtdHvyEM4VpWf_2HotbRACavL4pbZ1zjsP_6EdVf-cDeLUbD27WrpJVRq5E3RxQrX2bD9dxHPNbVRru9R8a0WkQmf2_Z7iXWjxGTqedQPjAY8YVs10u5Zg8GKD6StM7Sg02e-_f6uc9RPGUycB9gLbgYsiYc4JSwA'
+  },
+  {
+    title: 'Secure AWS Modules',
+    icon: 'cloud_circle',
+    description:
+      'Thư viện Terraform modules chuẩn hóa bảo mật cho VPC, EC2, RDS và ALB, tuân thủ tiêu chuẩn CIS Benchmark.',
+    tags: ['Terraform', 'HCL', 'AWS'],
+    stars: 85,
+    forks: 12,
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuA7Ehf1dWTnAYXGgzlj5iqw4ZixC0b1op24cFBQe53XqQJUpJdlG2y_aDWigl5zxXoikcgrGR5hr9sB8K5F7a7-xfELLMBRRyTX4GhhOdpCC_Npom-Xpbnqc-shVw2LbHvAYrwqki0EW5_V2A7RTRFKaSp_C12msojuRIv6D2X7BkIONdkxFeKjC4rAnhNeDVHjVenmliGZKp2nUPgp1Vsvq-drGk1sVlxeLE6HYlXz9HzfRPkBpMbK8SGxvrNDUJb-ZME779ZCQCYb'
+  },
+  {
+    title: 'Shared Jenkins Lib',
+    icon: 'conveyor_belt',
+    description:
+      'Thư viện pipeline dùng chung chuẩn hóa CI/CD cho microservices, tích hợp SonarQube và Docker scanning.',
+    tags: ['Groovy', 'Jenkins', 'Docker'],
+    stars: 45,
+    forks: 8,
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuAW0Z6WKIWEbwOaTvlzeQ1gxZNnnyps1yO2CIIl4CxbgdfEaR-qO97hPoMHobGDB_zD9U1M9Z52eseFUr717dkiIzajSSfRo4Kvi4p6sO4C11bFSLZO_S1fMi9S6tAMefMZIB4kAInGO_xO7tcGjykp2DHWeSIDPXvYJkOuW9B7lh2anjwUsF_UwJcba456cJFSBIKTfBN-1jmiaepcezxm38GE4wPGYtA92TZXY0wDe_e4tftBlKAPSbmkqDFjjtd95FSZyUtKw6CYb'
+  },
+  {
+    title: 'Serverless Portfolio',
+    icon: 'bolt',
+    description:
+      'Website cá nhân serverless dùng AWS Lambda, API Gateway và DynamoDB; CI/CD bằng GitHub Actions.',
+    tags: ['AWS', 'Lambda', 'GitHub Actions'],
+    stars: 22,
+    forks: 4,
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuD9N-HKkxmZc4Q05oPH0vKM5M8OywjvJsDtG_B2UluQS-FFQVS9UfIkuYSremScxrbJgcF4QqcUxSZohkkJaMHwwNYXce9dEoOq1su9Rh3ct1ib8pM5hH3m7fbQ6Pvc0P_em6kyLuw1zVUg0gH5hjRCZxC6GFJsC-6br5EJAX-bHX0tgxmDbH0Ill_jgYiW5x4yA0F2MjwbErthP_36XxgjbyiRvdKoDRxngwliw0PTCTaayB2OyHZ0Y2MgR_e-E7Hm6oLbRiwkh5TAA'
+  }
+];
+---
+
+<BaseLayout title="Dự án cá nhân - DevOps Portfolio" description="Danh mục dự án IaC, CI/CD và tự động hóa">
+  <section class="flex flex-col items-center py-10 px-4 md:px-10">
+    <div class="w-full max-w-[1024px] flex flex-col gap-8">
+      <div class="flex flex-col gap-4">
+        <h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">Dự án cá nhân</h1>
+        <p class="text-text-secondary text-lg font-normal leading-relaxed max-w-2xl">
+          Bộ sưu tập các dự án Infrastructure as Code, script tự động hóa và CI/CD pipelines tôi đã xây dựng trong suốt 3 năm làm việc và nghiên cứu.
+        </p>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+        <div class="w-full md:w-auto min-w-[320px]">
+          <label class="flex w-full items-stretch rounded-lg h-12 bg-card-dark border border-surface-border focus-within:border-primary transition-colors">
+            <div class="text-text-secondary flex items-center justify-center pl-4 pr-2">
+              <span class="material-symbols-outlined">search</span>
+            </div>
+            <input
+              class="flex w-full bg-transparent border-none text-white focus:ring-0 placeholder:text-[#585f6f] px-2 text-base"
+              placeholder="Tìm kiếm dự án (vd: terraform, aws...)"
+              value=""
+            />
+          </label>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          {filters.map((filter, index) => (
+            <button
+              class={`flex h-9 items-center justify-center px-4 rounded-lg text-sm font-medium transition-all ${
+                index === 0
+                  ? 'bg-primary text-white shadow-lg shadow-primary/25 hover:scale-105'
+                  : 'bg-surface-border hover:bg-[#333a46] text-text-secondary hover:text-white'
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+        {projects.map((project) => (
+          <div class="group flex flex-col bg-card-dark rounded-xl overflow-hidden border border-surface-border hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(19,91,236,0.15)]">
+            <div class="h-48 w-full relative">
+              <img src={project.image} alt={project.title} class="absolute inset-0 h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent opacity-90"></div>
+              {project.badge && (
+                <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                  <span class="text-xs font-bold text-white tracking-wide">{project.badge}</span>
+                </div>
+              )}
+            </div>
+            <div class="flex flex-col flex-1 p-6 gap-4">
+              <div class="flex items-start justify-between">
+                <h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors">{project.title}</h3>
+                <span class="material-symbols-outlined text-text-secondary">{project.icon}</span>
+              </div>
+              <p class="text-text-secondary text-sm leading-relaxed line-clamp-2">{project.description}</p>
+              <div class="flex flex-wrap gap-2 mt-auto">
+                {project.tags.map((tag) => (
+                  <span class="px-2.5 py-1 rounded-md bg-surface-border text-xs font-medium text-text-secondary font-mono">{tag}</span>
+                ))}
+              </div>
+              <div class="pt-4 mt-2 border-t border-surface-border flex justify-between items-center">
+                <div class="flex gap-4 text-xs text-text-secondary font-medium">
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">star</span> {project.stars}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">call_split</span> {project.forks}
+                  </span>
+                </div>
+                <button class="flex items-center gap-2 text-white bg-primary hover:bg-primary-hover px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                  <span>GitHub</span>
+                  <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

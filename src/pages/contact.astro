@@ -1,0 +1,122 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const contacts = [
+  { label: 'Email', value: 'contact@devops.io', icon: 'mail', href: 'mailto:contact@devops.io' },
+  { label: 'LinkedIn', value: 'Connect with me', icon: 'work', href: '#' },
+  { label: 'GitHub', value: 'Check my repositories', icon: 'code', href: '#', fullWidth: true }
+];
+---
+
+<BaseLayout title="Liên hệ - DevOps Portfolio" description="Kết nối để trao đổi công việc hoặc dự án DevOps">
+  <section class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <div class="flex flex-col justify-center space-y-8">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider w-fit">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Open to work
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight text-gray-900 dark:text-white">
+            Let's automate the <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">future</span>.
+          </h1>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-md leading-relaxed">
+            I'm currently tìm kiếm thử thách mới về cloud architecture và tối ưu CI/CD. Bạn có câu hỏi hay chỉ muốn kết nối, tôi sẽ phản hồi sớm nhất!
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {contacts.map((contact) => (
+            <a
+              class={`group flex flex-col p-5 rounded-xl border border-gray-200 dark:border-surface-border bg-white dark:bg-[#1c1f27] hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 ${contact.fullWidth ? 'sm:col-span-2' : ''}`}
+              href={contact.href}
+            >
+              <div class={`${contact.fullWidth ? 'flex items-center justify-between' : ''}`}>
+                <div class={`flex items-center ${contact.fullWidth ? 'gap-3' : 'justify-start'} ${contact.fullWidth ? '' : 'mb-3'}`}>
+                  <div class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-surface-border flex items-center justify-center text-gray-900 dark:text-white group-hover:bg-primary group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">{contact.icon}</span>
+                  </div>
+                  <div class={contact.fullWidth ? '' : 'hidden'}>
+                    <h3 class="text-sm font-semibold text-gray-900 dark:text-white">{contact.label}</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">{contact.value}</p>
+                  </div>
+                </div>
+                {contact.fullWidth && <span class="material-symbols-outlined text-gray-400 group-hover:translate-x-1 transition-transform">arrow_forward</span>}
+              </div>
+              {!contact.fullWidth && (
+                <>
+                  <h3 class="text-sm font-semibold text-gray-900 dark:text-white">{contact.label}</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{contact.value}</p>
+                </>
+              )}
+              {contact.fullWidth && (
+                <div class="mt-2">
+                  <h3 class="text-sm font-semibold text-gray-900 dark:text-white">{contact.label}</h3>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">{contact.value}</p>
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex items-center">
+        <div class="w-full bg-white dark:bg-[#161b22] rounded-2xl border border-gray-200 dark:border-surface-border p-6 sm:p-8 shadow-2xl shadow-black/5 dark:shadow-black/20">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">chat_bubble</span>
+            Send a Message
+          </h2>
+          <form class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <label class="block space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Name</span>
+                <input
+                  class="w-full h-11 px-4 rounded-lg bg-gray-50 dark:bg-[#0d1117] border border-gray-200 dark:border-[#30363d] text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
+                  placeholder="John Doe"
+                  type="text"
+                />
+              </label>
+              <label class="block space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Email</span>
+                <input
+                  class="w-full h-11 px-4 rounded-lg bg-gray-50 dark:bg-[#0d1117] border border-gray-200 dark:border-[#30363d] text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
+                  placeholder="john@example.com"
+                  type="email"
+                />
+              </label>
+            </div>
+            <label class="block space-y-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Subject</span>
+              <div class="relative">
+                <select
+                  class="w-full h-11 px-4 pr-10 appearance-none rounded-lg bg-gray-50 dark:bg-[#0d1117] border border-gray-200 dark:border-[#30363d] text-gray-900 dark:text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm cursor-pointer"
+                >
+                  <option>General Inquiry</option>
+                  <option>Project Proposal</option>
+                  <option>Freelance Opportunity</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                  <span class="material-symbols-outlined text-sm">expand_more</span>
+                </div>
+              </div>
+            </label>
+            <label class="block space-y-2">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Message</span>
+              <textarea
+                class="w-full p-4 rounded-lg bg-gray-50 dark:bg-[#0d1117] border border-gray-200 dark:border-[#30363d] text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-none"
+                placeholder="Hello, I'd like to discuss..."
+                rows="4"
+              ></textarea>
+            </label>
+            <button
+              class="w-full h-12 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-all transform active:scale-[0.98] shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2"
+              type="button"
+            >
+              <span>Send Message</span>
+              <span class="material-symbols-outlined text-[18px]">send</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
