@@ -2,6 +2,8 @@
 const { lang = 'en' } = Astro.props;
 const currentLang = lang === 'vi' ? 'vi' : 'en';
 const toggleLang = currentLang === 'en' ? 'vi' : 'en';
+const basePath = currentLang === 'vi' ? '/vi' : '';
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const copy = {
   en: {
@@ -36,9 +38,11 @@ const links = [
   { label: copy[currentLang].contact, href: '/contact' }
 ];
 
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const buildHref = (href) => `${href}${href.includes('?') ? '&' : '?'}lang=${currentLang}`;
-const toggleHref = `${currentPath}?lang=${toggleLang}`;
+const buildHref = (href) => `${basePath}${href}`;
+const toggleHref =
+  currentLang === 'vi'
+    ? currentPath.replace(/^\/vi/, '') || '/'
+    : `/vi${currentPath === '/' ? '' : currentPath}`;
 ---
 
 <header class="w-full border-b border-slate-200 dark:border-surface-border sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">

@@ -3,8 +3,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Hero.astro';
 import TechGrid from '@components/TechGrid.astro';
 
+const langProp = Astro.props.langOverride;
 const langParam = Astro.url.searchParams.get('lang');
-const lang = langParam === 'vi' ? 'vi' : 'en';
+const lang = (langProp ?? langParam) === 'vi' || Astro.params?.lang === 'vi' ? 'vi' : 'en';
 
 const heroCopy = {
   en: {
@@ -170,6 +171,8 @@ const workflow = {
   ]
 };
 
+const basePath = lang === 'vi' ? '/vi' : '';
+
 const labels = {
   en: {
     heroPrimary: 'View Projects',
@@ -231,8 +234,8 @@ const tWorkflow = workflow[lang];
     role={tHero.role}
     highlight={tHero.highlight}
     description={tHero.description}
-    primaryCta={{ label: tLabels.heroPrimary, href: `/projects?lang=${lang}` }}
-    secondaryCta={{ label: tLabels.heroSecondary, href: `/contact?lang=${lang}` }}
+    primaryCta={{ label: tLabels.heroPrimary, href: `${basePath}/projects` }}
+    secondaryCta={{ label: tLabels.heroSecondary, href: `${basePath}/contact` }}
     portrait="https://lh3.googleusercontent.com/aida-public/AB6AXuD_-2Ewbhk8F7wgMj9Uazg3YSY9CqJS8KxYHo6CwDf1vRxO7_3llJqdnE_m5pztgLyXox-aBAJ14ZtxkGzpSVjTPfzrH3Ut7dJOyUjFVszBj4xyRPLo83I6wBH_XclibseH2R7nZ2TAFspA2U2lRS5u2sTq-sMq5mQvr_6GNElXxcgFKdDwx1dd6jTrFSExHxtpQtO5VvVh78whdtJ6cpWhSTlg44rG1Bh1PJwh4KzUstspYGk7inYkEbqgH-pECbItS2hVn4w39ybO"
     stats={[
       { value: '3+', label: lang === 'en' ? 'Years Exp' : 'Năm kinh nghiệm' },
@@ -251,7 +254,7 @@ const tWorkflow = workflow[lang];
         </div>
         <a
           class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-hover"
-          href={`/experience?lang=${lang}`}
+          href={`${basePath}/experience`}
         >
           {tLabels.experienceCta}
           <span class="material-symbols-outlined text-base">arrow_outward</span>
@@ -317,10 +320,10 @@ const tWorkflow = workflow[lang];
           <p class="text-text-secondary max-w-2xl">{tLabels.processBody}</p>
         </div>
         <div class="flex gap-3">
-          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg bg-primary hover:bg-primary-hover text-white font-semibold transition-colors" href="/contact">
+          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg bg-primary hover:bg-primary-hover text-white font-semibold transition-colors" href={`${basePath}/contact`}>
             {tLabels.contactCta}
           </a>
-          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg border border-surface-border text-white hover:border-primary/60" href="/projects">
+          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg border border-surface-border text-white hover:border-primary/60" href={`${basePath}/projects`}>
             {tLabels.projectCta}
           </a>
         </div>

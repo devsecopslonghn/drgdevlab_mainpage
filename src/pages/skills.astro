@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-const lang = Astro.url.searchParams.get('lang') === 'vi' ? 'vi' : 'en';
+const langProp = Astro.props.langOverride;
+const lang = (langProp ?? Astro.url.searchParams.get('lang') ?? Astro.params?.lang) === 'vi' ? 'vi' : 'en';
 
 const cloudPlatforms = {
   en: [
