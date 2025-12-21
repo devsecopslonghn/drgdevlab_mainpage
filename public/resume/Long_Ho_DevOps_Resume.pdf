@@ -1,0 +1,49 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+5 0 obj << /Length 3344 >>
+stream
+BT /F1 12 Tf 64 760 Td (Long Ho — DevOps Engineer) Tj ET
+BT /F1 12 Tf 64 746 Td (Ho Chi Minh City | longhn0710@gmail.com | linkedin.com/in/longhn0710 | github.com/devsecopslonghn) Tj ET
+BT /F1 12 Tf 64 724 Td (Summary) Tj ET
+BT /F1 12 Tf 64 710 Td (- DevOps engineer with 3+ years building CI/CD, infra automation, and container platforms in banking/enterprise.) Tj ET
+BT /F1 12 Tf 64 696 Td (- Focus on stability, auditability, and security-first practices \(HTTPS/HSTS, cert lifecycle, least-privilege\).) Tj ET
+BT /F1 12 Tf 64 682 Td (- Comfortable with public cloud and on-prem K8s/OKD; standardize pipelines and IaC for multi-team delivery.) Tj ET
+BT /F1 12 Tf 64 660 Td (Core Skills) Tj ET
+BT /F1 12 Tf 64 646 Td (- CI/CD: Jenkins \(PaC/Groovy\), GitLab CI, GitHub Actions; quality gates, promotion, rollback.) Tj ET
+BT /F1 12 Tf 64 632 Td (- Containers/Orchestration: Docker hardening, digest deploys; K8s/OKD \(kubeadm\), Traefik ingress, TLS automation.) Tj ET
+BT /F1 12 Tf 64 618 Td (- IaC/Config: Terraform; Ansible/Ansible Automation Platform; policy-as-code mindset.) Tj ET
+BT /F1 12 Tf 64 604 Td (- Release & DB: Git-based SQL versioning \(DDL/DML/SP\) with audited rollback plans.) Tj ET
+BT /F1 12 Tf 64 590 Td (- Scripting: Bash, Python automation for packaging, provisioning, reporting.) Tj ET
+BT /F1 12 Tf 64 576 Td (- Cloud/Networking: AWS \(core\), hybrid/on-prem networking, Cloudflare + Let’s Encrypt \(DNS challenge/tunnel\).) Tj ET
+BT /F1 12 Tf 64 554 Td (Experience) Tj ET
+BT /F1 12 Tf 64 540 Td (Sacombank — DevOps Engineer \(Banking\) | 2023–Present) Tj ET
+BT /F1 12 Tf 64 526 Td (• Designed Jenkins \(PaC/Groovy\) for multi-env releases \(dev/SIT/UAT/stage/prod\) with go/no-go gates and rollbacks.) Tj ET
+BT /F1 12 Tf 64 512 Td (• Automated app distribution/tester access via Firebase CLI with CSV mapping and environment segregation.) Tj ET
+BT /F1 12 Tf 64 498 Td (• Aggregated test results across .NET/Java/Python for reporting and quality gates.) Tj ET
+BT /F1 12 Tf 64 484 Td (• Managed SQL change/versioning in Git with DDL/DML/SP and rollback aligned to audit.) Tj ET
+BT /F1 12 Tf 64 470 Td (• Enforced Docker image immutability and digest-based deployments for traceability.) Tj ET
+BT /F1 12 Tf 64 456 Td (• Built/operated on-prem K8s/OKD \(kubeadm, Vagrant, libvirt\); Traefik ingress, Cloudflare + Let’s Encrypt \(DNS challenge/tunnel\).) Tj ET
+BT /F1 12 Tf 64 442 Td (• Applied security-first practices: HTTPS/HSTS awareness, cert lifecycle, least-privilege access.) Tj ET
+BT /F1 12 Tf 64 420 Td (DXC Technology — DevOps Engineer | 2021–2023) Tj ET
+BT /F1 12 Tf 64 406 Td (• Built Jenkins/GitLab CI with automated tests, security scanning, and promotion gates for microservices and legacy apps.) Tj ET
+BT /F1 12 Tf 64 392 Td (• Containerized services with Docker; introduced Terraform/Ansible modules for consistent provisioning.) Tj ET
+BT /F1 12 Tf 64 378 Td (• Improved release governance with versioning, artifact integrity, and environment parity to reduce rollout risk.) Tj ET
+BT /F1 12 Tf 64 356 Td (Short Version) Tj ET
+BT /F1 12 Tf 64 342 Td (DevOps engineer experienced in Jenkins CI/CD, SQL version control, Docker, and private Kubernetes platforms in banking; strong in automation, release governance, rollback strategies, and security-compliant DevOps.) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+3706
+%%EOF

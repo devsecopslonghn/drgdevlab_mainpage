@@ -7,84 +7,70 @@ const lang = (langProp ?? Astro.url.searchParams.get('lang') ?? Astro.params?.la
 const experiences = {
   en: [
     {
-      role: 'Senior DevOps Engineer',
-      company: 'TechCorp',
-      period: '2022 - Present',
-      icon: 'cloud_done',
-      summary: 'Designed and operated AWS infrastructure. Led microservices migration and DevOps culture rollout.',
+      role: 'DevOps Engineer – Banking',
+      company: 'Sacombank',
+      period: '2023 – Present',
+      icon: 'verified',
+      summary:
+        'Built and ran CI/CD, release governance, and private Kubernetes/OKD for banking workloads with strict audit and security requirements.',
       achievements: [
-        'Built automated CI/CD with Jenkins, cutting deployment time by 40%.',
-        'Managed IaC with Terraform to remove manual config drift.',
-        'Optimized AWS spend via Spot Instances and Auto Scaling, saving ~20%.'
+        'Designed Jenkins (Pipeline as Code/Groovy) for multi-env releases (dev/SIT/UAT/staging/prod) with quality gates and rollbacks.',
+        'Automated app distribution and tester access via Firebase CLI with CSV-based mapping and environment segregation.',
+        'Aggregated test results across .NET/Java/Python for pipeline reporting and go/no-go decisions.',
+        'Managed SQL change/versioning (DDL/DML/SP) in Git with rollback strategies aligned to audit and compliance.',
+        'Enforced Docker image immutability and digest-based deployments for traceability.',
+        'Built/operated on-prem Kubernetes/OKD (kubeadm, Vagrant, libvirt); implemented Traefik ingress, Cloudflare + Let’s Encrypt (DNS challenge/tunnel).',
+        'Applied security-first practices: HTTPS/HSTS awareness, certificate lifecycle, and least-privilege access.'
       ],
-      stack: ['AWS', 'Terraform', 'Jenkins', 'Python', 'Prometheus']
+      stack: ['Jenkins (Groovy)', 'GitLab', 'Docker', 'OKD/K8s', 'Traefik', 'Cloudflare', 'Let’s Encrypt', 'SQL change mgmt']
     },
     {
       role: 'DevOps Engineer',
-      company: 'CloudSolutions',
-      period: '2021 - 2022',
+      company: 'DXC Technology',
+      period: '2021 – 2023',
       icon: 'deployed_code',
-      summary: 'Modernized apps, moved monoliths to microservices, and ran production Kubernetes.',
+      summary:
+        'Standardized CI/CD and environment provisioning for microservices and legacy apps, focusing on reliability and repeatable releases.',
       achievements: [
-        'Containerized 15+ legacy apps with Docker.',
-        'Provisioned and operated EKS for staging/production.',
-        'Centralized monitoring with ELK, halving time-to-detect incidents.'
+        'Built Jenkins/GitLab CI pipelines with automated testing, security scanning, and promotion gates.',
+        'Containerized services with Docker; introduced Terraform/Ansible modules for consistent infra provisioning.',
+        'Improved release governance with versioning, artifact integrity, and environment parity to lower rollout risk.'
       ],
-      stack: ['Docker', 'Kubernetes', 'GitLab CI', 'ELK Stack']
-    },
-    {
-      role: 'Junior System Admin',
-      company: 'StartUpOne',
-      period: '2020 - 2021',
-      icon: 'terminal',
-      summary: 'Managed Linux servers, supported users, and secured data. Started with automation tooling.',
-      achievements: [
-        'Wrote Bash scripts for scheduled backups.',
-        'Installed and tuned Nginx for the company website.',
-        'Resolved 95% of system incidents within two hours.'
-      ],
-      stack: ['Linux (Ubuntu/CentOS)', 'Bash Scripting', 'Nginx', 'MySQL']
+      stack: ['Jenkins', 'GitLab CI', 'Docker', 'Terraform', 'Ansible']
     }
   ],
   vi: [
     {
-      role: 'Senior DevOps Engineer',
-      company: 'TechCorp',
-      period: '2022 - Hiện tại',
-      icon: 'cloud_done',
-      summary: 'Thiết kế và duy trì hạ tầng AWS. Dẫn dắt chuyển đổi Microservices và văn hóa DevOps.',
+      role: 'DevOps Engineer – Ngân hàng',
+      company: 'Sacombank',
+      period: '2023 – Hiện tại',
+      icon: 'verified',
+      summary:
+        'Xây dựng và vận hành CI/CD, quản trị phát hành và Kubernetes/OKD on-prem cho hệ thống ngân hàng với yêu cầu audit và bảo mật nghiêm ngặt.',
       achievements: [
-        'Xây dựng pipeline CI/CD tự động với Jenkins, giảm 40% thời gian triển khai.',
-        'Quản lý hạ tầng IaC bằng Terraform, giảm thiểu sai sót cấu hình thủ công.',
-        'Tối ưu chi phí AWS qua Spot Instances và Auto Scaling, tiết kiệm ~20%.'
+        'Thiết kế Jenkins (Pipeline as Code/Groovy) cho đa môi trường (dev/SIT/UAT/staging/prod) với quality gate và rollback.',
+        'Tự động phân phối ứng dụng và quản lý tester bằng Firebase CLI, mapping CSV và tách biệt môi trường.',
+        'Tổng hợp kết quả test .NET/Java/Python cho báo cáo pipeline và quyết định go/no-go.',
+        'Quản lý thay đổi SQL (DDL/DML/SP) trong Git với chiến lược rollback tuân thủ kiểm toán.',
+        'Áp dụng Docker image immutability và triển khai theo digest để truy vết chính xác.',
+        'Xây dựng/vận hành Kubernetes/OKD on-prem (kubeadm, Vagrant, libvirt); cấu hình Traefik ingress, Cloudflare + Let’s Encrypt (DNS challenge/tunnel).',
+        'Triển khai bảo mật ưu tiên: HTTPS/HSTS, vòng đời chứng chỉ, quyền truy cập least-privilege.'
       ],
-      stack: ['AWS', 'Terraform', 'Jenkins', 'Python', 'Prometheus']
+      stack: ['Jenkins (Groovy)', 'GitLab', 'Docker', 'OKD/K8s', 'Traefik', 'Cloudflare', 'Let’s Encrypt', 'SQL change mgmt']
     },
     {
       role: 'DevOps Engineer',
-      company: 'CloudSolutions',
-      period: '2021 - 2022',
+      company: 'DXC Technology',
+      period: '2021 – 2023',
       icon: 'deployed_code',
-      summary: 'Hiện đại hóa ứng dụng, chuyển đổi monolith sang microservices và vận hành Kubernetes production.',
+      summary:
+        'Chuẩn hóa CI/CD và provisioning hạ tầng cho microservices và hệ thống legacy, tập trung vào tính ổn định và phát hành lặp lại.',
       achievements: [
-        'Container hóa 15+ ứng dụng legacy với Docker.',
-        'Triển khai, quản trị EKS cho Staging/Production.',
-        'Thiết lập giám sát tập trung bằng ELK Stack, rút ngắn 50% thời gian phát hiện lỗi.'
+        'Xây dựng Jenkins/GitLab CI với test tự động, security scan và cổng thăng cấp môi trường.',
+        'Container hóa dịch vụ bằng Docker; giới thiệu module Terraform/Ansible cho provisioning nhất quán.',
+        'Nâng chất lượng release với versioning, kiểm soát artifact và parity môi trường để giảm rủi ro rollout.'
       ],
-      stack: ['Docker', 'Kubernetes', 'GitLab CI', 'ELK Stack']
-    },
-    {
-      role: 'Junior System Admin',
-      company: 'StartUpOne',
-      period: '2020 - 2021',
-      icon: 'terminal',
-      summary: 'Quản trị máy chủ Linux, hỗ trợ người dùng và đảm bảo an toàn dữ liệu, bắt đầu với tự động hóa.',
-      achievements: [
-        'Viết script Bash tự động hóa backup định kỳ.',
-        'Cài đặt, cấu hình Nginx cho website công ty.',
-        'Giải quyết 95% sự cố hệ thống trong 2 giờ.'
-      ],
-      stack: ['Linux (Ubuntu/CentOS)', 'Bash Scripting', 'Nginx', 'MySQL']
+      stack: ['Jenkins', 'GitLab CI', 'Docker', 'Terraform', 'Ansible']
     }
   ]
 };
@@ -135,10 +121,10 @@ const items = experiences[lang];
               <div class={`flex size-12 items-center justify-center rounded-full border-2 ${index === 0 ? 'border-primary shadow-[0_0_15px_rgba(19,91,236,0.3)]' : 'border-surface-border'} bg-background-dark z-10`}>
                 <span class={`material-symbols-outlined ${index === 0 ? 'text-primary' : 'text-text-secondary'}`}>{item.icon}</span>
               </div>
-              <div class={`h-full w-[2px] ${index === experiences.length - 1 ? 'bg-gradient-to-b from-surface-border to-transparent' : 'bg-gradient-to-b from-primary via-surface-border to-surface-border'} my-2`}></div>
+              <div class={`h-full w-[2px] ${index === items.length - 1 ? 'bg-gradient-to-b from-surface-border to-transparent' : 'bg-gradient-to-b from-primary via-surface-border to-surface-border'} my-2`}></div>
             </div>
 
-            <div class={`relative ${index === experiences.length - 1 ? 'pb-4' : 'pb-12 md:pb-16'} pl-8 md:pl-0 border-l-2 border-surface-border md:border-l-0`}>
+            <div class={`relative ${index === items.length - 1 ? 'pb-4' : 'pb-12 md:pb-16'} pl-8 md:pl-0 border-l-2 border-surface-border md:border-l-0`}>
               <div class="absolute -left-[17px] top-0 flex md:hidden size-9 items-center justify-center rounded-full border-2 border-surface-border bg-background-dark z-10">
                 <span class="material-symbols-outlined text-text-secondary text-sm">{item.icon}</span>
               </div>
@@ -190,7 +176,7 @@ const items = experiences[lang];
           <p class="text-text-secondary max-w-md">{t.ctaBody}</p>
           <a
             class="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary-hover text-white text-base font-bold leading-normal tracking-[0.015em] transition-all"
-            href="/resume/Long%20Ho%20Devops%202yrs%20resume.pdf"
+            href="/resume/Long_Ho_DevOps_Resume.pdf"
             target="_blank"
             rel="noreferrer"
           >
