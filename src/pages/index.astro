@@ -23,12 +23,12 @@ const serviceStatus = {
 };
 
 const platformServices = [
-  { title: 'Jenkins', icon: 'build', description: 'CI/CD Automation Pipelines', status: 'online' },
-  { title: 'Nextcloud', icon: 'cloud', description: 'Private Cloud & Data Sov.', status: 'online' },
-  { title: 'n8n', icon: 'account_tree', description: 'Workflow Automation', status: 'online' },
-  { title: 'Nexus', icon: 'layers', description: 'Artifact & Docker Repo', status: 'degraded' },
-  { title: 'Keycloak', icon: 'lock', description: 'Identity & Access Mgmt', status: 'online' },
-  { title: 'Monitoring', icon: 'monitoring', description: 'Grafana • Prometheus', status: 'online' }
+  { title: 'Jenkins', icon: 'build', description: 'CI/CD Automation Pipelines', status: 'online', href: 'https://jenkins.drgdevlab.com/' },
+  { title: 'Nextcloud', icon: 'cloud', description: 'Private Cloud & Data Sov.', status: 'online', href: 'https://cloud.drgdevlab.com/apps/dashboard/' },
+  { title: 'n8n', icon: 'account_tree', description: 'Workflow Automation', status: 'online', href: 'https://n8n.drgdevlab.com/' },
+  { title: 'Nexus', icon: 'layers', description: 'Artifact & Docker Repo', status: 'degraded', href: 'https://jenkins.drgdevlab.com/' },
+  { title: 'Keycloak', icon: 'lock', description: 'Identity & Access Mgmt', status: 'online', href: 'https://jenkins.drgdevlab.com/' },
+  { title: 'Monitoring', icon: 'monitoring', description: 'Grafana • Prometheus', status: 'online', href: 'https://grafana.drgdevlab.com/' }
 ];
 
 const techStacks = [
@@ -104,12 +104,14 @@ const experiments = [
                 </h2>
               </div>
               <div class="flex flex-wrap gap-4">
-                <button class="flex h-12 min-w-[140px] cursor-pointer items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-background-dark transition-transform active:scale-95 hover:bg-primary-hover hover:text-white">
+                <a class="flex h-12 min-w-[140px] cursor-pointer items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-background-dark transition-transform active:scale-95 hover:bg-primary-hover hover:text-white"
+                  href="https://cloud.drgdevlab.com/apps/dashboard/" target="_blank" rel="noreferrer">
                   Enter Dashboard
-                </button>
-                <button class="flex h-12 min-w-[140px] cursor-pointer items-center justify-center rounded-lg border border-border-dark bg-surface-dark px-6 text-base font-bold text-white transition-colors hover:bg-border-dark">
+                </a>
+                <a class="flex h-12 min-w-[140px] cursor-pointer items-center justify-center rounded-lg border border-border-dark bg-surface-dark px-6 text-base font-bold text-white transition-colors hover:bg-border-dark"
+                  href="https://www.linkedin.com/in/longhn0710/" target="_blank" rel="noreferrer">
                   Operator Profile
-                </button>
+                </a>
               </div>
             </div>
             <div class="relative aspect-video w-full overflow-hidden rounded-xl border border-border-dark bg-surface-dark shadow-2xl lg:aspect-square lg:h-[400px]">
@@ -151,7 +153,9 @@ const experiments = [
               return (
                 <a
                   class={`group relative flex flex-col justify-between rounded-lg border border-border-dark bg-surface-dark/50 p-5 transition-all duration-300 hover:translate-y-[-2px] ${theme.cardHover}`}
-                  href="#"
+                  href={service.href}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <div class="flex items-start justify-between">
                     <div class="flex h-10 w-10 items-center justify-center rounded bg-[#161f1a] border border-border-dark text-text-muted transition-colors group-hover:border-primary/30 group-hover:text-primary">
@@ -284,9 +288,9 @@ const experiments = [
           <span>Build v2.4.0-alpha</span>
         </div>
         <div class="flex items-center gap-6">
-          <a class="hover:text-primary transition-colors" href="#">GitHub</a>
-          <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
-          <a class="hover:text-primary transition-colors" href="#">PGP Key</a>
+          <a class="hover:text-primary transition-colors" href="https://github.com/devsecopslonghn" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="hover:text-primary transition-colors" href="https://www.linkedin.com/in/longhn0710/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="hover:text-primary transition-colors" href="https://cloud.drgdevlab.com/apps/dashboard/" target="_blank" rel="noreferrer">Status</a>
         </div>
       </div>
       <div class="mt-4 text-center text-[10px] opacity-40">© 2024 DRG Dev Lab. Unauthorized access attempts will be logged.</div>
