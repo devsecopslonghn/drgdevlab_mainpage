@@ -5,17 +5,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#135bec',
-        'primary-hover': '#2a6bf2',
-        'background-light': '#f6f6f8',
-        'background-dark': '#101622',
-        'surface-dark': '#1c212c',
-        'surface-border': '#282e39',
-        'card-dark': '#1c1f27',
-        'text-secondary': '#9da6b9'
+        primary: '#13ec80',
+        'primary-hover': '#0ea85b',
+        'background-light': '#f6f8f7',
+        'background-dark': '#111814',
+        'surface-dark': '#1c2721',
+        'surface-border': '#283930',
+        'border-dark': '#283930',
+        'card-dark': '#1c2721',
+        'text-secondary': '#9db9ab',
+        'text-muted': '#9db9ab'
       },
       fontFamily: {
-        display: ['Inter', 'sans-serif'],
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Noto Sans', 'sans-serif'],
         mono: [
           'ui-monospace',
           'SFMono-Regular',

@@ -1,349 +1,317 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import Hero from '@components/Hero.astro';
-import TechGrid from '@components/TechGrid.astro';
 
 const langProp = Astro.props.langOverride;
 const langParam = Astro.url.searchParams.get('lang');
 const lang = (langProp ?? langParam) === 'vi' || Astro.params?.lang === 'vi' ? 'vi' : 'en';
 
-const heroCopy = {
-  en: {
-    badge: "Hi, I'm",
-    name: 'Long Ho',
-    role: 'DevOps',
-    highlight: 'Engineer',
-    description:
-      'DevOps engineer in banking environments: builds CI/CD, standardizes cloud/on-prem platforms, and keeps releases stable, auditable, and secure.'
+const serviceStatus = {
+  online: {
+    label: 'Online',
+    cardHover: 'hover:border-primary/50 hover:bg-surface-dark hover:shadow-lg hover:shadow-primary/5',
+    badge: 'border-primary/20 bg-primary/5 text-primary',
+    dot: 'bg-primary',
+    ping: 'animate-ping bg-primary'
   },
-  vi: {
-    badge: 'Xin chào, tôi là',
-    name: 'Long Ho',
-    role: 'DevOps',
-    highlight: 'Engineer',
-    description:
-      'DevOps trong lĩnh vực ngân hàng: xây dựng CI/CD, chuẩn hóa nền tảng cloud/on-prem và vận hành phát hành ổn định, audit-able, bảo mật.'
+  degraded: {
+    label: 'Degraded',
+    cardHover: 'hover:border-yellow-500/50 hover:bg-surface-dark hover:shadow-lg hover:shadow-yellow-500/5',
+    badge: 'border-yellow-500/20 bg-yellow-500/5 text-yellow-500',
+    dot: 'bg-yellow-500',
+    ping: ''
   }
 };
 
-const techItems = [
-  { icon: 'cloud_queue', label: 'AWS', color: 'group-hover:text-[#FF9900]' },
-  { icon: 'view_in_ar', label: 'Kubernetes', color: 'group-hover:text-[#326CE5]' },
-  { icon: 'deployed_code', label: 'Terraform', color: 'group-hover:text-[#7B42BC]' },
-  { icon: 'layers', label: 'Docker', color: 'group-hover:text-[#2496ED]' },
-  { icon: 'terminal', label: 'Python', color: 'group-hover:text-[#3776AB]' }
+const platformServices = [
+  { title: 'Jenkins', icon: 'build', description: 'CI/CD Automation Pipelines', status: 'online' },
+  { title: 'Nextcloud', icon: 'cloud', description: 'Private Cloud & Data Sov.', status: 'online' },
+  { title: 'n8n', icon: 'account_tree', description: 'Workflow Automation', status: 'online' },
+  { title: 'Nexus', icon: 'layers', description: 'Artifact & Docker Repo', status: 'degraded' },
+  { title: 'Keycloak', icon: 'lock', description: 'Identity & Access Mgmt', status: 'online' },
+  { title: 'Monitoring', icon: 'monitoring', description: 'Grafana • Prometheus', status: 'online' }
 ];
 
-const valueProps = {
-  en: [
-    {
-      title: 'Reliability first',
-      desc: 'Define SLO/SLI, clear alerting, and chaos drills to avoid unplanned downtime.',
-      icon: 'health_and_safety'
-    },
-    {
-      title: 'Security & compliance',
-      desc: 'IAM guardrails, secret scanning, and CIS/NIST baselines baked into IaC and pipelines.',
-      icon: 'encrypted'
-    },
-    {
-      title: 'Cloud cost optimization',
-      desc: 'Per-env cost tracking, rightsizing, Spot/RI adoption, and automatic off-switch for sandboxes.',
-      icon: 'savings'
-    },
-    {
-      title: 'Automation that ships',
-      desc: 'Reusable Helm/Terraform modules, pipeline templates for microservices, and policy-as-code.',
-      icon: 'bolt'
-    }
-  ],
-  vi: [
-    {
-      title: 'Ưu tiên Reliability',
-      desc: 'Đặt SLO/SLI, alerting rõ ràng và diễn tập sự cố để giảm downtime ngoài kế hoạch.',
-      icon: 'health_and_safety'
-    },
-    {
-      title: 'Bảo mật & tuân thủ',
-      desc: 'Quản trị IAM, secret scanning và baseline CIS/NIST tích hợp ngay từ IaC và pipeline.',
-      icon: 'encrypted'
-    },
-    {
-      title: 'Tối ưu chi phí cloud',
-      desc: 'Theo dõi cost theo môi trường, rightsizing, Spot/RI và tự động tắt môi trường thử nghiệm.',
-      icon: 'savings'
-    },
-    {
-      title: 'Automation thực chiến',
-      desc: 'Helm/Terraform modules tái sử dụng, template pipeline cho microservices và policy-as-code.',
-      icon: 'bolt'
-    }
-  ]
-};
+const techStacks = [
+  { title: 'Infrastructure', icon: 'dns', items: ['Kubernetes', 'Terraform', 'Ansible', 'Docker'] },
+  { title: 'CI/CD', icon: 'rocket_launch', items: ['GitHub Actions', 'Jenkins', 'ArgoCD', 'GitLab CI'] },
+  { title: 'Observability', icon: 'visibility', items: ['Prometheus', 'Grafana', 'ELK Stack', 'Datadog'] },
+  { title: 'Scripting', icon: 'terminal', items: ['Python', 'Bash', 'Go', 'Node.js'] }
+];
 
-const serviceTracks = {
-  en: [
-    {
-      title: 'Cloud Architecture & IaC',
-      badge: 'AWS / Azure',
-      desc: 'Design landing zones, multi-account model, and zero-trust networking.',
-      bullets: ['Hardened Terraform/terragrunt modules', 'Secrets & IAM with least privilege', 'Blueprints for DR and backup']
-    },
-    {
-      title: 'CI/CD & Platform Engineering',
-      badge: 'Jenkins / GitHub Actions',
-      desc: 'Standardize pipelines so builds, scans, and deployments stay fast.',
-      bullets: ['Pipeline templates for microservices', 'Artifact caching, SBOM, image signing', 'Canary/blue-green + progressive delivery']
-    },
-    {
-      title: 'Observability & SRE',
-      badge: 'Prometheus / Grafana',
-      desc: 'See the whole system and react fast when incidents happen.',
-      bullets: ['Unified dashboards for metrics/logs/traces', 'Runbooks, on-call, lightweight auto-remediation', 'Tuned alerts that avoid noise']
-    }
-  ],
-  vi: [
-    {
-      title: 'Cloud Architecture & IaC',
-      badge: 'AWS / Azure',
-      desc: 'Thiết kế landing zone, mô hình nhiều tài khoản và mạng zero-trust.',
-      bullets: ['Terraform/terragrunt modules chuẩn hóa', 'Quản lý secret & IAM theo least privilege', 'Blueprint cho DR và backup']
-    },
-    {
-      title: 'CI/CD & Platform Engineering',
-      badge: 'Jenkins / GitHub Actions',
-      desc: 'Chuẩn hóa pipeline để build, scan và deploy nhanh hơn.',
-      bullets: ['Template pipeline cho microservices', 'Artifact caching, SBOM, image signing', 'Canary/blue-green + progressive delivery']
-    },
-    {
-      title: 'Observability & SRE',
-      badge: 'Prometheus / Grafana',
-      desc: 'Nhìn rõ hệ thống và phản ứng nhanh khi có sự cố.',
-      bullets: ['Dashboard metrics/logs/traces hợp nhất', 'Runbook, on-call, auto-remediation nhẹ', 'Hiệu chỉnh alert tránh spam']
-    }
-  ]
-};
-
-const workflow = {
-  en: [
-    {
-      title: 'Discovery & audit',
-      detail: 'Review current state, SLOs, security, and cost to set priorities.',
-      icon: 'manage_search'
-    },
-    {
-      title: 'Architecture design',
-      detail: 'Sketch target state, technical decisions, and rollout plan.',
-      icon: 'architecture'
-    },
-    {
-      title: 'Implementation & automation',
-      detail: 'IaC + pipelines with testing, safe rollout via canary/blue-green.',
-      icon: 'rocket_launch'
-    },
-    {
-      title: 'Operate & handover',
-      detail: 'Dashboards, runbooks, and enablement so your team can own it.',
-      icon: 'handshake'
-    }
-  ],
-  vi: [
-    {
-      title: 'Khảo sát & Audit',
-      detail: 'Review hiện trạng, SLO, bảo mật và chi phí để xác định ưu tiên.',
-      icon: 'manage_search'
-    },
-    {
-      title: 'Thiết kế kiến trúc',
-      detail: 'Phác thảo target state, quyết định kỹ thuật và lộ trình triển khai.',
-      icon: 'architecture'
-    },
-    {
-      title: 'Triển khai & tự động hóa',
-      detail: 'IaC + pipeline, kiểm thử, rollout an toàn qua canary/blue-green.',
-      icon: 'rocket_launch'
-    },
-    {
-      title: 'Vận hành & chuyển giao',
-      detail: 'Dashboard, tài liệu runbook và hướng dẫn đội ngũ tiếp nhận.',
-      icon: 'handshake'
-    }
-  ]
-};
-
-const basePath = lang === 'vi' ? '/vi' : '';
-
-const labels = {
-  en: {
-    heroPrimary: 'View Projects',
-    heroSecondary: 'Contact Me',
-    techTitle: 'Technologies I work with',
-    valueTag: 'Value delivered',
-    valueHeading: 'Optimize infrastructure and DevOps flow',
-    valueBody:
-      'My goal is to help products launch faster, run more reliably, and cost less by combining cloud platforms, IaC, and SRE principles.',
-    experienceCta: 'View experience timeline',
-    coreTag: 'Core capabilities',
-    coreHeading: 'How I can help your team',
-    coreBody:
-      'From cloud architecture and IaC standards to CI/CD setup and operations visibility, I provide clear frameworks so dev teams ship features quickly and safely.',
-    processTag: 'Collaboration process',
-    processHeading: 'From current state to steady operations',
-    processBody:
-      'Transparent steps so you see progress: quick audit, target design, automated implementation, and complete operational handover.',
-    contactCta: 'Start a conversation',
-    projectCta: 'See example projects'
+const experiments = [
+  {
+    badge: 'HYBRID CLOUD',
+    title: 'Multi-Cluster Mesh',
+    status: 'IN PROGRESS',
+    action: 'View Diagram',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuDSCiZ0EjQdzIGUhKqCZzwsh2XHwMfBUkm6qGoHeguTK7k7DMEmWfn-iNBHuDtluCU1InW8jVO8Ufu_B-klzvUQ0h6QS0aazxbpIkly85tWfwmCtHTU-Rg0xdEWGQqa7S8buNdUt3psx1L36nFUYKquM-lXgR8VpWsvAhywYP2E9EDMr9ZEuGkGXY5M2W5Ia0M2D1TkZiSVyRvvOOcLk5lPetY1dduB1x9n8BUjJfjMGuH4CQEFnhVLoADWn7Jha-D9Dvz4LoCmHLE',
+    description:
+      'Connecting on-premise K3s clusters with AWS EKS using WireGuard and Cilium Service Mesh for seamless pod-to-pod communication across boundaries.'
   },
-  vi: {
-    heroPrimary: 'Xem dự án',
-    heroSecondary: 'Liên hệ',
-    techTitle: 'Công nghệ tôi sử dụng',
-    valueTag: 'Giá trị mang lại',
-    valueHeading: 'Tối ưu hạ tầng và quy trình DevOps',
-    valueBody:
-      'Mục tiêu của tôi là giúp sản phẩm ra mắt nhanh hơn, chạy ổn định hơn và tiết kiệm hơn bằng cách kết hợp nền tảng cloud, IaC và các nguyên tắc SRE.',
-    experienceCta: 'Xem hành trình kinh nghiệm',
-    coreTag: 'Năng lực cốt lõi',
-    coreHeading: 'Tôi có thể giúp gì cho đội ngũ của bạn?',
-    coreBody:
-      'Từ thiết kế kiến trúc cloud, chuẩn hóa IaC đến thiết lập CI/CD và giám sát vận hành, tôi cung cấp khung làm việc để đội dev triển khai nhanh và an toàn.',
-    processTag: 'Quy trình cộng tác',
-    processHeading: 'Đi từ hiện trạng đến vận hành ổn định',
-    processBody:
-      'Minh bạch từng bước: audit nhanh, thiết kế mục tiêu, triển khai tự động hóa và chuyển giao vận hành đầy đủ.',
-    contactCta: 'Bắt đầu trao đổi',
-    projectCta: 'Xem ví dụ dự án'
+  {
+    badge: 'GITOPS',
+    title: 'Zero-Touch Provisioning',
+    status: 'COMPLETED',
+    action: 'Read Case Study',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBrB-piR171dS_ZbQ_j3YeexZ0dvJp3CFMHawh8munaiCv-HQ25OeiQgF-dxlhwuqj1g7Id5V8BjSvSB-ZgSOx7aKsVSE4KrTaE4ByltvFsMcC6Oy3LppHR0XVBlT1AXhuLA6Yw7cX1AiUZkvRVeg7igSFkd_pDdGdksd7mxlRexuIprfzrxd2ibRH0xdn0J2d2zL8XY96LomvE9Y7WkltjjD9juOzdfIKsmar5wfRM9pySlkhhEIC5XznEHZazwtMRUHGFGbO6tII',
+    description:
+      'Bare metal provisioning pipeline using PXE boot, Ansible, and ArgoCD to go from racked server to fully operational Kubernetes node in 8 minutes.'
   }
-};
-
-const tHero = heroCopy[lang];
-const tLabels = labels[lang];
-const tValue = valueProps[lang];
-const tServices = serviceTracks[lang];
-const tWorkflow = workflow[lang];
+];
 ---
 
 <BaseLayout
-  title="DevOps Engineer Portfolio"
-  description={lang === 'en' ? 'DevOps portfolio for cloud, IaC, and CI/CD' : 'Hồ sơ DevOps về cloud, IaC và CI/CD'}
+  title="Platform Dashboard - DRG Dev Lab"
+  description="DevOps • Platform Engineering • Self-hosted infrastructure."
   lang={lang}
+  showChrome={false}
 >
-  <Hero
-    badge={tHero.badge}
-    name={tHero.name}
-    role={tHero.role}
-    highlight={tHero.highlight}
-    description={tHero.description}
-    primaryCta={{ label: tLabels.heroPrimary, href: `${basePath}/projects` }}
-    secondaryCta={{ label: tLabels.heroSecondary, href: `${basePath}/contact` }}
-    portrait="https://lh3.googleusercontent.com/aida-public/AB6AXuD_-2Ewbhk8F7wgMj9Uazg3YSY9CqJS8KxYHo6CwDf1vRxO7_3llJqdnE_m5pztgLyXox-aBAJ14ZtxkGzpSVjTPfzrH3Ut7dJOyUjFVszBj4xyRPLo83I6wBH_XclibseH2R7nZ2TAFspA2U2lRS5u2sTq-sMq5mQvr_6GNElXxcgFKdDwx1dd6jTrFSExHxtpQtO5VvVh78whdtJ6cpWhSTlg44rG1Bh1PJwh4KzUstspYGk7inYkEbqgH-pECbItS2hVn4w39ybO"
-    stats={[
-      { value: '3+', label: lang === 'en' ? 'Years Exp' : 'Năm kinh nghiệm' },
-      { value: '50+', label: lang === 'en' ? 'Projects' : 'Dự án' }
-    ]}
-  />
-  <TechGrid title={tLabels.techTitle} items={techItems} />
-
-  <section class="bg-gradient-to-b from-background-dark via-[#0e1420] to-background-dark py-14 px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl flex flex-col gap-8">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-        <div class="space-y-2">
-          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{tLabels.valueTag}</p>
-          <h2 class="text-3xl sm:text-4xl font-black leading-tight">{tLabels.valueHeading}</h2>
-          <p class="text-text-secondary max-w-2xl">{tLabels.valueBody}</p>
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-dark text-white font-display">
+    <header class="sticky top-0 z-50 flex w-full items-center justify-between border-b border-border-dark bg-background-dark/95 backdrop-blur-sm px-6 py-4 lg:px-20">
+      <div class="flex items-center gap-4">
+        <div class="flex size-8 items-center justify-center rounded bg-surface-dark border border-border-dark text-primary">
+          <span class="material-symbols-outlined">terminal</span>
         </div>
-        <a
-          class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-hover"
-          href={`${basePath}/experience`}
-        >
-          {tLabels.experienceCta}
-          <span class="material-symbols-outlined text-base">arrow_outward</span>
-        </a>
+        <h2 class="text-xl font-bold leading-tight tracking-tight text-white">DRG Dev Lab</h2>
       </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {tValue.map((item) => (
-          <div class="flex flex-col gap-3 bg-card-dark border border-surface-border rounded-xl p-5 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
-            <div class="flex items-center justify-between">
-              <span class="material-symbols-outlined text-primary text-3xl">{item.icon}</span>
-              <span class="h-2 w-2 rounded-full bg-green-400/70"></span>
-            </div>
-            <h3 class="text-lg font-bold text-white">{item.title}</h3>
-            <p class="text-sm text-text-secondary leading-relaxed">{item.desc}</p>
-          </div>
-        ))}
+      <div class="flex items-center gap-4">
+        <button class="flex items-center gap-2 rounded-lg border border-primary/20 bg-surface-dark px-4 py-2 text-xs font-bold tracking-wider text-primary transition-colors hover:bg-primary/10">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+          </span>
+          SYSTEM OPERATIONAL
+        </button>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <section class="py-14 px-4 sm:px-6 lg:px-8 border-t border-surface-border bg-background-dark">
-    <div class="mx-auto max-w-6xl flex flex-col gap-8">
-      <div class="flex flex-col gap-3">
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{tLabels.coreTag}</p>
-        <h2 class="text-3xl sm:text-4xl font-black leading-tight text-white">{tLabels.coreHeading}</h2>
-        <p class="text-text-secondary max-w-3xl">{tLabels.coreBody}</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {tServices.map((service) => (
-          <div class="flex flex-col gap-4 bg-card-dark border border-surface-border rounded-xl p-6 hover:border-primary/50 transition-colors duration-300">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold tracking-wide text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
-                {service.badge}
-              </span>
-              <span class="material-symbols-outlined text-text-secondary">arrow_outward</span>
-            </div>
-            <div class="flex flex-col gap-2">
-              <h3 class="text-xl font-bold text-white">{service.title}</h3>
-              <p class="text-sm text-text-secondary leading-relaxed">{service.desc}</p>
-            </div>
-            <ul class="flex flex-col gap-2 text-sm text-gray-300">
-              {service.bullets.map((bullet) => (
-                <li class="flex items-start gap-2">
-                  <span class="material-symbols-outlined text-[18px] text-green-400 mt-0.5">check_circle</span>
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="py-14 px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl flex flex-col gap-8">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div class="space-y-2">
-          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{tLabels.processTag}</p>
-          <h2 class="text-3xl sm:text-4xl font-black leading-tight">{tLabels.processHeading}</h2>
-          <p class="text-text-secondary max-w-2xl">{tLabels.processBody}</p>
-        </div>
-        <div class="flex gap-3">
-          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg bg-primary hover:bg-primary-hover text-white font-semibold transition-colors" href={`${basePath}/contact`}>
-            {tLabels.contactCta}
-          </a>
-          <a class="inline-flex items-center justify-center h-11 px-5 rounded-lg border border-surface-border text-white hover:border-primary/60" href={`${basePath}/projects`}>
-            {tLabels.projectCta}
-          </a>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {tWorkflow.map((step, index) => (
-          <div class="relative flex flex-col gap-3 bg-card-dark border border-surface-border rounded-xl p-5">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">{index + 1}</span>
-                <span class="material-symbols-outlined text-text-secondary">{step.icon}</span>
+    <main class="flex-1 flex flex-col items-center">
+      <div class="w-full max-w-[1200px] px-6 lg:px-20 pb-20">
+        <section class="py-12 md:py-20">
+          <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+            <div class="flex flex-col gap-6">
+              <div class="flex flex-col gap-4">
+                <h1 class="text-5xl font-black leading-none tracking-tight text-white lg:text-6xl">
+                  Platform<br />
+                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600">Engineering</span><br />
+                  Dashboard
+                </h1>
+                <h2 class="text-lg font-body font-normal leading-relaxed text-text-muted">
+                  DevOps • Platform Engineering • Self-Hosted Infrastructure.<br />
+                  Where CI/CD, automation and reliability meet.
+                </h2>
               </div>
-              <span class="h-2 w-2 rounded-full bg-emerald-400/70"></span>
+              <div class="flex flex-wrap gap-4">
+                <button class="flex h-12 min-w-[140px] cursor-pointer items-center justify-center rounded-lg bg-primary px-6 text-base font-bold text-background-dark transition-transform active:scale-95 hover:bg-primary-hover hover:text-white">
+                  Enter Dashboard
+                </button>
+                <button class="flex h-12 min-w-[140px] cursor-pointer items-center justify-center rounded-lg border border-border-dark bg-surface-dark px-6 text-base font-bold text-white transition-colors hover:bg-border-dark">
+                  Operator Profile
+                </button>
+              </div>
             </div>
-            <h3 class="text-lg font-bold text-white">{step.title}</h3>
-            <p class="text-sm text-text-secondary leading-relaxed">{step.detail}</p>
+            <div class="relative aspect-video w-full overflow-hidden rounded-xl border border-border-dark bg-surface-dark shadow-2xl lg:aspect-square lg:h-[400px]">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="material-symbols-outlined text-9xl text-border-dark/50">hub</span>
+              </div>
+              <div class="absolute inset-0 bg-[linear-gradient(to_right,#283930_1px,transparent_1px),linear-gradient(to_bottom,#283930_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
+              <div class="absolute bottom-6 right-6 left-6 rounded-lg border border-border-dark bg-background-dark/90 p-4 backdrop-blur-md">
+                <div class="flex items-center gap-3 mb-3 border-b border-border-dark pb-3">
+                  <div class="h-3 w-3 rounded-full bg-red-500"></div>
+                  <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
+                  <div class="h-3 w-3 rounded-full bg-green-500"></div>
+                  <div class="ml-auto text-xs font-mono text-text-muted">bash -- 80x24</div>
+                </div>
+                <div class="space-y-2 font-mono text-xs text-primary">
+                  <p class="opacity-70">&gt; kubectl get pods -n production</p>
+                  <p class="text-white">NAME             READY   STATUS    RESTARTS   AGE</p>
+                  <p class="text-text-muted">nginx-ingress    1/1     Running   0          4d</p>
+                  <p class="text-text-muted">postgres-db      1/1     Running   0          12d</p>
+                  <p class="animate-pulse">_</p>
+                </div>
+              </div>
+            </div>
           </div>
-        ))}
+        </section>
+
+        <section class="mt-8">
+          <div class="flex items-center justify-between border-b border-border-dark pb-4 mb-6">
+            <h3 class="text-xl font-bold text-white">Platform Services</h3>
+            <div class="flex items-center gap-2">
+              <div class="h-1.5 w-1.5 rounded-full bg-primary status-pulse"></div>
+              <span class="text-xs font-mono text-text-muted">LIVE MONITORING</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {platformServices.map((service) => {
+              const theme = serviceStatus[service.status];
+              return (
+                <a
+                  class={`group relative flex flex-col justify-between rounded-lg border border-border-dark bg-surface-dark/50 p-5 transition-all duration-300 hover:translate-y-[-2px] ${theme.cardHover}`}
+                  href="#"
+                >
+                  <div class="flex items-start justify-between">
+                    <div class="flex h-10 w-10 items-center justify-center rounded bg-[#161f1a] border border-border-dark text-text-muted transition-colors group-hover:border-primary/30 group-hover:text-primary">
+                      <span class="material-symbols-outlined text-xl">{service.icon}</span>
+                    </div>
+                    <div class={`flex items-center gap-2 rounded-full border ${theme.badge} px-2.5 py-1 backdrop-blur-sm`}>
+                      <span class="relative flex h-1.5 w-1.5">
+                        {theme.ping && <span class={`absolute inline-flex h-full w-full rounded-full opacity-75 ${theme.ping}`}></span>}
+                        <span class={`relative inline-flex rounded-full h-1.5 w-1.5 ${theme.dot}`}></span>
+                      </span>
+                      <span class="font-mono text-[10px] font-bold uppercase tracking-wider">{theme.label}</span>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <h4 class="font-display text-lg font-bold text-white group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h4>
+                    <p class="mt-1 font-mono text-xs leading-relaxed text-text-muted/80">&gt; {service.description}</p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+
+        <section class="mt-16 grid gap-12 lg:grid-cols-12">
+          <div class="lg:col-span-5 flex flex-col">
+            <div class="mb-6 flex items-center gap-3 border-b border-border-dark pb-4">
+              <h3 class="text-xl font-bold text-white">Operator Profile</h3>
+            </div>
+            <div class="flex-1 rounded-lg border border-border-dark bg-surface-dark p-6">
+              <div class="mb-4 flex items-center gap-4">
+                <div class="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-background-dark p-[2px]">
+                  <div class="h-full w-full rounded-full bg-background-dark flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary">person</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white">Senior Platform Engineer</h4>
+                  <p class="text-xs text-text-muted font-mono">ID: DRG-01 // LVL 5 ACCESS</p>
+                </div>
+              </div>
+              <div class="space-y-4 text-sm leading-relaxed text-text-muted font-body">
+                <p>
+                  Specialized in building resilient, scalable infrastructure. I treat infrastructure as a product, focusing on developer experience (DevEx) and system reliability.
+                </p>
+                <p>
+                  My philosophy centers on "Automation First" — reducing toil through robust CI/CD pipelines, GitOps workflows, and self-healing systems.
+                </p>
+                <div class="mt-4 border-t border-border-dark pt-4">
+                  <h5 class="mb-2 text-xs font-bold uppercase text-white">Core Focus</h5>
+                  <ul class="space-y-1 font-mono text-xs text-primary">
+                    <li class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-[14px]">check</span> Security-First Design
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-[14px]">check</span> High Availability Clusters
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-[14px]">check</span> Cost Optimization
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-7 flex flex-col">
+            <div class="mb-6 flex items-center gap-3 border-b border-border-dark pb-4">
+              <h3 class="text-xl font-bold text-white">Tech Stack & Capabilities</h3>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              {techStacks.map((stack) => (
+                <div class="rounded-lg border border-border-dark bg-[#161f1a] p-4">
+                  <div class="mb-3 flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-lg">{stack.icon}</span>
+                    <h4 class="text-sm font-bold uppercase tracking-wide">{stack.title}</h4>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    {stack.items.map((item) => (
+                      <span class="rounded bg-background-dark px-2 py-1 text-xs font-mono text-text-muted border border-border-dark">{item}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-16">
+          <div class="mb-6 flex items-center gap-3 border-b border-border-dark pb-4">
+            <h3 class="text-xl font-bold text-white">Lab Architecture & Experiments</h3>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            {experiments.map((experiment) => (
+              <div class="overflow-hidden rounded-xl border border-border-dark bg-surface-dark group">
+                <div
+                  class="relative h-48 w-full bg-[#111] bg-opacity-50"
+                  style={`background-image: url('${experiment.image}'); background-size: cover;`}
+                >
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent"></div>
+                  <div class="absolute bottom-4 left-4">
+                    <span class="rounded bg-primary/20 px-2 py-1 text-xs font-bold text-primary">{experiment.badge}</span>
+                  </div>
+                </div>
+                <div class="p-5">
+                  <h4 class="mb-2 text-lg font-bold text-white">{experiment.title}</h4>
+                  <p class="mb-4 text-sm text-text-muted font-body">{experiment.description}</p>
+                  <div class="flex items-center justify-between border-t border-border-dark pt-4">
+                    <span class="text-xs font-mono text-text-muted">STATUS: {experiment.status}</span>
+                    <button class="text-xs font-bold text-primary hover:text-white flex items-center gap-1">
+                      {experiment.action} <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
-    </div>
-  </section>
+    </main>
+
+    <footer class="border-t border-border-dark bg-background-dark px-6 py-8 font-mono text-xs text-text-muted lg:px-20">
+      <div class="mx-auto flex w-full max-w-[1200px] flex-col justify-between gap-4 md:flex-row md:items-center">
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-green-500"></span>
+            All systems normal
+          </span>
+          <span class="text-border-dark">|</span>
+          <span>Build v2.4.0-alpha</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a class="hover:text-primary transition-colors" href="#">GitHub</a>
+          <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+          <a class="hover:text-primary transition-colors" href="#">PGP Key</a>
+        </div>
+      </div>
+      <div class="mt-4 text-center text-[10px] opacity-40">© 2024 DRG Dev Lab. Unauthorized access attempts will be logged.</div>
+    </footer>
+  </div>
 </BaseLayout>
+
+<style>
+  .status-pulse {
+    box-shadow: 0 0 0 0 rgba(19, 236, 128, 0.7);
+    animation: pulse-green 2s infinite;
+  }
+
+  @keyframes pulse-green {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(19, 236, 128, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(19, 236, 128, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(19, 236, 128, 0);
+    }
+  }
+</style>
