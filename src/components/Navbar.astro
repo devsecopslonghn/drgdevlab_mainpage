@@ -1,0 +1,76 @@
+---
+---
+<nav id="navbar" class="sticky top-0 z-50 flex w-full items-center justify-between border-b border-border-dark bg-background-dark/95 backdrop-blur-sm px-6 py-4 lg:px-20 transition-all duration-300">
+  <a href="#hero" class="flex items-center gap-3 group">
+    <div class="flex size-8 items-center justify-center rounded bg-surface-dark border border-primary/30 text-primary">
+      <span class="material-symbols-outlined text-base">terminal</span>
+    </div>
+    <span class="font-bold text-white text-lg tracking-tight">longho<span class="text-primary">.</span></span>
+  </a>
+
+  <div class="hidden md:flex items-center gap-6 font-mono text-xs text-text-muted">
+    <a href="#about" class="hover:text-primary transition-colors duration-200">about</a>
+    <a href="#experience" class="hover:text-primary transition-colors duration-200">experience</a>
+    <a href="#banking" class="hover:text-primary transition-colors duration-200">banking</a>
+    <a href="#projects" class="hover:text-primary transition-colors duration-200">projects</a>
+    <a href="#skills" class="hover:text-primary transition-colors duration-200">skills</a>
+    <a href="#terminal" class="hover:text-primary transition-colors duration-200">terminal</a>
+    <a href="#contact" class="hover:text-primary transition-colors duration-200">contact</a>
+  </div>
+
+  <div class="hidden md:flex items-center gap-3">
+    <div class="flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 font-mono text-[10px] text-primary">
+      <span class="relative flex h-1.5 w-1.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+      </span>
+      AVAILABLE
+    </div>
+    <a
+      href="/resume/Long_Ho_DevOps_Resume.pdf"
+      target="_blank"
+      class="flex items-center gap-1.5 rounded-lg border border-border-dark bg-surface-dark px-4 py-2 text-xs font-bold text-white hover:border-primary/30 hover:text-primary transition-colors"
+    >
+      <span class="material-symbols-outlined text-sm">download</span>
+      Resume
+    </a>
+  </div>
+
+  <button id="mobile-menu-btn" class="md:hidden text-text-muted hover:text-primary transition-colors">
+    <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+  </button>
+</nav>
+
+<div id="mobile-menu" class="hidden fixed top-[65px] inset-x-0 z-40 bg-background-dark/98 backdrop-blur-md border-b border-border-dark px-6 py-6 font-mono text-sm">
+  <div class="flex flex-col gap-5">
+    <a href="#about" class="text-text-muted hover:text-primary transition-colors">about</a>
+    <a href="#experience" class="text-text-muted hover:text-primary transition-colors">experience</a>
+    <a href="#banking" class="text-text-muted hover:text-primary transition-colors">banking</a>
+    <a href="#projects" class="text-text-muted hover:text-primary transition-colors">projects</a>
+    <a href="#skills" class="text-text-muted hover:text-primary transition-colors">skills</a>
+    <a href="#terminal" class="text-text-muted hover:text-primary transition-colors">terminal</a>
+    <a href="#contact" class="text-text-muted hover:text-primary transition-colors">contact</a>
+    <a href="/resume/Long_Ho_DevOps_Resume.pdf" target="_blank" class="text-primary font-bold border-t border-border-dark pt-4">
+      ↓ Download Resume
+    </a>
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('mobile-menu-icon');
+  let open = false;
+  btn?.addEventListener('click', () => {
+    open = !open;
+    menu?.classList.toggle('hidden', !open);
+    if (icon) icon.textContent = open ? 'close' : 'menu';
+  });
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      open = false;
+      menu.classList.add('hidden');
+      if (icon) icon.textContent = 'menu';
+    });
+  });
+</script>

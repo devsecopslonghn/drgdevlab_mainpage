@@ -1,0 +1,111 @@
+---
+---
+<section id="contact" class="px-6 py-20 lg:px-20 border-t border-border-dark">
+  <div class="mx-auto max-w-[1200px]">
+
+    <div class="grid gap-12 lg:grid-cols-2 items-center">
+
+      <!-- Left -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 rounded-full border border-border-dark bg-surface-dark px-4 py-1.5 font-mono text-xs text-text-muted mb-6">
+          <span class="material-symbols-outlined text-sm text-primary">mail</span>
+          contact
+        </div>
+        <h2 class="text-3xl font-black text-white lg:text-4xl mb-4">
+          Let's Build Something <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Reliable</span>
+        </h2>
+        <p class="font-body text-text-muted leading-relaxed mb-8 max-w-md">
+          Open to DevOps / Platform Engineering opportunities in banking and fintech.
+          If you're building critical financial infrastructure and need someone who ships safely —
+          let's talk.
+        </p>
+
+        <div class="space-y-4">
+          <a
+            href="mailto:longhn0710@gmail.com"
+            class="flex items-center gap-4 rounded-xl border border-border-dark bg-surface-dark p-5 hover:border-primary/30 hover:bg-[#161f1a] transition-all duration-200 group"
+          >
+            <div class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary">
+              <span class="material-symbols-outlined">mail</span>
+            </div>
+            <div>
+              <div class="font-mono text-xs text-text-muted mb-0.5">Email</div>
+              <div class="font-bold text-white group-hover:text-primary transition-colors">longhn0710@gmail.com</div>
+            </div>
+            <span class="material-symbols-outlined ml-auto text-text-muted group-hover:text-primary transition-colors">arrow_forward</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/longhn0710/"
+            target="_blank"
+            rel="noreferrer"
+            class="flex items-center gap-4 rounded-xl border border-border-dark bg-surface-dark p-5 hover:border-blue-400/30 hover:bg-[#161f1a] transition-all duration-200 group"
+          >
+            <div class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg border border-blue-400/20 bg-blue-400/10 text-blue-400">
+              <span class="material-symbols-outlined">person</span>
+            </div>
+            <div>
+              <div class="font-mono text-xs text-text-muted mb-0.5">LinkedIn</div>
+              <div class="font-bold text-white group-hover:text-blue-400 transition-colors">linkedin.com/in/longhn0710</div>
+            </div>
+            <span class="material-symbols-outlined ml-auto text-text-muted group-hover:text-blue-400 transition-colors">arrow_forward</span>
+          </a>
+
+          <a
+            href="https://github.com/devsecopslonghn"
+            target="_blank"
+            rel="noreferrer"
+            class="flex items-center gap-4 rounded-xl border border-border-dark bg-surface-dark p-5 hover:border-purple-400/30 hover:bg-[#161f1a] transition-all duration-200 group"
+          >
+            <div class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg border border-purple-400/20 bg-purple-400/10 text-purple-400">
+              <span class="material-symbols-outlined">code</span>
+            </div>
+            <div>
+              <div class="font-mono text-xs text-text-muted mb-0.5">GitHub</div>
+              <div class="font-bold text-white group-hover:text-purple-400 transition-colors">github.com/devsecopslonghn</div>
+            </div>
+            <span class="material-symbols-outlined ml-auto text-text-muted group-hover:text-purple-400 transition-colors">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Status card -->
+      <div class="reveal reveal-delay-2">
+        <div class="rounded-xl border border-border-dark bg-surface-dark p-8">
+          <div class="flex items-center gap-3 mb-6 pb-6 border-b border-border-dark">
+            <div class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+            </div>
+            <span class="font-mono text-sm font-bold text-primary">AVAILABLE FOR OPPORTUNITIES</span>
+          </div>
+
+          <div class="space-y-4 font-mono text-xs">
+            {[
+              { label: 'Status', value: 'Open to offers', color: 'text-primary' },
+              { label: 'Role Interest', value: 'Senior DevOps / Platform Engineer', color: 'text-white' },
+              { label: 'Domain Focus', value: 'Banking / Fintech / Enterprise', color: 'text-white' },
+              { label: 'Work Type', value: 'Full-time · On-site / Hybrid', color: 'text-white' },
+              { label: 'Location', value: 'Ho Chi Minh City, Vietnam', color: 'text-white' },
+              { label: 'Response Time', value: '< 24 hours', color: 'text-primary' },
+            ].map(item => (
+              <div class="flex justify-between items-center py-2 border-b border-border-dark/50 last:border-0">
+                <span class="text-text-muted">{item.label}</span>
+                <span class={item.color + ' font-medium'}>{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="mailto:longhn0710@gmail.com"
+            class="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary text-sm font-bold text-background-dark hover:bg-primary-hover transition-colors"
+          >
+            <span class="material-symbols-outlined text-sm">send</span>
+            Send Message
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

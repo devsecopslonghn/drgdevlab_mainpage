@@ -1,0 +1,220 @@
+---
+---
+<section id="banking" class="px-6 py-20 lg:px-20 bg-surface-dark/20">
+  <div class="mx-auto max-w-[1200px]">
+
+    <div class="mb-12 reveal">
+      <div class="inline-flex items-center gap-2 rounded-full border border-border-dark bg-surface-dark px-4 py-1.5 font-mono text-xs text-text-muted mb-4">
+        <span class="material-symbols-outlined text-sm text-primary">account_balance</span>
+        devops in banking
+      </div>
+      <h2 class="text-3xl font-black text-white lg:text-4xl">
+        Engineering for <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Financial Systems</span>
+      </h2>
+      <p class="mt-3 text-text-muted font-body max-w-2xl">Banking DevOps is not regular DevOps. Every deployment touches millions of transactions. Here's how I build for it.</p>
+    </div>
+
+    <!-- Section 1: CI/CD Pipeline Diagram -->
+    <div class="mb-12 reveal">
+      <h3 class="font-mono text-sm font-bold text-primary mb-6 flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">account_tree</span>
+        CI/CD Pipeline Architecture
+      </h3>
+
+      <!-- Pipeline diagram -->
+      <div class="rounded-xl border border-border-dark bg-[#0d1410] p-6 overflow-x-auto">
+        <!-- Stage boxes with connectors -->
+        <div class="flex items-center gap-0 min-w-[700px]">
+          {[
+            { icon: 'code', label: 'Code Commit', sub: 'GitLab', color: 'border-blue-500/40 bg-blue-500/10 text-blue-400' },
+            { icon: 'build', label: 'Build', sub: 'Maven / Gradle', color: 'border-purple-500/40 bg-purple-500/10 text-purple-400' },
+            { icon: 'science', label: 'Test', sub: 'Unit + Integration', color: 'border-yellow-500/40 bg-yellow-500/10 text-yellow-400' },
+            { icon: 'security', label: 'Security Scan', sub: 'SAST / Compliance', color: 'border-red-500/40 bg-red-500/10 text-red-400' },
+            { icon: 'inventory_2', label: 'Artifact Push', sub: 'Nexus Registry', color: 'border-orange-500/40 bg-orange-500/10 text-orange-400' },
+            { icon: 'cloud_upload', label: 'Deploy', sub: 'OpenShift OCP', color: 'border-primary/40 bg-primary/10 text-primary' },
+          ].map((stage, i) => (
+            <>
+              <div class={`flex flex-1 flex-col items-center gap-2 rounded-lg border ${stage.color} p-3 min-w-[100px]`}>
+                <span class={`material-symbols-outlined text-xl ${stage.color.split(' ')[2]}`}>{stage.icon}</span>
+                <div class="text-center">
+                  <div class="font-bold text-white text-xs">{stage.label}</div>
+                  <div class="font-mono text-[10px] text-text-muted mt-0.5">{stage.sub}</div>
+                </div>
+                <div class="w-1.5 h-1.5 rounded-full bg-primary/50"></div>
+              </div>
+              {i < 5 && (
+                <div class="flex flex-col items-center justify-center w-8 flex-shrink-0">
+                  <div class="w-full h-px bg-border-dark relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 text-text-muted/40 text-xs">›</div>
+                  </div>
+                </div>
+              )}
+            </>
+          ))}
+        </div>
+
+        <!-- Pipeline metadata -->
+        <div class="mt-4 border-t border-border-dark pt-4 flex flex-wrap gap-6 font-mono text-xs text-text-muted">
+          <span><span class="text-primary">Pipeline:</span> banking-core-t24</span>
+          <span><span class="text-primary">Trigger:</span> git push → main</span>
+          <span><span class="text-primary">Duration:</span> ~4m 30s</span>
+          <span><span class="text-primary">Status:</span> <span class="text-primary">✓ PASSING</span></span>
+          <span><span class="text-primary">Strategy:</span> Rolling — Zero Downtime</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Banking Architecture Diagram -->
+    <div class="mb-12 reveal reveal-delay-1">
+      <h3 class="font-mono text-sm font-bold text-primary mb-6 flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">schema</span>
+        Banking System Architecture
+      </h3>
+
+      <div class="rounded-xl border border-border-dark bg-[#0d1410] p-6 overflow-x-auto">
+        <div class="min-w-[600px]">
+          <!-- Top: CI/CD platform -->
+          <div class="flex justify-center mb-3">
+            <div class="inline-flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/10 px-6 py-3">
+              <span class="material-symbols-outlined text-primary">deployed_code</span>
+              <div class="text-center">
+                <div class="font-bold text-white text-sm">GitLab CI / Jenkins</div>
+                <div class="font-mono text-xs text-text-muted">CI/CD Orchestration Platform</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector from CI/CD down -->
+          <div class="flex justify-center mb-3">
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-px h-6 bg-border-dark"></div>
+              <div class="w-2 h-2 rotate-45 border-r border-b border-primary/40"></div>
+            </div>
+          </div>
+
+          <!-- Middle: OpenShift OCP -->
+          <div class="flex justify-center mb-3">
+            <div class="inline-flex items-center gap-3 rounded-lg border border-blue-500/30 bg-blue-500/10 px-6 py-3">
+              <span class="material-symbols-outlined text-blue-400">hub</span>
+              <div class="text-center">
+                <div class="font-bold text-white text-sm">OpenShift OCP</div>
+                <div class="font-mono text-xs text-text-muted">Container Orchestration</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector branching -->
+          <div class="flex justify-center mb-3">
+            <div class="grid grid-cols-3 gap-0 w-[500px]">
+              <div class="flex justify-end pr-[50px]">
+                <div class="w-[50px] h-px bg-border-dark self-end mb-0 mt-6"></div>
+              </div>
+              <div class="flex justify-center">
+                <div class="w-px h-8 bg-border-dark"></div>
+              </div>
+              <div class="flex justify-start pl-[50px]">
+                <div class="w-[50px] h-px bg-border-dark self-end mb-0 mt-6"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Three systems -->
+          <div class="grid grid-cols-3 gap-4">
+            {[
+              { icon: 'account_balance', label: 'Core T24', sub: 'Core Banking System', color: 'border-primary/30 bg-primary/5 text-primary' },
+              { icon: 'api', label: 'Open Banking', sub: 'API Gateway Layer', color: 'border-purple-500/30 bg-purple-500/5 text-purple-400' },
+              { icon: 'payments', label: 'Payment System', sub: 'Transaction Processing', color: 'border-yellow-500/30 bg-yellow-500/5 text-yellow-400' },
+            ].map(sys => (
+              <div class={`rounded-lg border ${sys.color} p-4 text-center`}>
+                <span class={`material-symbols-outlined text-xl mb-2 ${sys.color.split(' ')[2]}`}>{sys.icon}</span>
+                <div class="font-bold text-white text-sm">{sys.label}</div>
+                <div class="font-mono text-xs text-text-muted mt-1">{sys.sub}</div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Bottom: Database layer -->
+          <div class="mt-4 flex justify-center">
+            <div class="inline-flex items-center gap-3 rounded-lg border border-orange-500/20 bg-orange-500/5 px-6 py-2.5 w-full max-w-lg justify-center">
+              <span class="material-symbols-outlined text-orange-400">storage</span>
+              <div>
+                <span class="font-bold text-white text-sm">Database CI/CD Layer</span>
+                <span class="font-mono text-xs text-text-muted ml-2">— Schema Migration · Version Control · Rollback</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Four capabilities -->
+    <div class="grid gap-4 md:grid-cols-2 reveal reveal-delay-2">
+      {[
+        {
+          icon: 'rocket_launch',
+          title: 'Zero-Downtime Deployments',
+          color: 'text-primary',
+          border: 'border-primary/20 hover:border-primary/40',
+          points: [
+            'Rolling update strategy on OpenShift OCP',
+            'Pre-deployment health checks and smoke tests',
+            'Automated rollback on failure detection',
+            '47+ consecutive zero-downtime releases',
+          ]
+        },
+        {
+          icon: 'storage',
+          title: 'Database CI/CD',
+          color: 'text-orange-400',
+          border: 'border-orange-500/20 hover:border-orange-400/40',
+          points: [
+            'Schema version control with automated migrations',
+            'Flyway/Liquibase integration in pipelines',
+            'Point-in-time rollback for failed migrations',
+            'Compliance-grade audit trail for all changes',
+          ]
+        },
+        {
+          icon: 'verified_user',
+          title: 'Security in Pipelines',
+          color: 'text-blue-400',
+          border: 'border-blue-500/20 hover:border-blue-400/40',
+          points: [
+            'SAST and DAST scanning at every stage',
+            'Secret detection before code merges',
+            'Approval gates for production deployments',
+            'Regulatory compliance checks automated',
+          ]
+        },
+        {
+          icon: 'hub',
+          title: 'Hybrid Infrastructure',
+          color: 'text-purple-400',
+          border: 'border-purple-500/20 hover:border-purple-400/40',
+          points: [
+            'On-premises data centers (primary banking)',
+            'AWS cloud integration for scalable services',
+            'Ansible-automated provisioning across both',
+            'Unified monitoring and alerting layer',
+          ]
+        }
+      ].map(cap => (
+        <div class={`rounded-xl border ${cap.border} bg-[#161f1a] p-6 transition-all duration-200`}>
+          <div class="flex items-center gap-3 mb-4">
+            <span class={`material-symbols-outlined ${cap.color}`}>{cap.icon}</span>
+            <h4 class="font-bold text-white">{cap.title}</h4>
+          </div>
+          <ul class="space-y-2">
+            {cap.points.map(pt => (
+              <li class="flex items-start gap-2 text-xs font-body text-text-muted">
+                <span class={`${cap.color} mt-0.5 text-sm`}>›</span>
+                {pt}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

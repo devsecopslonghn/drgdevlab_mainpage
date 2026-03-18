@@ -1,0 +1,245 @@
+---
+---
+<section id="terminal" class="px-6 py-20 lg:px-20">
+  <div class="mx-auto max-w-[1200px]">
+
+    <div class="mb-12 reveal">
+      <div class="inline-flex items-center gap-2 rounded-full border border-border-dark bg-surface-dark px-4 py-1.5 font-mono text-xs text-text-muted mb-4">
+        <span class="material-symbols-outlined text-sm text-primary">terminal</span>
+        interactive terminal
+      </div>
+      <h2 class="text-3xl font-black text-white lg:text-4xl">
+        Try the <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">CLI</span>
+      </h2>
+      <p class="mt-3 text-text-muted font-body">Type a command to explore. Try <code class="bg-surface-dark border border-border-dark px-2 py-0.5 rounded text-primary text-sm">help</code> to start.</p>
+    </div>
+
+    <div class="reveal reveal-delay-1 rounded-xl border border-border-dark bg-[#0a0f0c] shadow-2xl overflow-hidden">
+      <!-- Terminal header -->
+      <div class="flex items-center gap-2 border-b border-border-dark bg-[#0d1410] px-4 py-3">
+        <div class="h-3 w-3 rounded-full bg-red-500/80"></div>
+        <div class="h-3 w-3 rounded-full bg-yellow-500/80"></div>
+        <div class="h-3 w-3 rounded-full bg-green-500/80"></div>
+        <div class="ml-4 flex-1 bg-[#161f1a] rounded px-3 py-1 font-mono text-xs text-text-muted text-center">
+          longho@devops-terminal — banking-systems
+        </div>
+        <div class="ml-auto flex items-center gap-1.5 font-mono text-[10px] text-primary">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+          </span>
+          CONNECTED
+        </div>
+      </div>
+
+      <!-- Terminal output -->
+      <div id="term-output" class="p-5 font-mono text-xs space-y-1 h-80 overflow-y-auto leading-relaxed">
+        <div class="text-text-muted">Welcome to <span class="text-primary font-bold">longho-devops-terminal</span> v1.0.0</div>
+        <div class="text-text-muted/60">Banking Systems · OpenShift OCP · GitLab CI/Jenkins</div>
+        <div class="text-text-muted/60">Type <span class="text-primary">help</span> to see available commands.</div>
+        <div class="mt-2"></div>
+      </div>
+
+      <!-- Terminal input -->
+      <div class="border-t border-border-dark bg-[#0d1410] px-5 py-3 flex items-center gap-3">
+        <span class="text-primary font-mono text-xs flex-shrink-0">longho@devops ~</span>
+        <span class="text-text-muted font-mono text-xs">$</span>
+        <input
+          id="term-input"
+          type="text"
+          placeholder="type a command..."
+          autocomplete="off"
+          spellcheck="false"
+          class="flex-1 bg-transparent font-mono text-xs text-white outline-none placeholder:text-text-muted/40 caret-primary"
+        />
+      </div>
+    </div>
+
+    <!-- Quick command buttons -->
+    <div class="mt-4 flex flex-wrap gap-2 reveal reveal-delay-2">
+      <span class="font-mono text-xs text-text-muted self-center">Quick run:</span>
+      {['help', 'show pipeline', 'show systems', 'show uptime', 'show banking-services'].map(cmd => (
+        <button
+          class="term-quick-btn rounded border border-border-dark bg-surface-dark px-3 py-1.5 font-mono text-xs text-text-muted hover:border-primary/30 hover:text-primary transition-colors"
+          data-cmd={cmd}
+        >
+          {cmd}
+        </button>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const output = document.getElementById('term-output')!;
+  const input = document.getElementById('term-input') as HTMLInputElement;
+  const history: string[] = [];
+  let historyIdx = -1;
+
+  const commands: Record<string, () => string[]> = {
+    help: () => [
+      '<span class="text-primary font-bold">Available Commands</span>',
+      '<span class="text-border-dark">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+      '  <span class="text-primary">show pipeline</span>         Display CI/CD pipeline architecture',
+      '  <span class="text-primary">show systems</span>          Banking systems overview',
+      '  <span class="text-primary">show uptime</span>           System uptime metrics',
+      '  <span class="text-primary">show banking-services</span> List all banking services',
+      '  <span class="text-primary">whoami</span>                Operator profile',
+      '  <span class="text-primary">clear</span>                 Clear terminal',
+      '',
+    ],
+    'show pipeline': () => [
+      '<span class="text-primary font-bold">CI/CD Pipeline Architecture</span>',
+      '<span class="text-border-dark">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+      '',
+      '  <span class="text-blue-400">[Code Commit]</span> → <span class="text-purple-400">[Build]</span> → <span class="text-yellow-400">[Test]</span> → <span class="text-red-400">[Security]</span> → <span class="text-orange-400">[Artifact]</span> → <span class="text-primary">[Deploy OCP]</span>',
+      '',
+      '  <span class="text-text-muted">Trigger   :</span> git push → main (banking branches)',
+      '  <span class="text-text-muted">Platform  :</span> GitLab CI + Jenkins (dual orchestration)',
+      '  <span class="text-text-muted">Duration  :</span> ~4m 30s average',
+      '  <span class="text-text-muted">Strategy  :</span> Rolling update — Zero downtime',
+      '  <span class="text-text-muted">Target    :</span> OpenShift OCP (prod cluster)',
+      '',
+      '  <span class="text-primary">Last Run  :</span> 2m ago — <span class="text-primary">✓ 6/6 stages PASSED</span>',
+      '  <span class="text-primary">Pipelines :</span> core-t24, open-banking-api, payment-gw',
+      '',
+    ],
+    'show systems': () => [
+      '<span class="text-primary font-bold">Banking Systems Overview</span>',
+      '<span class="text-border-dark">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+      '',
+      '  <span class="text-primary">●</span> <span class="text-white">Core T24         </span>  <span class="text-primary">RUNNING</span>  OCP: prod-core     v3.2.1',
+      '  <span class="text-primary">●</span> <span class="text-white">Open Banking API </span>  <span class="text-primary">RUNNING</span>  OCP: prod-api      v2.8.0',
+      '  <span class="text-primary">●</span> <span class="text-white">Payment Gateway  </span>  <span class="text-primary">RUNNING</span>  OCP: prod-payment  v1.9.4',
+      '  <span class="text-primary">●</span> <span class="text-white">DB Migration     </span>  <span class="text-primary">RUNNING</span>  Schema: v4.2.1     Flyway',
+      '',
+      '  <span class="text-text-muted">Platform  :</span> OpenShift OCP (Enterprise)',
+      '  <span class="text-text-muted">Automation:</span> Ansible + GitLab CI',
+      '  <span class="text-text-muted">Monitoring:</span> Grafana + Prometheus',
+      '  <span class="text-text-muted">Environment:</span> Hybrid (On-Prem + AWS)',
+      '',
+    ],
+    'show uptime': () => [
+      '<span class="text-primary font-bold">System Uptime Report</span>',
+      '<span class="text-border-dark">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+      '',
+      '  Core T24 Banking:    <span class="text-primary">99.99%</span>  <span class="text-primary">████████████████████</span>',
+      '  Open Banking API:    <span class="text-primary">99.97%</span>  <span class="text-primary">███████████████████▉</span>',
+      '  Payment Gateway:     <span class="text-primary">99.98%</span>  <span class="text-primary">████████████████████</span>',
+      '  Database Layer:      <span class="text-primary">100.0%</span>  <span class="text-primary">████████████████████</span>',
+      '',
+      '  <span class="text-text-muted">Zero-downtime deployments:</span> <span class="text-primary">47 consecutive</span>',
+      '  <span class="text-text-muted">Last incident         :</span> <span class="text-primary">None recorded</span>',
+      '  <span class="text-text-muted">SLA target            :</span> <span class="text-white">99.9%  </span><span class="text-primary">✓ EXCEEDED</span>',
+      '',
+    ],
+    'show banking-services': () => [
+      '<span class="text-primary font-bold">Banking Services Registry</span>',
+      '<span class="text-border-dark">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+      '',
+      '  <span class="text-text-muted">SERVICE              ENV        STATUS      DEPLOY</span>',
+      '  <span class="text-white">core-t24           </span>  prod       <span class="text-primary">✓ live</span>      v3.2.1',
+      '  <span class="text-white">open-banking-api   </span>  prod       <span class="text-primary">✓ live</span>      v2.8.0',
+      '  <span class="text-white">payment-gateway    </span>  prod       <span class="text-primary">✓ live</span>      v1.9.4',
+      '  <span class="text-white">db-migration-runner</span>  prod       <span class="text-primary">✓ live</span>      schema-v4.2.1',
+      '',
+      '  <span class="text-text-muted">Total Services:</span>  <span class="text-white">4</span>  |  <span class="text-text-muted">Healthy:</span>  <span class="text-primary">4</span>  |  <span class="text-text-muted">Degraded:</span>  <span class="text-primary">0</span>',
+      '  <span class="text-text-muted">Platform      :</span>  OpenShift OCP (Sacombank)',
+      '  <span class="text-text-muted">Transactions  :</span>  2.4M / day — <span class="text-primary">all healthy</span>',
+      '',
+    ],
+    whoami: () => [
+      '<span class="text-primary font-bold">Operator Profile</span>',
+      '<span class="text-border-dark">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+      '',
+      '  <span class="text-text-muted">Name     :</span>  <span class="text-white">Long Ho</span>',
+      '  <span class="text-text-muted">Role     :</span>  <span class="text-primary">DevOps Engineer — Banking Domain</span>',
+      '  <span class="text-text-muted">Location :</span>  Ho Chi Minh City, Vietnam',
+      '  <span class="text-text-muted">Employer :</span>  Sacombank (Jul 2024 — Present)',
+      '  <span class="text-text-muted">Domain   :</span>  Core Banking, Open Banking, Payments',
+      '  <span class="text-text-muted">Access   :</span>  PRODUCTION',
+      '',
+      '  <span class="text-text-muted">Specialties:</span>',
+      '    › CI/CD pipelines for banking systems',
+      '    › OpenShift OCP container orchestration',
+      '    › Database CI/CD & migration automation',
+      '    › Zero-downtime deployment strategies',
+      '',
+    ],
+    clear: () => {
+      output.innerHTML = '';
+      return [];
+    },
+  };
+
+  function appendLine(html: string) {
+    const div = document.createElement('div');
+    div.innerHTML = html || '&nbsp;';
+    output.appendChild(div);
+  }
+
+  function appendInput(cmd: string) {
+    const div = document.createElement('div');
+    div.innerHTML = `<span class="text-primary">longho@devops ~</span> <span class="text-text-muted">$</span> <span class="text-white">${cmd}</span>`;
+    output.appendChild(div);
+  }
+
+  function appendError(cmd: string) {
+    appendLine(`<span class="text-red-400">command not found: ${cmd}</span>`);
+    appendLine(`<span class="text-text-muted/60">Type <span class="text-primary">help</span> to see available commands.</span>`);
+  }
+
+  function runCommand(rawCmd: string) {
+    const cmd = rawCmd.trim().toLowerCase();
+    if (!cmd) return;
+
+    history.unshift(rawCmd);
+    historyIdx = -1;
+
+    appendInput(rawCmd);
+
+    const handler = commands[cmd];
+    if (handler) {
+      const lines = handler();
+      lines.forEach(appendLine);
+    } else {
+      appendError(rawCmd);
+    }
+
+    output.scrollTop = output.scrollHeight;
+  }
+
+  input?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      runCommand(input.value);
+      input.value = '';
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (historyIdx < history.length - 1) {
+        historyIdx++;
+        input.value = history[historyIdx];
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIdx > 0) {
+        historyIdx--;
+        input.value = history[historyIdx];
+      } else {
+        historyIdx = -1;
+        input.value = '';
+      }
+    }
+  });
+
+  document.querySelectorAll('.term-quick-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cmd = (btn as HTMLElement).dataset.cmd ?? '';
+      runCommand(cmd);
+      input?.focus();
+    });
+  });
+
+  // Click anywhere on terminal to focus input
+  document.getElementById('term-output')?.addEventListener('click', () => input?.focus());
+</script>

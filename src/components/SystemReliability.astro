@@ -1,0 +1,68 @@
+---
+---
+<section class="px-6 py-16 lg:px-20 border-y border-border-dark bg-surface-dark/30">
+  <div class="mx-auto max-w-[1200px]">
+
+    <div class="mb-10 reveal text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-border-dark bg-surface-dark px-4 py-1.5 font-mono text-xs text-text-muted mb-4">
+        <span class="material-symbols-outlined text-sm text-primary">monitoring</span>
+        system reliability
+      </div>
+      <h2 class="text-3xl font-black text-white lg:text-4xl">
+        Metrics That <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Matter</span>
+      </h2>
+      <p class="mt-3 text-text-muted font-body max-w-xl mx-auto">Real outcomes delivered for banking-grade production environments.</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 lg:grid-cols-5">
+      {[
+        { value: '99%', label: 'System Uptime', sub: 'Core Banking SLA', icon: 'trending_up', color: 'text-primary', glow: 'shadow-primary/10' },
+        { value: '0', label: 'Downtime Deployments', sub: 'Rolling strategy', icon: 'rocket_launch', color: 'text-primary', glow: 'shadow-primary/10' },
+        { value: '50%', label: 'Faster Deployments', sub: 'Pipeline optimization', icon: 'speed', color: 'text-blue-400', glow: 'shadow-blue-400/10' },
+        { value: '75%', label: 'Deploy Frequency', sub: 'More releases, safely', icon: 'autorenew', color: 'text-purple-400', glow: 'shadow-purple-400/10' },
+        { value: '40%', label: 'Cost Reduction', sub: 'Infrastructure savings', icon: 'savings', color: 'text-yellow-400', glow: 'shadow-yellow-400/10' },
+      ].map((m, i) => (
+        <div class={`reveal reveal-delay-${i + 1} group rounded-xl border border-border-dark bg-[#161f1a] p-6 text-center transition-all hover:shadow-lg ${m.glow} hover:border-${m.color.split('-').slice(1).join('-')}/30`}>
+          <span class={`material-symbols-outlined text-2xl mb-3 ${m.color}`}>{m.icon}</span>
+          <div class={`text-4xl font-black ${m.color} mb-1`}>{m.value}</div>
+          <div class="text-sm font-bold text-white mb-1">{m.label}</div>
+          <div class="text-xs font-mono text-text-muted">{m.sub}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- SLA bar -->
+    <div class="mt-8 reveal rounded-xl border border-border-dark bg-[#161f1a] p-6">
+      <div class="flex items-center justify-between mb-4">
+        <span class="font-mono text-xs text-text-muted">SYSTEM SLA STATUS</span>
+        <span class="flex items-center gap-2 font-mono text-xs text-primary">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+          </span>
+          ALL SYSTEMS OPERATIONAL
+        </span>
+      </div>
+      <div class="grid gap-3">
+        {[
+          { name: 'Core T24 Banking System', uptime: 99.99 },
+          { name: 'Open Banking API', uptime: 99.97 },
+          { name: 'Payment Gateway', uptime: 99.98 },
+          { name: 'Database CI/CD Pipeline', uptime: 100 },
+        ].map(sys => (
+          <div class="flex items-center gap-4">
+            <div class="w-44 font-mono text-xs text-text-muted flex-shrink-0">{sys.name}</div>
+            <div class="flex-1 h-2 rounded-full bg-border-dark overflow-hidden">
+              <div
+                class="h-full rounded-full bg-gradient-to-r from-primary to-emerald-500"
+                style={`width: ${sys.uptime}%`}
+              ></div>
+            </div>
+            <div class="w-14 font-mono text-xs text-primary text-right flex-shrink-0">{sys.uptime}%</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,99 @@
+---
+---
+<section id="about" class="px-6 py-20 lg:px-20">
+  <div class="mx-auto max-w-[1200px]">
+
+    <div class="mb-12 reveal">
+      <div class="inline-flex items-center gap-2 rounded-full border border-border-dark bg-surface-dark px-4 py-1.5 font-mono text-xs text-text-muted mb-4">
+        <span class="material-symbols-outlined text-sm text-primary">person</span>
+        about
+      </div>
+      <h2 class="text-3xl font-black text-white lg:text-4xl">
+        Built for <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Banking-Grade</span> Systems
+      </h2>
+    </div>
+
+    <div class="grid gap-12 lg:grid-cols-2 items-start">
+
+      <!-- Left: Bio -->
+      <div class="reveal reveal-delay-1">
+        <div class="rounded-xl border border-border-dark bg-surface-dark p-8">
+          <div class="space-y-4 font-body text-text-muted leading-relaxed">
+            <p>
+              I'm a DevOps Engineer with deep expertise in the <span class="text-white font-semibold">banking and financial technology</span> sector.
+              Currently at <span class="text-primary font-semibold">Sacombank</span>, I manage mission-critical infrastructure for Core Banking,
+              Open Banking, and Payment systems — where downtime is measured in millions.
+            </p>
+            <p>
+              My work sits at the intersection of <span class="text-white font-semibold">infrastructure automation</span>, <span class="text-white font-semibold">security compliance</span>,
+              and <span class="text-white font-semibold">developer experience</span>. I design CI/CD pipelines that not only ship fast, but ship safely
+              — with full auditability, rollback strategies, and compliance baked in.
+            </p>
+            <p>
+              I believe the best infrastructure is invisible — it just works, scales silently, and never pages you at 3am.
+            </p>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-4 border-t border-border-dark pt-6 font-mono text-xs">
+            <div>
+              <div class="text-text-muted mb-1">Location</div>
+              <div class="text-white">Ho Chi Minh City, VN</div>
+            </div>
+            <div>
+              <div class="text-text-muted mb-1">Domain</div>
+              <div class="text-primary">Banking / Fintech</div>
+            </div>
+            <div>
+              <div class="text-text-muted mb-1">Experience</div>
+              <div class="text-white">3+ Years</div>
+            </div>
+            <div>
+              <div class="text-text-muted mb-1">Clearance</div>
+              <div class="text-primary">Production Access</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Four pillars -->
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 reveal reveal-delay-2">
+        {[
+          {
+            icon: 'verified_user',
+            title: 'Security First',
+            desc: 'SAST, DAST, and compliance checks built directly into every pipeline stage. Zero tolerance for security debt in financial systems.',
+            color: 'text-blue-400',
+            border: 'hover:border-blue-400/30'
+          },
+          {
+            icon: 'reliability',
+            title: 'Reliability',
+            desc: '99.99% uptime SLA for core banking systems. Architected for failure with automated rollback, health checks, and self-healing.',
+            color: 'text-primary',
+            border: 'hover:border-primary/30'
+          },
+          {
+            icon: 'gavel',
+            title: 'Compliance',
+            desc: 'Pipelines designed to meet banking regulations. Audit trails, approval gates, and immutable deployment records for every release.',
+            color: 'text-yellow-400',
+            border: 'hover:border-yellow-400/30'
+          },
+          {
+            icon: 'smart_toy',
+            title: 'Automation',
+            desc: 'Reduce toil at every layer — from infrastructure provisioning with Ansible to database migrations and release coordination.',
+            color: 'text-purple-400',
+            border: 'hover:border-purple-400/30'
+          }
+        ].map(item => (
+          <div class={`rounded-xl border border-border-dark bg-[#161f1a] p-6 transition-all duration-200 ${item.border} hover:translate-y-[-2px]`}>
+            <span class={`material-symbols-outlined text-2xl mb-4 ${item.color}`}>{item.icon}</span>
+            <h3 class="font-bold text-white mb-2 text-sm">{item.title}</h3>
+            <p class="text-xs font-body text-text-muted leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
