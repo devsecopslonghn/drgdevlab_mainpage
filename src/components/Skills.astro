@@ -7,8 +7,8 @@ const skillGroups = [
     border: 'border-primary/20',
     bg: 'bg-primary/5',
     skills: [
-      { name: 'GitLab CI', level: 95 },
-      { name: 'Jenkins', level: 90 },
+      { name: 'Jenkins', level: 92 },
+      { name: 'GitLab CI', level: 88 },
       { name: 'Groovy Pipelines', level: 85 },
       { name: 'Pipeline as Code', level: 90 },
     ]
@@ -47,9 +47,9 @@ const skillGroups = [
     bg: 'bg-yellow-400/5',
     skills: [
       { name: 'Core T24', level: 85 },
-      { name: 'Open Banking', level: 88 },
-      { name: 'Payment Systems', level: 85 },
-      { name: 'Database CI/CD', level: 87 },
+      { name: 'Open Banking', level: 85 },
+      { name: 'Payment Systems', level: 83 },
+      { name: 'WebSphere / JBoss', level: 78 },
     ]
   },
   {
@@ -66,16 +66,29 @@ const skillGroups = [
     ]
   },
   {
+    title: 'Monitoring',
+    icon: 'monitor_heart',
+    color: 'text-cyan-400',
+    border: 'border-cyan-400/20',
+    bg: 'bg-cyan-400/5',
+    skills: [
+      { name: 'Grafana / Prometheus', level: 83 },
+      { name: 'Datadog', level: 78 },
+      { name: 'Zabbix', level: 75 },
+      { name: 'ELK Stack', level: 70 },
+    ]
+  },
+  {
     title: 'Security & Compliance',
     icon: 'verified_user',
     color: 'text-red-400',
     border: 'border-red-400/20',
     bg: 'bg-red-400/5',
     skills: [
-      { name: 'SAST / DAST', level: 80 },
+      { name: 'SonarQube / Coverity', level: 82 },
+      { name: 'Aqua Scanner / BlackDuck', level: 78 },
       { name: 'Compliance Gates', level: 85 },
       { name: 'Audit Trails', level: 88 },
-      { name: 'Secret Management', level: 82 },
     ]
   },
 ];
@@ -129,10 +142,13 @@ const skillGroups = [
       <div class="font-mono text-xs text-text-muted mb-4 uppercase tracking-wider">All Tools & Technologies</div>
       <div class="flex flex-wrap gap-2">
         {[
-          'GitLab CI', 'Jenkins', 'OpenShift OCP', 'Kubernetes', 'Docker', 'Ansible',
-          'AWS', 'Core T24', 'Open Banking API', 'Payment Gateway', 'Bash', 'Groovy',
-          'Flyway', 'Liquibase', 'Nexus', 'Helm', 'Grafana', 'Prometheus', 'SAST', 'DAST',
-          'Git', 'Linux', 'Nginx', 'PostgreSQL', 'Oracle DB', 'Vault'
+          'Jenkins', 'GitLab CI', 'OpenShift OCP', 'Kubernetes', 'Docker', 'Ansible',
+          'AWS EC2', 'AWS S3', 'AWS Lambda', 'AWS RDS', 'AWS ECS', 'API Gateway',
+          'Core T24', 'Open Banking', 'Payment Systems', 'WebSphere', 'JBoss',
+          'Bash', 'Groovy', 'Python', 'Flyway', 'Nexus', 'JFrog', 'Helm',
+          'Grafana', 'Prometheus', 'Datadog', 'Zabbix',
+          'SonarQube', 'Aqua Scanner', 'Coverity', 'BlackDuck',
+          'Git', 'Linux', 'Nginx', 'Oracle DB', 'PostgreSQL'
         ].map(tool => (
           <span class="rounded border border-border-dark bg-surface-dark px-3 py-1.5 font-mono text-xs text-text-muted hover:border-primary/30 hover:text-primary transition-colors cursor-default">{tool}</span>
         ))}
