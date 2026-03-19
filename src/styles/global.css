@@ -34,3 +34,60 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #3b5447;
 }
+
+/* ── Page transition curtain ── */
+#page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #111814;
+  pointer-events: none;
+  transform: translateX(-100%);
+}
+
+/* Slide IN (leaving page) */
+@keyframes curtain-in {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0%); }
+}
+
+/* Slide OUT (entering page) */
+@keyframes curtain-out {
+  from { transform: translateX(0%); }
+  to   { transform: translateX(100%); }
+}
+
+#page-curtain.is-entering {
+  animation: curtain-in 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#page-curtain.is-leaving {
+  animation: curtain-out 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Progress bar on top of curtain */
+#page-curtain::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #13ec80, #10b981);
+}
+
+/* Astro view-transition fade for content */
+::view-transition-old(root) {
+  animation: fade-out 0.18s ease forwards;
+}
+::view-transition-new(root) {
+  animation: fade-in 0.22s ease forwards;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,5 +1,6 @@
 ---
 import '@styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 const { title = 'DRG Dev Lab', description = 'Platform dashboard', lang = 'en', showChrome = false } = Astro.props;
 
@@ -24,6 +25,7 @@ const canonical = Astro.url?.href ?? '';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet" />
+    <ViewTransitions />
     <style>
       /* System font stack — zero network cost, renders instantly */
       :root {
@@ -33,9 +35,33 @@ const canonical = Astro.url?.href ?? '';
     </style>
   </head>
   <body class="min-h-screen flex flex-col">
+    <div id="page-curtain" aria-hidden="true"></div>
     <main class="flex-1 flex flex-col">
       <slot />
     </main>
     {showChrome && <slot name="footer" />}
+
+    <script>
+      const curtain = document.getElementById('page-curtain');
+
+      // Slide OUT on page enter (new page loaded)
+      document.addEventListener('astro:page-load', () => {
+        if (!curtain) return;
+        curtain.classList.remove('is-entering');
+        curtain.classList.add('is-leaving');
+        curtain.addEventListener('animationend', () => {
+          curtain.classList.remove('is-leaving');
+          curtain.style.transform = 'translateX(-100%)';
+        }, { once: true });
+      });
+
+      // Slide IN on navigation start (leaving current page)
+      document.addEventListener('astro:before-preparation', () => {
+        if (!curtain) return;
+        curtain.style.transform = '';
+        curtain.classList.remove('is-leaving');
+        curtain.classList.add('is-entering');
+      });
+    </script>
   </body>
 </html>
