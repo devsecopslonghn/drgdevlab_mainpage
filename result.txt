@@ -1,0 +1,3 @@
+https://jenkins.sacombank.local/job/microservices/job/library/job/mcs-partner-library-java/
+  props: {'hasComponents': 'true', 'repository': 'maven-hosted', 'fileExtension': 'jar', 'blockSast': 'false', 'jdk': '17', 'owner': 'dotnet', 'kind': 'jarFile', 'noBuild': 'true'}
+

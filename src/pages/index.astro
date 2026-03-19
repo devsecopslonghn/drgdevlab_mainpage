@@ -16,7 +16,7 @@ import Footer from '@components/Footer.astro';
       <Hero />
 
       <!-- About (condensed) -->
-      <section id="about" class="px-6 py-16 lg:px-20 border-t border-border-dark">
+      <section id="about" class="px-6 py-12 lg:px-20 border-t border-border-dark">
         <div class="mx-auto max-w-[1200px]">
           <div class="grid gap-10 lg:grid-cols-2 items-center">
 
@@ -44,14 +44,14 @@ import Footer from '@components/Footer.astro';
             <!-- Metrics -->
             <div class="grid grid-cols-2 gap-4 reveal reveal-delay-1">
               {[
-                { value: '50%', label: 'Faster deployments', icon: 'rocket_launch', color: 'text-primary', border: 'border-primary/20', bg: 'bg-primary/5' },
-                { value: '75%', label: 'More frequent releases', icon: 'trending_up', color: 'text-emerald-400', border: 'border-emerald-400/20', bg: 'bg-emerald-400/5' },
-                { value: '40%', label: 'Cost reduction', icon: 'savings', color: 'text-blue-400', border: 'border-blue-400/20', bg: 'bg-blue-400/5' },
-                { value: '300+', label: 'Production projects', icon: 'folder_open', color: 'text-yellow-400', border: 'border-yellow-400/20', bg: 'bg-yellow-400/5' },
+                { value: '50%', label: 'Faster deployments', icon: 'rocket_launch' },
+                { value: '75%', label: 'More frequent releases', icon: 'trending_up' },
+                { value: '40%', label: 'Cost reduction', icon: 'savings' },
+                { value: '300+', label: 'Production projects', icon: 'folder_open' },
               ].map((m: any) => (
-                <div class={`rounded-xl border ${m.border} ${m.bg} p-5 text-center`}>
-                  <span class={`material-symbols-outlined text-xl mb-2 ${m.color}`}>{m.icon}</span>
-                  <div class={`text-3xl font-black ${m.color}`}>{m.value}</div>
+                <div class="rounded-xl border border-border-dark bg-surface-dark p-5 text-center hover:border-primary/30 transition-colors">
+                  <span class="material-symbols-outlined text-xl mb-2 text-text-muted">{m.icon}</span>
+                  <div class="text-3xl font-black text-white">{m.value}</div>
                   <div class="text-xs font-mono text-text-muted mt-1">{m.label}</div>
                 </div>
               ))}
@@ -61,13 +61,13 @@ import Footer from '@components/Footer.astro';
           <!-- Four pillars (compact row) -->
           <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4 reveal reveal-delay-2">
             {[
-              { icon: 'verified_user', title: 'Security First', desc: 'SAST, DAST & compliance in every pipeline stage', color: 'text-blue-400', hover: 'hover:border-blue-400/30' },
-              { icon: 'reliability', title: 'Reliability', desc: '99.99% uptime SLA with automated rollback', color: 'text-primary', hover: 'hover:border-primary/30' },
-              { icon: 'gavel', title: 'Compliance', desc: 'Audit trails & approval gates for every release', color: 'text-yellow-400', hover: 'hover:border-yellow-400/30' },
-              { icon: 'smart_toy', title: 'Automation', desc: 'Reduce toil from infra to DB migrations', color: 'text-purple-400', hover: 'hover:border-purple-400/30' },
+              { icon: 'verified_user', title: 'Security First', desc: 'SAST, DAST & compliance in every pipeline stage' },
+              { icon: 'monitor_heart', title: 'Reliability', desc: '99.99% uptime SLA with automated rollback' },
+              { icon: 'gavel', title: 'Compliance', desc: 'Audit trails & approval gates for every release' },
+              { icon: 'smart_toy', title: 'Automation', desc: 'Reduce toil from infra to DB migrations' },
             ].map((item: any) => (
-              <div class={`rounded-xl border border-border-dark bg-surface-dark p-5 transition-all duration-200 ${item.hover} hover:-translate-y-0.5`}>
-                <span class={`material-symbols-outlined text-xl mb-3 ${item.color}`}>{item.icon}</span>
+              <div class="rounded-xl border border-border-dark bg-surface-dark p-5 transition-all duration-200 hover:border-primary/30 hover:-translate-y-0.5">
+                <span class="material-symbols-outlined text-xl mb-3 text-primary">{item.icon}</span>
                 <h3 class="font-bold text-white text-sm mb-1">{item.title}</h3>
                 <p class="text-xs font-body text-text-muted leading-relaxed">{item.desc}</p>
               </div>

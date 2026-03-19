@@ -17,8 +17,8 @@ module.exports = {
         'text-muted': '#9db9ab'
       },
       fontFamily: {
-        display: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Inter', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-        body: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         mono: [
           'ui-monospace',
           'SFMono-Regular',

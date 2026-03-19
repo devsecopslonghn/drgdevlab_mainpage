@@ -24,15 +24,9 @@ const canonical = Astro.url?.href ?? '';
     <link rel="alternate icon" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet" />
     <ViewTransitions />
-    <style>
-      /* System font stack — zero network cost, renders instantly */
-      :root {
-        --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
-        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      }
-    </style>
   </head>
   <body class="min-h-screen flex flex-col">
     <div id="page-curtain" aria-hidden="true"></div>
