@@ -16,6 +16,20 @@
       <p class="mt-2 text-sm font-body text-text-muted max-w-2xl">
         Production pipeline supporting Core T24, Open Banking, and Payment systems — from commit to deployment.
       </p>
+      <!-- Legend -->
+      <div class="flex flex-wrap gap-x-5 gap-y-1.5 mt-4">
+        {[
+          { color: 'bg-primary', label: 'CI/CD Pipeline & Deployment' },
+          { color: 'bg-amber-400', label: 'Testing & Quality' },
+          { color: 'bg-cyan-400', label: 'Observability' },
+          { color: 'bg-red-400', label: 'Security & Compliance' },
+        ].map(l => (
+          <div class="flex items-center gap-1.5 font-mono text-[10px] text-text-muted/60">
+            <div class={`w-1.5 h-1.5 rounded-full ${l.color} opacity-70`}></div>
+            {l.label}
+          </div>
+        ))}
+      </div>
     </div>
 
     <!-- Diagram -->
@@ -25,33 +39,33 @@
         <!-- ── ROW 1: Testing Suite ── -->
         <div class="flex items-start justify-center gap-3 mb-2">
           <div class="arch-zone flex-1 max-w-[580px]">
-            <div class="arch-zone-label text-purple-400 border-purple-400/20 bg-purple-400/5">
+            <div class="arch-zone-label text-amber-400 border-amber-400/20 bg-amber-400/5">
               <span class="material-symbols-outlined text-xs">bug_report</span> Testing Suite
             </div>
             <div class="flex gap-3">
-              <div class="arch-node flex-1 border-purple-400/20 hover:border-purple-400/40">
-                <div class="arch-node-icon bg-purple-400/10 text-purple-400">
+              <div class="arch-node flex-1 border-amber-400/20 hover:border-amber-400/40">
+                <div class="arch-node-icon bg-amber-400/10 text-amber-400">
                   <span class="material-symbols-outlined text-sm">play_circle</span>
                 </div>
                 <div class="arch-node-name">Katalon</div>
-                <div class="arch-node-sub text-purple-400/70">Automation Testing</div>
-                <div class="arch-node-tag bg-purple-400/10 text-purple-400/80">Kiểm tra chức năng</div>
+                <div class="arch-node-sub text-amber-400/70">Automation Testing</div>
+                <div class="arch-node-tag bg-amber-400/10 text-amber-400/80">Functional</div>
               </div>
-              <div class="arch-node flex-1 border-orange-400/20 hover:border-orange-400/40">
-                <div class="arch-node-icon bg-orange-400/10 text-orange-400">
+              <div class="arch-node flex-1 border-red-400/20 hover:border-red-400/40">
+                <div class="arch-node-icon bg-red-400/10 text-red-400">
                   <span class="material-symbols-outlined text-sm">security</span>
                 </div>
                 <div class="arch-node-name">Rapid7 InsightAppSec</div>
-                <div class="arch-node-sub text-orange-400/70">DAST</div>
-                <div class="arch-node-tag bg-orange-400/10 text-orange-400/80">Kiểm tra bảo mật động</div>
+                <div class="arch-node-sub text-red-400/70">DAST</div>
+                <div class="arch-node-tag bg-red-400/10 text-red-400/80">Dynamic Security Scan</div>
               </div>
-              <div class="arch-node flex-1 border-sky-400/20 hover:border-sky-400/40">
-                <div class="arch-node-icon bg-sky-400/10 text-sky-400">
+              <div class="arch-node flex-1 border-amber-400/20 hover:border-amber-400/40">
+                <div class="arch-node-icon bg-amber-400/10 text-amber-400">
                   <span class="material-symbols-outlined text-sm">speed</span>
                 </div>
                 <div class="arch-node-name">HPLoadRunner</div>
-                <div class="arch-node-sub text-sky-400/70">Performance Test</div>
-                <div class="arch-node-tag bg-sky-400/10 text-sky-400/80">Kiểm tra tải (Optional)</div>
+                <div class="arch-node-sub text-amber-400/70">Performance Test</div>
+                <div class="arch-node-tag bg-amber-400/10 text-amber-400/80">Load Testing (Optional)</div>
               </div>
             </div>
           </div>
@@ -75,21 +89,21 @@
             </div>
             <div class="flex flex-col gap-2">
               <div class="arch-node-sm border-border-dark hover:border-primary/20">
-                <span class="material-symbols-outlined text-sm text-primary">person</span>
+                <span class="material-symbols-outlined text-sm text-text-muted">person</span>
                 <div>
                   <div class="text-[10px] font-bold text-white">User / Dev</div>
                   <div class="text-[9px] text-text-muted">Code Editor</div>
                 </div>
               </div>
-              <div class="arch-node-sm border-border-dark hover:border-blue-400/20">
-                <span class="material-symbols-outlined text-sm text-blue-400">groups</span>
+              <div class="arch-node-sm border-border-dark hover:border-border-dark/60">
+                <span class="material-symbols-outlined text-sm text-text-muted">groups</span>
                 <div>
                   <div class="text-[10px] font-bold text-white">Microsoft 365</div>
                   <div class="text-[9px] text-text-muted">Collaboration</div>
                 </div>
               </div>
-              <div class="arch-node-sm border-border-dark hover:border-yellow-400/20">
-                <span class="material-symbols-outlined text-sm text-yellow-400">support_agent</span>
+              <div class="arch-node-sm border-border-dark hover:border-border-dark/60">
+                <span class="material-symbols-outlined text-sm text-text-muted">support_agent</span>
                 <div>
                   <div class="text-[10px] font-bold text-white">BMC Helix</div>
                   <div class="text-[9px] text-text-muted">IT Service</div>
@@ -121,7 +135,7 @@
             <div class="arch-arrow-head">▶</div>
           </div>
 
-          <!-- Jenkins (CENTER) -->
+          <!-- Jenkins (CENTER HERO) -->
           <div class="arch-node arch-node-core arch-node-hero border-primary/50 hover:border-primary flex-shrink-0 w-[130px]">
             <div class="arch-node-icon bg-primary/15 text-primary" style="width:44px;height:44px">
               <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
@@ -140,12 +154,12 @@
           </div>
 
           <!-- Nexus -->
-          <div class="arch-node arch-node-core border-emerald-400/30 hover:border-emerald-400/60 flex-shrink-0 w-[120px]">
-            <div class="arch-node-icon bg-emerald-400/10 text-emerald-400">
+          <div class="arch-node arch-node-core border-primary/30 hover:border-primary/60 flex-shrink-0 w-[120px]">
+            <div class="arch-node-icon bg-primary/10 text-primary">
               <span class="material-symbols-outlined text-base">inventory_2</span>
             </div>
             <div class="arch-node-name">Nexus</div>
-            <div class="arch-node-sub text-emerald-400/70">Artifact Registry</div>
+            <div class="arch-node-sub text-primary/70">Artifact Registry</div>
           </div>
 
           <!-- Arrow -->
@@ -156,12 +170,12 @@
           </div>
 
           <!-- OpenShift -->
-          <div class="arch-node arch-node-core border-red-400/30 hover:border-red-400/60 flex-shrink-0 w-[120px]">
-            <div class="arch-node-icon bg-red-400/10 text-red-400">
+          <div class="arch-node arch-node-core border-primary/30 hover:border-primary/60 flex-shrink-0 w-[120px]">
+            <div class="arch-node-icon bg-primary/10 text-primary">
               <span class="material-symbols-outlined text-base">hub</span>
             </div>
             <div class="arch-node-name">OpenShift</div>
-            <div class="arch-node-sub text-red-400/70">Orchestration</div>
+            <div class="arch-node-sub text-primary/70">Orchestration</div>
           </div>
 
           <!-- Spacer -->
@@ -180,8 +194,8 @@
                   <div class="text-[9px] text-text-muted">Metrics</div>
                 </div>
               </div>
-              <div class="arch-node-sm border-yellow-400/20 hover:border-yellow-400/40">
-                <span class="material-symbols-outlined text-sm text-yellow-400">storage</span>
+              <div class="arch-node-sm border-cyan-400/20 hover:border-cyan-400/40">
+                <span class="material-symbols-outlined text-sm text-cyan-400">storage</span>
                 <div>
                   <div class="text-[10px] font-bold text-white">ELK Stack</div>
                   <div class="text-[9px] text-text-muted">Logging</div>
@@ -195,14 +209,14 @@
         <!-- ── ROW 3: Security | Deploy | Compliance ── -->
         <div class="flex gap-3 mt-4">
 
-          <!-- Security Suite -->
+          <!-- Security & Quality -->
           <div class="arch-zone flex-1">
             <div class="arch-zone-label text-red-400 border-red-400/20 bg-red-400/5">
               <span class="material-symbols-outlined text-xs">verified_user</span> Security & Quality
             </div>
             <div class="flex gap-2 flex-wrap">
-              <div class="arch-node-sm flex-1 min-w-[90px] border-green-400/20 hover:border-green-400/40">
-                <span class="material-symbols-outlined text-sm text-green-400">code</span>
+              <div class="arch-node-sm flex-1 min-w-[90px] border-amber-400/20 hover:border-amber-400/40">
+                <span class="material-symbols-outlined text-sm text-amber-400">code</span>
                 <div>
                   <div class="text-[10px] font-bold text-white">SonarQube</div>
                   <div class="text-[9px] text-text-muted">Code Quality</div>
@@ -215,15 +229,15 @@
                   <div class="text-[9px] text-text-muted">SAST</div>
                 </div>
               </div>
-              <div class="arch-node-sm flex-1 min-w-[90px] border-orange-400/20 hover:border-orange-400/40">
-                <span class="material-symbols-outlined text-sm text-orange-400">account_tree</span>
+              <div class="arch-node-sm flex-1 min-w-[90px] border-red-400/20 hover:border-red-400/40">
+                <span class="material-symbols-outlined text-sm text-red-400">account_tree</span>
                 <div>
                   <div class="text-[10px] font-bold text-white">BlackDuck</div>
                   <div class="text-[9px] text-text-muted">SCA</div>
                 </div>
               </div>
-              <div class="arch-node-sm flex-1 min-w-[90px] border-blue-400/20 hover:border-blue-400/40">
-                <span class="material-symbols-outlined text-sm text-blue-400">image_search</span>
+              <div class="arch-node-sm flex-1 min-w-[90px] border-red-400/20 hover:border-red-400/40">
+                <span class="material-symbols-outlined text-sm text-red-400">image_search</span>
                 <div>
                   <div class="text-[10px] font-bold text-white">AquaSec</div>
                   <div class="text-[9px] text-text-muted">Image Scan</div>
@@ -257,11 +271,11 @@
 
           <!-- Compliance -->
           <div class="arch-zone w-[150px] flex-shrink-0">
-            <div class="arch-zone-label text-rose-400 border-rose-400/20 bg-rose-400/5">
+            <div class="arch-zone-label text-red-400 border-red-400/20 bg-red-400/5">
               <span class="material-symbols-outlined text-xs">gavel</span> Compliance
             </div>
-            <div class="arch-node-sm border-rose-400/20 hover:border-rose-400/40">
-              <span class="material-symbols-outlined text-sm text-rose-400">shield</span>
+            <div class="arch-node-sm border-red-400/20 hover:border-red-400/40">
+              <span class="material-symbols-outlined text-sm text-red-400">shield</span>
               <div>
                 <div class="text-[10px] font-bold text-white">Rapid7 InsightVM</div>
                 <div class="text-[9px] text-text-muted">Security & Compliance</div>
@@ -269,23 +283,6 @@
             </div>
           </div>
 
-        </div>
-
-        <!-- Legend -->
-        <div class="mt-6 pt-4 border-t border-border-dark flex flex-wrap gap-x-6 gap-y-2">
-          {[
-            { color: 'bg-primary', label: 'CI/CD Pipeline' },
-            { color: 'bg-purple-400', label: 'Testing' },
-            { color: 'bg-red-400', label: 'Security / SAST' },
-            { color: 'bg-cyan-400', label: 'Observability' },
-            { color: 'bg-primary', label: 'Deployment' },
-          ].map(l => (
-            <div class="flex items-center gap-2 font-mono text-[10px] text-text-muted">
-              <div class={`w-2 h-2 rounded-full ${l.color} opacity-70`}></div>
-              {l.label}
-            </div>
-          ))}
-          <div class="ml-auto font-mono text-[10px] text-text-muted/40">Sacombank Production Environment</div>
         </div>
 
       </div>
