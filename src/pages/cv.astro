@@ -1,0 +1,345 @@
+---
+// CV / Resume page — optimized for print to PDF
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Long Ho — DevOps Engineer CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #13ec80;
+      --dark: #0d1410;
+      --text: #1a1a1a;
+      --muted: #555;
+      --border: #e0e0e0;
+      --tag-bg: #f0faf4;
+      --tag-text: #0a7a3e;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5pt;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.5;
+    }
+
+    /* ── Screen wrapper ── */
+    .page-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* ── Print controls (hidden when printing) ── */
+    .print-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      background: var(--dark);
+      color: #fff;
+      font-size: 13px;
+      z-index: 100;
+      gap: 12px;
+    }
+    .print-bar span { color: #aaa; font-size: 12px; }
+    .btn-print {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #0d1410;
+      font-weight: 700;
+      font-size: 13px;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-print:hover { opacity: 0.9; }
+    .btn-back {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .btn-back:hover { color: #fff; }
+
+    .cv {
+      margin-top: 56px; /* offset for fixed bar */
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 40px 44px;
+    }
+
+    /* ── HEADER ── */
+    .cv-header {
+      border-bottom: 2px solid var(--green);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .cv-name {
+      font-size: 26pt;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .cv-title {
+      font-size: 11pt;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+    }
+    .cv-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin-top: 10px;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+    .cv-contacts a { color: var(--muted); text-decoration: none; }
+    .cv-contacts a:hover { color: var(--dark); }
+    .cv-contacts span::before { content: '•'; margin-right: 6px; color: var(--green); }
+
+    /* ── SECTIONS ── */
+    .cv-section { margin-bottom: 18px; }
+    .section-title {
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--green);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* ── SUMMARY ── */
+    .summary-text {
+      font-size: 10pt;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .summary-text strong { color: var(--dark); font-weight: 600; }
+
+    /* ── EXPERIENCE ── */
+    .job { margin-bottom: 14px; }
+    .job:last-child { margin-bottom: 0; }
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 2px; }
+    .job-title { font-size: 11pt; font-weight: 700; color: var(--dark); }
+    .job-company { font-size: 10pt; font-weight: 600; color: var(--green); }
+    .job-period { font-size: 9pt; color: var(--muted); white-space: nowrap; text-align: right; }
+    .job-domain { font-size: 9pt; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+    .job ul { padding-left: 14px; }
+    .job li {
+      font-size: 9.5pt;
+      color: var(--muted);
+      margin-bottom: 3.5px;
+      line-height: 1.55;
+    }
+    .job li strong { color: var(--dark); font-weight: 600; }
+
+    /* ── SKILLS TABLE ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 5px 12px;
+      font-size: 9.5pt;
+    }
+    .skill-label { font-weight: 600; color: var(--dark); }
+    .skill-value { color: var(--muted); }
+
+    /* ── EDUCATION ── */
+    .edu-row { display: flex; justify-content: space-between; align-items: center; }
+    .edu-name { font-weight: 600; font-size: 10pt; color: var(--dark); }
+    .edu-school { font-size: 9.5pt; color: var(--muted); }
+    .edu-year { font-size: 9pt; color: var(--muted); }
+
+    /* ── METRICS ROW ── */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 10px 0 4px;
+    }
+    .metric-box {
+      border: 1px solid #d4f7e4;
+      background: var(--tag-bg);
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+    }
+    .metric-val { font-size: 14pt; font-weight: 800; color: var(--green); }
+    .metric-lbl { font-size: 7.5pt; color: var(--muted); margin-top: 2px; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      @page { margin: 14mm 14mm 14mm 14mm; size: A4; }
+      .print-bar { display: none !important; }
+      body { font-size: 9.5pt; }
+      .cv {
+        margin-top: 0;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+      }
+      .page-wrapper { padding: 0; max-width: 100%; }
+      .cv-name { font-size: 22pt; }
+      a { color: inherit !important; text-decoration: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Print bar (screen only) -->
+  <div class="print-bar">
+    <a href="/" class="btn-back">← Back to site</a>
+    <span>Open in browser → Ctrl+P → Save as PDF · Recommended: A4, No margins, Background graphics ON</span>
+    <button class="btn-print" onclick="window.print()">
+      ⬇ Download PDF
+    </button>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="cv">
+
+      <!-- HEADER -->
+      <div class="cv-header">
+        <div class="cv-name">Long Ho</div>
+        <div class="cv-title">DevOps Engineer — Banking & Financial Systems</div>
+        <div class="cv-contacts">
+          <span>longhn0710@gmail.com</span>
+          <span>+84 332 792 848</span>
+          <span>Ho Chi Minh City, Vietnam</span>
+          <span><a href="https://linkedin.com/in/longhn0710">linkedin.com/in/longhn0710</a></span>
+          <span><a href="https://github.com/devsecopslonghn">github.com/devsecopslonghn</a></span>
+          <span><a href="https://drgdevlab.com">drgdevlab.com</a></span>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="cv-section">
+        <div class="section-title">Summary</div>
+        <p class="summary-text">
+          DevOps Engineer with <strong>3+ years of experience</strong> in banking and financial systems, specializing in CI/CD automation, container orchestration, and infrastructure reliability. At Sacombank, supporting <strong>~300 production projects</strong> across Core T24, Open Banking, and Payment systems. Delivered measurable impact through pipeline engineering, infrastructure optimization, and security incident response in regulated environments.
+        </p>
+
+        <!-- Key metrics -->
+        <div class="metrics-row">
+          <div class="metric-box"><div class="metric-val">50%</div><div class="metric-lbl">Faster deployments</div></div>
+          <div class="metric-box"><div class="metric-val">75%</div><div class="metric-lbl">Release frequency ↑</div></div>
+          <div class="metric-box"><div class="metric-val">40%</div><div class="metric-lbl">Cost reduction</div></div>
+          <div class="metric-box"><div class="metric-val">99%</div><div class="metric-lbl">System uptime</div></div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="cv-section">
+        <div class="section-title">Experience</div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">DevOps Engineer</span>
+              &nbsp;·&nbsp;
+              <span class="job-company">Sacombank</span>
+            </div>
+            <div class="job-period">Jul 2024 – Present · Ho Chi Minh City</div>
+          </div>
+          <div class="job-domain">Core Banking · Open Banking · Payment Systems</div>
+          <ul>
+            <li>Built Core T24 CI/CD pipeline <strong>from scratch</strong>, migrating workloads from on-premises to OpenShift OCP with rolling zero-downtime deployments — one of a team of 4 supporting <strong>~300 production projects</strong> across WebSphere, OCP, and JBoss.</li>
+            <li>Reduced end-to-end deployment lead time by <strong>50%</strong> (commit → server) and release frequency by <strong>75%</strong> through Jenkins and GitLab CI pipeline optimization and automation.</li>
+            <li>Cut infrastructure costs by <strong>40%</strong> through resource rightsizing, autoscaling policies, and spot instance adoption in dev/staging environments.</li>
+            <li>Implemented Database CI/CD using <strong>Flyway</strong> and custom Bash scripts for schema migration, version control, and automated rollback across banking databases.</li>
+            <li>Integrated security scanning (<strong>SonarQube, Aqua Scanner, Coverity, BlackDuck</strong>) into all pipeline stages, ensuring compliance with banking regulatory requirements.</li>
+            <li>Led GitLab credential exposure incident response: rotated access keys, restored Jenkins/Ansible integrations, identified root cause (documentation leak), and drove team security awareness program.</li>
+            <li>Operated monitoring stack (Grafana, Prometheus, Datadog, Zabbix) to maintain <strong>99% uptime SLA</strong> across Core Banking and Payment services.</li>
+            <li>Automated infrastructure and operational workflows using self-written <strong>Ansible playbooks</strong> and Bash/Python scripts for configuration management and deployment orchestration.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">DevOps Engineer</span>
+              &nbsp;·&nbsp;
+              <span class="job-company">DXC Technology Vietnam</span>
+            </div>
+            <div class="job-period">Sep 2022 – Jul 2024 · Ho Chi Minh City</div>
+          </div>
+          <div class="job-domain">Clients: Allianz Philippines · AIA · PSMBFI</div>
+          <ul>
+            <li>Delivered end-to-end DevOps pipeline implementation for enterprise insurance clients in regulated financial environments.</li>
+            <li>Completed critical platform delivery <strong>within 100 days</strong>, receiving formal recognition from Allianz Philippines for delivery quality and timeliness.</li>
+            <li>Automated infrastructure provisioning and configuration management using <strong>Ansible</strong>; developed Groovy-based Jenkins pipeline scripts for multi-environment deployments.</li>
+            <li>Built artifact management workflows with <strong>Nexus</strong> and <strong>JFrog Artifactory</strong>; implemented CI/CD compliance gates for regulated financial services clients.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="cv-section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-grid">
+          <span class="skill-label">CI/CD</span>
+          <span class="skill-value">Jenkins, GitLab CI, Groovy Pipeline as Code</span>
+
+          <span class="skill-label">Container & Orchestration</span>
+          <span class="skill-value">OpenShift OCP, Kubernetes, Docker, Helm</span>
+
+          <span class="skill-label">Automation & IaC</span>
+          <span class="skill-value">Ansible, Bash, Python</span>
+
+          <span class="skill-label">Cloud (AWS)</span>
+          <span class="skill-value">EC2, S3, Lambda, API Gateway, RDS, ECS</span>
+
+          <span class="skill-label">Database CI/CD</span>
+          <span class="skill-value">Flyway, Custom Migration & Backup Scripts</span>
+
+          <span class="skill-label">Monitoring</span>
+          <span class="skill-value">Grafana, Prometheus, Datadog, Zabbix</span>
+
+          <span class="skill-label">Security</span>
+          <span class="skill-value">SonarQube, Aqua Scanner, Coverity, BlackDuck</span>
+
+          <span class="skill-label">Artifact Management</span>
+          <span class="skill-value">Nexus, JFrog Artifactory</span>
+
+          <span class="skill-label">Banking Systems</span>
+          <span class="skill-value">Core T24, Open Banking, Payment Systems, WebSphere, JBoss</span>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="cv-section">
+        <div class="section-title">Education</div>
+        <div class="edu-row">
+          <div>
+            <div class="edu-name">B.Sc. Information Technology</div>
+            <div class="edu-school">University of Information Technology (UIT) — Ho Chi Minh City</div>
+          </div>
+          <div class="edu-year">2022</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
