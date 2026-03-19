@@ -1,0 +1,346 @@
+---
+---
+
+<section id="architecture" class="px-6 py-16 lg:px-20 border-t border-border-dark">
+  <div class="mx-auto max-w-[1400px]">
+
+    <!-- Header -->
+    <div class="mb-10 reveal">
+      <div class="inline-flex items-center gap-2 rounded-full border border-border-dark bg-surface-dark px-4 py-1.5 font-mono text-xs text-text-muted mb-4">
+        <span class="material-symbols-outlined text-sm text-primary">schema</span>
+        system architecture
+      </div>
+      <h2 class="text-2xl font-black text-white lg:text-3xl">
+        Sacombank <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">DevOps Architecture</span>
+      </h2>
+      <p class="mt-2 text-sm font-body text-text-muted max-w-2xl">
+        Production pipeline supporting Core T24, Open Banking, and Payment systems — from commit to deployment.
+      </p>
+    </div>
+
+    <!-- Diagram -->
+    <div class="reveal reveal-delay-1 rounded-xl border border-border-dark bg-[#0d1410] p-6 overflow-x-auto">
+      <div class="min-w-[900px]">
+
+        <!-- ── ROW 1: Testing Suite ── -->
+        <div class="flex items-start justify-center gap-3 mb-2">
+          <div class="arch-zone flex-1 max-w-[580px]">
+            <div class="arch-zone-label text-purple-400 border-purple-400/20 bg-purple-400/5">
+              <span class="material-symbols-outlined text-xs">bug_report</span> Testing Suite
+            </div>
+            <div class="flex gap-3">
+              <div class="arch-node flex-1 border-purple-400/20 hover:border-purple-400/40">
+                <div class="arch-node-icon bg-purple-400/10 text-purple-400">
+                  <span class="material-symbols-outlined text-sm">play_circle</span>
+                </div>
+                <div class="arch-node-name">Katalon</div>
+                <div class="arch-node-sub text-purple-400/70">Automation Testing</div>
+                <div class="arch-node-tag bg-purple-400/10 text-purple-400/80">Kiểm tra chức năng</div>
+              </div>
+              <div class="arch-node flex-1 border-orange-400/20 hover:border-orange-400/40">
+                <div class="arch-node-icon bg-orange-400/10 text-orange-400">
+                  <span class="material-symbols-outlined text-sm">security</span>
+                </div>
+                <div class="arch-node-name">Rapid7 InsightAppSec</div>
+                <div class="arch-node-sub text-orange-400/70">DAST</div>
+                <div class="arch-node-tag bg-orange-400/10 text-orange-400/80">Kiểm tra bảo mật động</div>
+              </div>
+              <div class="arch-node flex-1 border-sky-400/20 hover:border-sky-400/40">
+                <div class="arch-node-icon bg-sky-400/10 text-sky-400">
+                  <span class="material-symbols-outlined text-sm">speed</span>
+                </div>
+                <div class="arch-node-name">HPLoadRunner</div>
+                <div class="arch-node-sub text-sky-400/70">Performance Test</div>
+                <div class="arch-node-tag bg-sky-400/10 text-sky-400/80">Kiểm tra tải (Optional)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow down from Testing to Jenkins -->
+        <div class="flex justify-center mb-2" style="margin-left: 60px">
+          <div class="flex flex-col items-center gap-0.5">
+            <div class="w-px h-4 bg-border-dark"></div>
+            <span class="material-symbols-outlined text-xs text-text-muted/40">arrow_downward</span>
+          </div>
+        </div>
+
+        <!-- ── ROW 2: Main Pipeline ── -->
+        <div class="flex items-center gap-2 mb-2">
+
+          <!-- Left: Actors -->
+          <div class="arch-zone w-[130px] flex-shrink-0">
+            <div class="arch-zone-label text-text-muted border-border-dark bg-surface-dark/50">
+              <span class="material-symbols-outlined text-xs">person</span> Dev
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="arch-node-sm border-border-dark hover:border-primary/20">
+                <span class="material-symbols-outlined text-sm text-primary">person</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">User / Dev</div>
+                  <div class="text-[9px] text-text-muted">Code Editor</div>
+                </div>
+              </div>
+              <div class="arch-node-sm border-border-dark hover:border-blue-400/20">
+                <span class="material-symbols-outlined text-sm text-blue-400">groups</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">Microsoft 365</div>
+                  <div class="text-[9px] text-text-muted">Collaboration</div>
+                </div>
+              </div>
+              <div class="arch-node-sm border-border-dark hover:border-yellow-400/20">
+                <span class="material-symbols-outlined text-sm text-yellow-400">support_agent</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">BMC Helix</div>
+                  <div class="text-[9px] text-text-muted">IT Service</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <div class="arch-arrow-label">commit</div>
+            <div class="arch-arrow-head">▶</div>
+          </div>
+
+          <!-- GitLab -->
+          <div class="arch-node arch-node-core border-primary/30 hover:border-primary/60 flex-shrink-0 w-[120px]">
+            <div class="arch-node-icon bg-primary/10 text-primary">
+              <span class="material-symbols-outlined text-base">merge</span>
+            </div>
+            <div class="arch-node-name">GitLab</div>
+            <div class="arch-node-sub text-primary/70">Source Control</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <div class="arch-arrow-label">trigger</div>
+            <div class="arch-arrow-head">▶</div>
+          </div>
+
+          <!-- Jenkins (CENTER) -->
+          <div class="arch-node arch-node-core arch-node-hero border-primary/50 hover:border-primary flex-shrink-0 w-[130px]">
+            <div class="arch-node-icon bg-primary/15 text-primary" style="width:44px;height:44px">
+              <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+            </div>
+            <div class="arch-node-name text-base">Jenkins</div>
+            <div class="arch-node-sub text-primary/70">CI Controller</div>
+            <div class="w-full mt-1 h-px bg-primary/20"></div>
+            <div class="arch-node-tag bg-primary/10 text-primary/80 text-center w-full">Pipeline Engine</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <div class="arch-arrow-label">store</div>
+            <div class="arch-arrow-head">▶</div>
+          </div>
+
+          <!-- Nexus -->
+          <div class="arch-node arch-node-core border-emerald-400/30 hover:border-emerald-400/60 flex-shrink-0 w-[120px]">
+            <div class="arch-node-icon bg-emerald-400/10 text-emerald-400">
+              <span class="material-symbols-outlined text-base">inventory_2</span>
+            </div>
+            <div class="arch-node-name">Nexus</div>
+            <div class="arch-node-sub text-emerald-400/70">Artifact Registry</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="arch-arrow">
+            <div class="arch-arrow-line"></div>
+            <div class="arch-arrow-label">pull image</div>
+            <div class="arch-arrow-head">▶</div>
+          </div>
+
+          <!-- OpenShift -->
+          <div class="arch-node arch-node-core border-red-400/30 hover:border-red-400/60 flex-shrink-0 w-[120px]">
+            <div class="arch-node-icon bg-red-400/10 text-red-400">
+              <span class="material-symbols-outlined text-base">hub</span>
+            </div>
+            <div class="arch-node-name">OpenShift</div>
+            <div class="arch-node-sub text-red-400/70">Orchestration</div>
+          </div>
+
+          <!-- Spacer -->
+          <div class="flex-1"></div>
+
+          <!-- Right: Monitoring -->
+          <div class="arch-zone w-[140px] flex-shrink-0">
+            <div class="arch-zone-label text-cyan-400 border-cyan-400/20 bg-cyan-400/5">
+              <span class="material-symbols-outlined text-xs">monitor_heart</span> Observability
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="arch-node-sm border-cyan-400/20 hover:border-cyan-400/40">
+                <span class="material-symbols-outlined text-sm text-cyan-400">analytics</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">Grafana + Prometheus</div>
+                  <div class="text-[9px] text-text-muted">Metrics</div>
+                </div>
+              </div>
+              <div class="arch-node-sm border-yellow-400/20 hover:border-yellow-400/40">
+                <span class="material-symbols-outlined text-sm text-yellow-400">storage</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">ELK Stack</div>
+                  <div class="text-[9px] text-text-muted">Logging</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── ROW 3: Security | Deploy | Compliance ── -->
+        <div class="flex gap-3 mt-4">
+
+          <!-- Security Suite -->
+          <div class="arch-zone flex-1">
+            <div class="arch-zone-label text-red-400 border-red-400/20 bg-red-400/5">
+              <span class="material-symbols-outlined text-xs">verified_user</span> Security & Quality
+            </div>
+            <div class="flex gap-2 flex-wrap">
+              <div class="arch-node-sm flex-1 min-w-[90px] border-green-400/20 hover:border-green-400/40">
+                <span class="material-symbols-outlined text-sm text-green-400">code</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">SonarQube</div>
+                  <div class="text-[9px] text-text-muted">Code Quality</div>
+                </div>
+              </div>
+              <div class="arch-node-sm flex-1 min-w-[90px] border-red-400/20 hover:border-red-400/40">
+                <span class="material-symbols-outlined text-sm text-red-400">manage_search</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">Coverity</div>
+                  <div class="text-[9px] text-text-muted">SAST</div>
+                </div>
+              </div>
+              <div class="arch-node-sm flex-1 min-w-[90px] border-orange-400/20 hover:border-orange-400/40">
+                <span class="material-symbols-outlined text-sm text-orange-400">account_tree</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">BlackDuck</div>
+                  <div class="text-[9px] text-text-muted">SCA</div>
+                </div>
+              </div>
+              <div class="arch-node-sm flex-1 min-w-[90px] border-blue-400/20 hover:border-blue-400/40">
+                <span class="material-symbols-outlined text-sm text-blue-400">image_search</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">AquaSec</div>
+                  <div class="text-[9px] text-text-muted">Image Scan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deployment -->
+          <div class="arch-zone w-[260px] flex-shrink-0">
+            <div class="arch-zone-label text-primary border-primary/20 bg-primary/5">
+              <span class="material-symbols-outlined text-xs">rocket_launch</span> Deployment
+            </div>
+            <div class="flex gap-2">
+              <div class="arch-node-sm flex-1 border-primary/20 hover:border-primary/40">
+                <span class="material-symbols-outlined text-sm text-primary">smart_toy</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">Ansible</div>
+                  <div class="text-[9px] text-text-muted">CD Automation</div>
+                </div>
+              </div>
+              <div class="arch-node-sm flex-1 border-border-dark hover:border-primary/20">
+                <span class="material-symbols-outlined text-sm text-text-muted">dns</span>
+                <div>
+                  <div class="text-[10px] font-bold text-white">App Servers</div>
+                  <div class="text-[9px] text-text-muted">JBoss · WebSphere · IIS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compliance -->
+          <div class="arch-zone w-[150px] flex-shrink-0">
+            <div class="arch-zone-label text-rose-400 border-rose-400/20 bg-rose-400/5">
+              <span class="material-symbols-outlined text-xs">gavel</span> Compliance
+            </div>
+            <div class="arch-node-sm border-rose-400/20 hover:border-rose-400/40">
+              <span class="material-symbols-outlined text-sm text-rose-400">shield</span>
+              <div>
+                <div class="text-[10px] font-bold text-white">Rapid7 InsightVM</div>
+                <div class="text-[9px] text-text-muted">Security & Compliance</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Legend -->
+        <div class="mt-6 pt-4 border-t border-border-dark flex flex-wrap gap-x-6 gap-y-2">
+          {[
+            { color: 'bg-primary', label: 'CI/CD Pipeline' },
+            { color: 'bg-purple-400', label: 'Testing' },
+            { color: 'bg-red-400', label: 'Security / SAST' },
+            { color: 'bg-cyan-400', label: 'Observability' },
+            { color: 'bg-primary', label: 'Deployment' },
+          ].map(l => (
+            <div class="flex items-center gap-2 font-mono text-[10px] text-text-muted">
+              <div class={`w-2 h-2 rounded-full ${l.color} opacity-70`}></div>
+              {l.label}
+            </div>
+          ))}
+          <div class="ml-auto font-mono text-[10px] text-text-muted/40">Sacombank Production Environment</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .arch-zone {
+    @apply rounded-lg border border-border-dark p-3 bg-[#0d1410];
+  }
+  .arch-zone-label {
+    @apply flex items-center gap-1 font-mono text-[9px] font-bold uppercase tracking-wider mb-2 rounded px-2 py-0.5 border w-fit;
+  }
+
+  /* Full node */
+  .arch-node {
+    @apply rounded-lg border bg-[#111814] p-3 flex flex-col items-center gap-1.5 transition-all duration-200 cursor-default;
+  }
+  .arch-node-core {
+    @apply bg-[#0f1a12];
+  }
+  .arch-node-hero {
+    @apply shadow-lg;
+    box-shadow: 0 0 20px rgba(19,236,128,0.08);
+  }
+  .arch-node-icon {
+    @apply flex items-center justify-center rounded-lg w-9 h-9;
+  }
+  .arch-node-name {
+    @apply font-bold text-white text-xs text-center leading-tight;
+  }
+  .arch-node-sub {
+    @apply font-mono text-[9px] text-center;
+  }
+  .arch-node-tag {
+    @apply font-mono text-[8px] rounded px-1.5 py-0.5 text-center;
+  }
+
+  /* Small node */
+  .arch-node-sm {
+    @apply flex items-center gap-2 rounded-lg border bg-[#111814] px-3 py-2 transition-all duration-200 cursor-default;
+  }
+
+  /* Arrow */
+  .arch-arrow {
+    @apply flex flex-col items-center gap-0.5 flex-shrink-0;
+  }
+  .arch-arrow-line {
+    @apply w-8 h-px bg-primary/30;
+  }
+  .arch-arrow-label {
+    @apply font-mono text-[8px] text-text-muted/50 text-center whitespace-nowrap;
+  }
+  .arch-arrow-head {
+    @apply text-[8px] text-primary/50 leading-none;
+  }
+</style>
