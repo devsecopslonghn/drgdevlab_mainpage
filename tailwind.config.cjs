@@ -5,37 +5,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#13ec80',
-        'primary-hover': '#0ea85b',
-        'background-light': '#f6f8f7',
-        'background-dark': '#111814',
-        'surface-dark': '#1c2721',
-        'surface-border': '#283930',
-        'border-dark': '#283930',
-        'card-dark': '#1c2721',
-        'text-secondary': '#9db9ab',
-        'text-muted': '#9db9ab'
+        // All tied to CSS variables — switch theme = all colors update everywhere
+        primary:            'rgb(var(--color-primary) / <alpha-value>)',
+        'primary-hover':    'rgb(var(--color-primary-hover) / <alpha-value>)',
+        'background-dark':  'rgb(var(--color-bg) / <alpha-value>)',
+        'background-light': 'rgb(var(--color-bg) / <alpha-value>)',
+        'surface-dark':     'rgb(var(--color-surface) / <alpha-value>)',
+        'surface-border':   'rgb(var(--color-border) / <alpha-value>)',
+        'border-dark':      'rgb(var(--color-border) / <alpha-value>)',
+        'card-dark':        'rgb(var(--color-surface) / <alpha-value>)',
+        'text-secondary':   'rgb(var(--color-muted) / <alpha-value>)',
+        'text-muted':       'rgb(var(--color-muted) / <alpha-value>)',
       },
       fontFamily: {
-        display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        mono: [
-          'ui-monospace',
-          'SFMono-Regular',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          'Liberation Mono',
-          'Courier New',
-          'monospace'
-        ]
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        body:    ['Space Grotesk', 'system-ui', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       borderRadius: {
         DEFAULT: '0.25rem',
-        lg: '0.5rem',
-        xl: '0.75rem',
+        lg:  '0.5rem',
+        xl:  '0.75rem',
         '2xl': '1rem',
-        full: '9999px'
+        full: '9999px',
       }
     }
   },

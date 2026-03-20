@@ -227,7 +227,7 @@ const experiments = [
                   data-state={service.status}
                 >
                   <div class="flex items-start justify-between">
-                    <div class="flex h-10 w-10 items-center justify-center rounded bg-[#161f1a] border border-border-dark text-text-muted transition-colors group-hover:border-primary/30 group-hover:text-primary">
+                    <div class="flex h-10 w-10 items-center justify-center rounded bg-background-dark border border-border-dark text-text-muted transition-colors group-hover:border-primary/30 group-hover:text-primary">
                       <span class="material-symbols-outlined text-xl">{service.icon}</span>
                     </div>
                     <div class={`flex items-center gap-2 rounded-full border ${theme.badge} px-2.5 py-1 backdrop-blur-sm`} data-badge>
@@ -297,7 +297,7 @@ const experiments = [
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
               {techStacks.map((stack) => (
-                <div class="rounded-lg border border-border-dark bg-[#161f1a] p-4">
+                <div class="rounded-lg border border-border-dark bg-background-dark p-4">
                   <div class="mb-3 flex items-center gap-2 text-primary">
                     <span class="material-symbols-outlined text-lg">{stack.icon}</span>
                     <h4 class="text-sm font-bold uppercase tracking-wide">{stack.title}</h4>
@@ -321,7 +321,7 @@ const experiments = [
             {experiments.map((experiment) => (
               <div class="overflow-hidden rounded-xl border border-border-dark bg-surface-dark group">
                 <div
-                  class="relative h-48 w-full bg-[#111] bg-opacity-50"
+                  class="relative h-48 w-full bg-background-dark bg-opacity-50"
                   style={`background-image: url('${experiment.image}'); background-size: cover;`}
                 >
                   <div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent"></div>

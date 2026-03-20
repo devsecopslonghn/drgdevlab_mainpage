@@ -26,6 +26,16 @@
       </span>
       AVAILABLE
     </div>
+
+    <!-- Theme toggle -->
+    <button
+      id="theme-toggle"
+      aria-label="Toggle theme"
+      class="flex size-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-text-muted hover:border-primary/30 hover:text-primary transition-colors"
+    >
+      <span class="material-symbols-outlined text-base" id="theme-icon">light_mode</span>
+    </button>
+
     <a
       href="/cv"
       class="flex items-center gap-1.5 rounded-lg border border-border-dark bg-surface-dark px-4 py-2 text-xs font-bold text-white hover:border-primary/30 hover:text-primary transition-colors"
@@ -35,9 +45,18 @@
     </a>
   </div>
 
-  <button id="mobile-menu-btn" class="md:hidden text-text-muted hover:text-primary transition-colors">
-    <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
-  </button>
+  <div class="md:hidden flex items-center gap-2">
+    <button
+      id="theme-toggle-mobile"
+      aria-label="Toggle theme"
+      class="flex size-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-text-muted hover:text-primary transition-colors"
+    >
+      <span class="material-symbols-outlined text-base" id="theme-icon-mobile">light_mode</span>
+    </button>
+    <button id="mobile-menu-btn" class="text-text-muted hover:text-primary transition-colors">
+      <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+    </button>
+  </div>
 </nav>
 
 <div id="mobile-menu" class="hidden fixed top-[65px] inset-x-0 z-40 bg-background-dark/98 backdrop-blur-md border-b border-border-dark px-6 py-6 font-mono text-sm">
@@ -49,13 +68,12 @@
     <a href="/experience#skills" data-astro-reload class="text-text-muted hover:text-primary transition-colors">Skills</a>
     <a href="/projects#terminal" data-astro-reload class="text-text-muted hover:text-primary transition-colors">Terminal</a>
     <a href="/#contact" data-astro-reload class="text-text-muted hover:text-primary transition-colors">Contact</a>
-    <a href="/cv" class="text-primary font-bold border-t border-border-dark pt-4">
-      ↓ View Resume
-    </a>
+    <a href="/cv" class="text-primary font-bold border-t border-border-dark pt-4">↓ View Resume</a>
   </div>
 </div>
 
 <script>
+  // ── Mobile menu ──────────────────────────────────────────
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const icon = document.getElementById('mobile-menu-icon');
@@ -72,4 +90,44 @@
       if (icon) icon.textContent = 'menu';
     });
   });
+
+  // ── Theme toggle ─────────────────────────────────────────
+  function applyTheme(theme: string) {
+    const html = document.documentElement;
+    if (theme === 'light') {
+      html.classList.remove('dark');
+      html.classList.add('light');
+    } else {
+      html.classList.remove('light');
+      html.classList.add('dark');
+    }
+    const icon = theme === 'dark' ? 'light_mode' : 'dark_mode';
+    const desktopIcon = document.getElementById('theme-icon');
+    const mobileIcon = document.getElementById('theme-icon-mobile');
+    if (desktopIcon) desktopIcon.textContent = icon;
+    if (mobileIcon) mobileIcon.textContent = icon;
+  }
+
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const next = isDark ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  }
+
+  // Sync icon on every page load (including ViewTransitions navigation)
+  function syncIcon() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    const icon = saved === 'dark' ? 'light_mode' : 'dark_mode';
+    const desktopIcon = document.getElementById('theme-icon');
+    const mobileIcon = document.getElementById('theme-icon-mobile');
+    if (desktopIcon) desktopIcon.textContent = icon;
+    if (mobileIcon) mobileIcon.textContent = icon;
+  }
+
+  syncIcon();
+  document.addEventListener('astro:page-load', syncIcon);
+
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
 </script>

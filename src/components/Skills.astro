@@ -123,7 +123,7 @@ const skillGroups = [
 
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {skillGroups.map((group, gi) => (
-        <div class={`reveal reveal-delay-${(gi % 3) + 1} rounded-xl border border-border-dark bg-[#161f1a] p-5 hover:border-opacity-40 transition-all duration-200`}
+        <div class={`reveal reveal-delay-${(gi % 3) + 1} rounded-xl border border-border-dark bg-background-dark p-5 hover:border-opacity-40 transition-all duration-200`}
              style={`--hover-border: var(--tw-border-opacity)`}>
           <div class="flex items-center gap-3 mb-4">
             <div class={`flex h-8 w-8 items-center justify-center rounded-lg border ${group.border} ${group.bg}`}>

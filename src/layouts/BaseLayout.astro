@@ -24,38 +24,31 @@ const canonical = Astro.url?.href ?? '';
     <link rel="alternate icon" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet" />
+    <!-- Apply saved theme before paint — runs on first load AND each ViewTransitions swap -->
+    <script is:inline>
+      (function applyTheme() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        const html = document.documentElement;
+        html.classList.remove('dark', 'light');
+        html.classList.add(theme);
+      })();
+
+      // Re-apply after every Astro ViewTransitions page swap
+      document.addEventListener('astro:after-swap', function() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        const html = document.documentElement;
+        html.classList.remove('dark', 'light');
+        html.classList.add(theme);
+      });
+    </script>
     <ViewTransitions />
   </head>
   <body class="min-h-screen flex flex-col">
-    <div id="page-curtain" aria-hidden="true"></div>
     <main class="flex-1 flex flex-col">
       <slot />
     </main>
     {showChrome && <slot name="footer" />}
-
-    <script>
-      const curtain = document.getElementById('page-curtain');
-
-      // Slide OUT on page enter (new page loaded)
-      document.addEventListener('astro:page-load', () => {
-        if (!curtain) return;
-        curtain.classList.remove('is-entering');
-        curtain.classList.add('is-leaving');
-        curtain.addEventListener('animationend', () => {
-          curtain.classList.remove('is-leaving');
-          curtain.style.transform = 'translateX(-100%)';
-        }, { once: true });
-      });
-
-      // Slide IN on navigation start (leaving current page)
-      document.addEventListener('astro:before-preparation', () => {
-        if (!curtain) return;
-        curtain.style.transform = '';
-        curtain.classList.remove('is-leaving');
-        curtain.classList.add('is-entering');
-      });
-    </script>
   </body>
 </html>

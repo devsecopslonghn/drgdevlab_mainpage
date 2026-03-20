@@ -22,7 +22,7 @@
         { value: '75%', label: 'Deploy Frequency', sub: 'More releases, safely', icon: 'autorenew', color: 'text-purple-400', glow: 'shadow-purple-400/10' },
         { value: '40%', label: 'Cost Reduction', sub: 'Infrastructure savings', icon: 'savings', color: 'text-yellow-400', glow: 'shadow-yellow-400/10' },
       ].map((m, i) => (
-        <div class={`reveal reveal-delay-${i + 1} group rounded-xl border border-border-dark bg-[#161f1a] p-6 text-center transition-all hover:shadow-lg ${m.glow} hover:border-${m.color.split('-').slice(1).join('-')}/30`}>
+        <div class={`reveal reveal-delay-${i + 1} group rounded-xl border border-border-dark bg-background-dark p-6 text-center transition-all hover:shadow-lg ${m.glow} hover:border-${m.color.split('-').slice(1).join('-')}/30`}>
           <span class={`material-symbols-outlined text-2xl mb-3 ${m.color}`}>{m.icon}</span>
           <div class={`text-4xl font-black ${m.color} mb-1`}>{m.value}</div>
           <div class="text-sm font-bold text-white mb-1">{m.label}</div>
@@ -32,7 +32,7 @@
     </div>
 
     <!-- SLA bar -->
-    <div class="mt-8 reveal rounded-xl border border-border-dark bg-[#161f1a] p-6">
+    <div class="mt-8 reveal rounded-xl border border-border-dark bg-background-dark p-6">
       <div class="flex items-center justify-between mb-4">
         <span class="font-mono text-xs text-text-muted">SYSTEM SLA STATUS</span>
         <span class="flex items-center gap-2 font-mono text-xs text-primary">

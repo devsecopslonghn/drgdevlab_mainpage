@@ -76,7 +76,7 @@ const experiences = [
 
             <div class="rounded-xl border border-border-dark bg-surface-dark overflow-hidden">
               <!-- Header -->
-              <div class={`flex flex-wrap items-start justify-between gap-4 p-6 border-b border-border-dark bg-[#161f1a]`}>
+              <div class={`flex flex-wrap items-start justify-between gap-4 p-6 border-b border-border-dark bg-background-dark`}>
                 <div class="flex items-start gap-4">
                   <div class={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border ${exp.color === 'primary' ? 'border-primary/30 bg-primary/10 text-primary' : 'border-blue-400/30 bg-blue-400/10 text-blue-400'}`}>
                     <span class="material-symbols-outlined">{exp.icon}</span>
@@ -114,7 +114,7 @@ const experiences = [
               <!-- Highlights -->
               <div class="p-6 grid gap-3 md:grid-cols-2">
                 {exp.highlights.map(h => (
-                  <div class="flex items-start gap-3 rounded-lg bg-[#161f1a] p-3 border border-border-dark">
+                  <div class="flex items-start gap-3 rounded-lg bg-background-dark p-3 border border-border-dark">
                     <span class={`material-symbols-outlined text-base flex-shrink-0 mt-0.5 ${exp.color === 'primary' ? 'text-primary' : 'text-blue-400'}`}>{h.icon}</span>
                     <p class="text-xs font-body text-text-muted leading-relaxed">{h.text}</p>
                   </div>

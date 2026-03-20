@@ -15,12 +15,11 @@ import Footer from '@components/Footer.astro';
     <main>
       <Hero />
 
-      <!-- About (condensed) -->
+      <!-- About -->
       <section id="about" class="px-6 py-12 lg:px-20 border-t border-border-dark">
         <div class="mx-auto max-w-[1200px]">
           <div class="grid gap-10 lg:grid-cols-2 items-center">
 
-            <!-- Bio -->
             <div class="reveal">
               <div class="inline-flex items-center gap-2 rounded-full border border-border-dark bg-surface-dark px-4 py-1.5 font-mono text-xs text-text-muted mb-5">
                 <span class="material-symbols-outlined text-sm text-primary">person</span>
@@ -41,7 +40,6 @@ import Footer from '@components/Footer.astro';
               </div>
             </div>
 
-            <!-- Metrics -->
             <div class="grid grid-cols-2 gap-4 reveal reveal-delay-1">
               {[
                 { value: '50%', label: 'Faster deployments', icon: 'rocket_launch' },
@@ -58,7 +56,6 @@ import Footer from '@components/Footer.astro';
             </div>
           </div>
 
-          <!-- Four pillars (compact row) -->
           <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4 reveal reveal-delay-2">
             {[
               { icon: 'verified_user', title: 'Security First', desc: 'SAST, DAST & compliance in every pipeline stage' },
@@ -104,10 +101,4 @@ import Footer from '@components/Footer.astro';
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: #111814; }
-  ::-webkit-scrollbar-thumb { background: #283930; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #13ec80; }
-  #term-output::-webkit-scrollbar { width: 4px; }
-  #term-output::-webkit-scrollbar-thumb { background: #283930; }
 </style>

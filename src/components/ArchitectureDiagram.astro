@@ -33,7 +33,7 @@
     </div>
 
     <!-- Diagram -->
-    <div class="reveal reveal-delay-1 rounded-xl border border-border-dark bg-[#0d1410] p-6 overflow-x-auto">
+    <div class="reveal reveal-delay-1 rounded-xl border border-border-dark bg-background-dark p-6 overflow-x-auto">
       <div class="min-w-[900px]">
 
         <!-- ── ROW 1: Testing Suite ── -->
@@ -292,7 +292,7 @@
 
 <style>
   .arch-zone {
-    @apply rounded-lg border border-border-dark p-3 bg-[#0d1410];
+    @apply rounded-lg border border-border-dark p-3 bg-background-dark;
   }
   .arch-zone-label {
     @apply flex items-center gap-1 font-mono text-[9px] font-bold uppercase tracking-wider mb-2 rounded px-2 py-0.5 border w-fit;
@@ -300,10 +300,10 @@
 
   /* Full node */
   .arch-node {
-    @apply rounded-lg border bg-[#111814] p-3 flex flex-col items-center gap-1.5 transition-all duration-200 cursor-default;
+    @apply rounded-lg border bg-background-dark p-3 flex flex-col items-center gap-1.5 transition-all duration-200 cursor-default;
   }
   .arch-node-core {
-    @apply bg-[#0f1a12];
+    @apply bg-background-dark;
   }
   .arch-node-hero {
     @apply shadow-lg;
@@ -324,7 +324,7 @@
 
   /* Small node */
   .arch-node-sm {
-    @apply flex items-center gap-2 rounded-lg border bg-[#111814] px-3 py-2 transition-all duration-200 cursor-default;
+    @apply flex items-center gap-2 rounded-lg border bg-background-dark px-3 py-2 transition-all duration-200 cursor-default;
   }
 
   /* Arrow */
@@ -339,5 +339,35 @@
   }
   .arch-arrow-head {
     @apply text-[8px] text-primary/50 leading-none;
+  }
+
+  /* ── Light mode overrides ───────────────────────── */
+  :global(html.light) .arch-zone {
+    background-color: #ffffff;
+    border-color: #b0ccc0;
+  }
+  :global(html.light) .arch-node,
+  :global(html.light) .arch-node-sm {
+    background-color: #f7faf8;
+    border-color: #b0ccc0;
+  }
+  :global(html.light) .arch-node-name {
+    color: #0d1f17;
+  }
+  :global(html.light) .arch-node-sub,
+  :global(html.light) .arch-node-tag {
+    color: #3d6b58;
+  }
+  :global(html.light) .arch-arrow-line {
+    background-color: rgba(10, 122, 62, 0.4);
+  }
+  :global(html.light) .arch-arrow-label,
+  :global(html.light) .arch-arrow-head {
+    color: rgba(10, 122, 62, 0.6);
+  }
+  /* Diagram wrapper */
+  :global(html.light) #architecture .rounded-xl.bg-background-dark {
+    background-color: #eef4f0;
+    border-color: #b0ccc0;
   }
 </style>
