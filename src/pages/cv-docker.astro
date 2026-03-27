@@ -1,0 +1,346 @@
+---
+// CV — Docker Developer (AI Training Workloads) — tailored version
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Long Ho — Docker Developer CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #13ec80;
+      --dark: #0d1410;
+      --text: #1a1a1a;
+      --muted: #555;
+      --border: #e0e0e0;
+      --tag-bg: #f0faf4;
+      --tag-text: #0a7a3e;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5pt;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.5;
+    }
+
+    .page-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* ── Print controls ── */
+    .print-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      background: var(--dark);
+      color: #fff;
+      font-size: 13px;
+      z-index: 100;
+      gap: 12px;
+    }
+    .print-bar span { color: #aaa; font-size: 12px; }
+    .btn-print {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #0d1410;
+      font-weight: 700;
+      font-size: 13px;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-print:hover { opacity: 0.9; }
+    .btn-back {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .btn-back:hover { color: #fff; }
+
+    .cv {
+      margin-top: 56px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 40px 44px;
+    }
+
+    /* ── HEADER ── */
+    .cv-header {
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .cv-name {
+      font-size: 26pt;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .cv-title {
+      font-size: 11pt;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+    }
+    .cv-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin-top: 10px;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+    .cv-contacts a { color: var(--muted); text-decoration: none; }
+    .cv-contacts a:hover { color: var(--dark); }
+    .cv-contacts span::before { content: '•'; margin-right: 6px; color: #999; }
+
+    /* ── SECTIONS ── */
+    .cv-section { margin-bottom: 18px; }
+    .section-title {
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* ── SUMMARY ── */
+    .summary-text {
+      font-size: 10pt;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .summary-text strong { color: var(--dark); font-weight: 600; }
+
+    /* ── EXPERIENCE ── */
+    .job { margin-bottom: 14px; }
+    .job:last-child { margin-bottom: 0; }
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 2px; }
+    .job-title { font-size: 11pt; font-weight: 700; color: var(--dark); }
+    .job-company { font-size: 10pt; font-weight: 600; color: #1a1a1a; }
+    .job-period { font-size: 9pt; color: var(--muted); white-space: nowrap; text-align: right; }
+    .job-domain { font-size: 9pt; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+    .job ul { padding-left: 14px; }
+    .job li {
+      font-size: 9.5pt;
+      color: var(--muted);
+      margin-bottom: 3.5px;
+      line-height: 1.55;
+    }
+    .job li strong { color: var(--dark); font-weight: 600; }
+
+    /* ── SKILLS TABLE ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 5px 12px;
+      font-size: 9.5pt;
+    }
+    .skill-label { font-weight: 600; color: var(--dark); }
+    .skill-value { color: var(--muted); }
+
+    /* ── EDUCATION ── */
+    .edu-row { display: flex; justify-content: space-between; align-items: center; }
+    .edu-name { font-weight: 600; font-size: 10pt; color: var(--dark); }
+    .edu-school { font-size: 9.5pt; color: var(--muted); }
+    .edu-year { font-size: 9pt; color: var(--muted); }
+
+    /* ── METRICS ROW ── */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 10px 0 4px;
+    }
+    .metric-box {
+      border: 1px solid #d0d0d0;
+      background: #f7f7f7;
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+    }
+    .metric-val { font-size: 14pt; font-weight: 800; color: #1a1a1a; }
+    .metric-lbl { font-size: 7.5pt; color: var(--muted); margin-top: 2px; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      @page { margin: 14mm 14mm 14mm 14mm; size: A4; }
+      .print-bar { display: none !important; }
+      body { font-size: 9.5pt; }
+      .cv {
+        margin-top: 0;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+      }
+      .page-wrapper { padding: 0; max-width: 100%; }
+      .cv-name { font-size: 22pt; }
+      a { color: inherit !important; text-decoration: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Print bar (screen only) -->
+  <div class="print-bar">
+    <a href="/" class="btn-back">← Back to site</a>
+    <span>Open in browser → Ctrl+P → Save as PDF · Recommended: A4, No margins, Background graphics ON</span>
+    <button class="btn-print" onclick="window.print()">
+      ⬇ Download PDF
+    </button>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="cv">
+
+      <!-- HEADER -->
+      <div class="cv-header">
+        <div class="cv-name">Long Ho</div>
+        <div class="cv-title">Docker Developer · DevOps Engineer · Container & CI/CD Specialist</div>
+        <div class="cv-contacts">
+          <span>longhn0710@gmail.com</span>
+          <span>+84 332 792 848</span>
+          <span>Ho Chi Minh City, Vietnam (Remote-Ready)</span>
+          <span><a href="https://linkedin.com/in/longhn0710">linkedin.com/in/longhn0710</a></span>
+          <span><a href="https://github.com/devsecopslonghn">github.com/devsecopslonghn</a></span>
+          <span><a href="https://drgdevlab.com">drgdevlab.com</a></span>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="cv-section">
+        <div class="section-title">Summary</div>
+        <p class="summary-text">
+          DevOps Engineer with <strong>3+ years of hands-on experience</strong> designing, building, and maintaining Docker-based container environments for large-scale, production workloads. Specialized in <strong>Docker image hardening, digest-based deployments, container lifecycle management</strong>, and building reliable CI/CD pipelines (Jenkins, GitLab CI, GitHub Actions). Experienced containerizing diverse application stacks — including Java, .NET, and Python — and supporting scalable, automated deployment workflows. Available for remote contract work <strong>10–40 hrs/week</strong>.
+        </p>
+
+        <!-- Key metrics -->
+        <div class="metrics-row">
+          <div class="metric-box"><div class="metric-val">50%</div><div class="metric-lbl">Faster deployments</div></div>
+          <div class="metric-box"><div class="metric-val">75%</div><div class="metric-lbl">Release frequency ↑</div></div>
+          <div class="metric-box"><div class="metric-val">40%</div><div class="metric-lbl">Cost reduction</div></div>
+          <div class="metric-box"><div class="metric-val">300+</div><div class="metric-lbl">Projects supported</div></div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="cv-section">
+        <div class="section-title">Experience</div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">DevOps Engineer (Docker & CI/CD)</span>
+              &nbsp;·&nbsp;
+              <span class="job-company">Sacombank</span>
+            </div>
+            <div class="job-period">Jul 2024 – Present · Ho Chi Minh City</div>
+          </div>
+          <div class="job-domain">Core Banking · Open Banking · Payment Systems — 300+ production projects</div>
+          <ul>
+            <li><strong>Designed and maintained Docker-based environments</strong> for multi-environment deployments (dev, SIT, UAT, staging, production), enforcing image immutability and <strong>digest-based deployments</strong> for reliable traceability and rollback.</li>
+            <li>Built and optimized <strong>CI/CD pipelines</strong> using Jenkins (Pipeline as Code / Groovy) and GitLab CI, reducing deployment lead time by <strong>50%</strong> and increasing release frequency by <strong>75%</strong>.</li>
+            <li>Containerized Java (Maven), .NET, and Python application stacks; standardized <strong>Dockerfile authoring practices</strong> and image-tagging strategies across 300+ production projects.</li>
+            <li>Migrated on-premises workloads to <strong>OpenShift OCP (Kubernetes)</strong> with rolling zero-downtime deployments — managing container lifecycle from build through production using Helm and custom manifests.</li>
+            <li>Integrated container security scanning (<strong>Aqua Scanner, SonarQube, BlackDuck</strong>) into CI pipelines, ensuring every image passed compliance gates before promotion to production.</li>
+            <li>Automated <strong>Database CI/CD</strong> using Flyway and Bash scripts for schema migration and rollback, coordinated with containerized application deployments.</li>
+            <li>Maintained monitoring of containerized systems (Grafana, Prometheus, Datadog, Zabbix) to sustain <strong>99% uptime SLA</strong> and proactively detect container-level performance issues.</li>
+            <li>Documented Docker/CI/CD processes and delivered technical knowledge-sharing sessions within the team; authored Ansible playbooks for container host configuration management.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">DevOps Engineer (Containerization & Pipelines)</span>
+              &nbsp;·&nbsp;
+              <span class="job-company">DXC Technology Vietnam</span>
+            </div>
+            <div class="job-period">Sep 2022 – Jul 2024 · Ho Chi Minh City</div>
+          </div>
+          <div class="job-domain">Enterprise Clients: Allianz Philippines · AIA · PSMBFI</div>
+          <ul>
+            <li>Containerized microservices and legacy applications using <strong>Docker</strong>; standardized image builds and deployment pipelines for multiple enterprise clients in regulated financial environments.</li>
+            <li>Implemented end-to-end <strong>CI/CD pipelines</strong> (Jenkins, GitLab CI) with automated testing, security scanning, and multi-environment deployment gates.</li>
+            <li>Used <strong>Terraform and Ansible</strong> to provision and configure container host infrastructure, ensuring environment parity across dev, staging, and production.</li>
+            <li>Built artifact management workflows with <strong>Nexus and JFrog Artifactory</strong>; delivered critical platform deployment within <strong>100 days</strong>, earning formal recognition from Allianz Philippines.</li>
+            <li>Collaborated closely with development teams to containerize applications and reduce environment-specific bugs through consistent Docker-based build environments.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- SKILLS -->
+      <div class="cv-section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-grid">
+          <span class="skill-label">Docker</span>
+          <span class="skill-value">Image hardening, Dockerfile authoring, digest-based deployments, multi-stage builds, container lifecycle management</span>
+
+          <span class="skill-label">CI/CD</span>
+          <span class="skill-value">Jenkins (Groovy Pipeline as Code), GitLab CI, GitHub Actions; quality gates, rollback strategies, artifact governance</span>
+
+          <span class="skill-label">Orchestration</span>
+          <span class="skill-value">Kubernetes, OpenShift OCP, Helm; rolling deployments, Ingress, TLS automation (Traefik, Let's Encrypt)</span>
+
+          <span class="skill-label">IaC & Automation</span>
+          <span class="skill-value">Ansible, Terraform, Bash, Python; environment provisioning, config management, deployment scripting</span>
+
+          <span class="skill-label">Container Security</span>
+          <span class="skill-value">Aqua Scanner, SonarQube, Coverity, BlackDuck; compliance-gated pipelines, least-privilege access</span>
+
+          <span class="skill-label">Monitoring</span>
+          <span class="skill-value">Grafana, Prometheus, Datadog, Zabbix; container-level metrics and alerting</span>
+
+          <span class="skill-label">Cloud (AWS)</span>
+          <span class="skill-value">EC2, S3, ECS, RDS, Lambda, API Gateway</span>
+
+          <span class="skill-label">Artifact Management</span>
+          <span class="skill-value">Nexus, JFrog Artifactory</span>
+
+          <span class="skill-label">Languages</span>
+          <span class="skill-value">Bash, Python, Groovy; automation for packaging, environment provisioning, and pipeline scripting</span>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="cv-section">
+        <div class="section-title">Education</div>
+        <div class="edu-row">
+          <div>
+            <div class="edu-name">B.Sc. Information Technology</div>
+            <div class="edu-school">University of Information Technology (UIT) — Ho Chi Minh City</div>
+          </div>
+          <div class="edu-year">2022</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
