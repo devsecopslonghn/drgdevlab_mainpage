@@ -56,6 +56,14 @@ EXPERIENCE
       and release frequency by 75% through Jenkins and GitLab CI
       pipeline optimization and automation.
 
+    - Architected approval-gated deployment pipelines integrated with
+      ITSM change management (ServiceNow-equivalent) — enabling
+      one-click deployments post-approval with full audit trail; opted
+      for controlled Jenkins/GitLab CI over full GitOps (ArgoCD) to
+      satisfy banking change control requirements where leadership
+      sign-off via ticketing system is mandatory before any production
+      release.
+
     - Implemented Database CI/CD using Flyway and custom Bash scripts
       for schema migration, version control, and automated rollback
       across banking databases.
