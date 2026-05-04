@@ -12,12 +12,12 @@ const experiences = [
     color: 'primary',
     systems: ['Core T24', 'Open Banking', 'Payment Systems', 'OpenShift OCP'],
     highlights: [
-      { icon: 'rocket_launch', text: 'Led Temenos Core T24 R25 go-live (major version upgrade of core banking platform) with full CI/CD automation — compressed total upgrade window from 2 weeks (R17/2017) to 3 days (2026), a ~79% reduction' },
-      { icon: 'hub', text: 'First Temenos T24 deployment on OpenShift at Sacombank — authored Helm umbrella charts enabling modular, independent upgrades per component (ENQ, WEB channels)' },
-      { icon: 'terminal', text: 'Built Temenos T24 CI/CD pipeline from scratch; one of 4 engineers supporting ~300 production projects across WebSphere, OCP, and JBoss' },
-      { icon: 'storage', text: 'Implemented Database CI/CD with Flyway — schema migration, version control, and automated rollback across banking databases' },
-      { icon: 'verified_user', text: 'Integrated security scanning (SonarQube, Aqua Scanner, Coverity, BlackDuck) into all pipeline stages for banking regulatory compliance' },
-      { icon: 'smart_toy', text: 'Automated infrastructure and operations with Ansible, Bash/Python; maintained 99% uptime via Grafana, Prometheus, Datadog, Zabbix monitoring stack' },
+      { icon: 'rocket_launch', text: 'Contributed to enabling Sacombank to become the first bank in Vietnam to go-live on Temenos T24 R25 — total upgrade window reduced from 2 weeks (R17/2017) to 3 days (R25/2026) through pipeline automation and continuous process improvement' },
+      { icon: 'hub', text: 'First Temenos T24 deployment on OpenShift at Sacombank — authored Helm umbrella charts for modular, independent upgrades per component (ENQ, WEB channels) with zero cross-component coupling' },
+      { icon: 'tune', text: 'Redesigned JBoss domain topology for AML system: split into 2 independent server groups with load balancer reconfiguration, eliminating ~10-minute deployment downtime' },
+      { icon: 'fact_check', text: 'Architected branch-based CI/CD strategy with ITSM-gated production deployments — Git tag triggers QA notification email with one-click approval; master merge creates ITSM change ticket for infra-confirmed production release' },
+      { icon: 'verified_user', text: 'Integrated security scanning (SonarQube, Aqua Scanner, Coverity, BlackDuck) and Microsoft Teams workflow automation into all pipeline stages' },
+      { icon: 'smart_toy', text: 'Managed CI/CD for ~400 source codes across WebSphere, OCP, JBoss; maintained 99% uptime via Grafana, Prometheus, Datadog, Zabbix + Kibana log integration' },
     ],
     metrics: [
       { value: '50%', label: 'Faster deployments' },
@@ -38,11 +38,10 @@ const experiences = [
     color: 'blue-400',
     systems: ['Jenkins', 'GitLab CI', 'Ansible', 'Nexus', 'JFrog'],
     highlights: [
-      { icon: 'emoji_events', text: 'Delivered critical platform project within 100 days — received formal recognition from Allianz Philippines for on-time delivery and quality' },
-      { icon: 'build', text: 'Built end-to-end CI/CD pipelines for enterprise insurance clients (Allianz Philippines, AIA, PSMBFI) in regulated financial environments' },
-      { icon: 'inventory_2', text: 'Built artifact management workflows with Nexus and JFrog Artifactory for multi-environment deployments' },
-      { icon: 'smart_toy', text: 'Automated infrastructure provisioning using self-written Ansible playbooks and Groovy-based Jenkins pipeline scripts' },
-      { icon: 'security', text: 'Implemented CI/CD compliance and security gates for regulated financial services clients' },
+      { icon: 'emoji_events', text: 'Primary DevOps implementer for Allianz Philippines, AIA, PSMBFI on AWS — completed critical platform delivery within 100 days, received formal recognition from Allianz Philippines' },
+      { icon: 'savings', text: 'Reduced AWS non-production costs by 40% through instance rightsizing, auto-scaling policies, and spot instance adoption across dev, FT, UAT, and staging environments' },
+      { icon: 'build', text: 'Provisioned cloud infrastructure with Terraform; automated configuration management with Ansible and Groovy-based Jenkins pipeline scripts for multi-environment deployments' },
+      { icon: 'inventory_2', text: 'Built artifact management workflows with Nexus and JFrog Artifactory; implemented CI/CD compliance gates for regulated financial services clients' },
     ],
     metrics: []
   }
