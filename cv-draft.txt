@@ -1,233 +1,158 @@
 ================================================================
-  LONG HO — DevOps Engineer CV (Draft for review)
-  Last updated: 2026-05-04
+  LONG HO — DevOps Engineer
+  Updated: 2026-05-04
 ================================================================
 
-CONTACT
--------
-Email   : longhn0710@gmail.com
-Phone   : +84 332 792 848
-Location: Ho Chi Minh City, Vietnam
-LinkedIn: linkedin.com/in/longhn0710
-GitHub  : github.com/devsecopslonghn
-Website : drgdevlab.com
+THÔNG TIN LIÊN HỆ
+-----------------
+Email    : longhn0710@gmail.com
+Phone    : +84 332 792 848
+Location : Ho Chi Minh City, Vietnam
+LinkedIn : linkedin.com/in/longhn0710
+GitHub   : github.com/devsecopslonghn
+Website  : drgdevlab.com
 
 
 SUMMARY
 -------
 DevOps Engineer with 3+ years of experience in banking and financial
-systems, specializing in CI/CD automation, container orchestration,
-and infrastructure reliability. At Sacombank, supporting ~300
-production projects across Core T24, Open Banking, and Payment systems.
-Delivered measurable impact through pipeline engineering, infrastructure
-optimization, and security incident response in regulated environments.
+systems, specializing in CI/CD pipeline engineering, container-based
+deployments, and application release automation. Part of a 4-person
+team at Sacombank managing CI/CD for ~400 source codes across Core
+Banking, Open Banking, and Payment systems — contributing to the first
+Temenos T24 R25 go-live in Vietnam. Proven track record delivering in
+regulated financial environments across Sacombank and DXC Technology.
 
 Key Metrics:
-  - 50%    Faster deployments
-  - 75%    Release frequency increase
-  - 2w→3d  Temenos T24 upgrade window (R17/2017 → R25/2026)
-  - 99%    System uptime
+  50%    Faster deployment lead time
+  75%    Release frequency increase
+  2w→3d  Temenos T24 upgrade window (R17/2017 → R25/2026)
+  99%    System uptime SLA
 
 
-EXPERIENCE
-----------
+KINH NGHIỆM LÀM VIỆC
+---------------------
 
 [1] DevOps Engineer · Sacombank
-    Jul 2024 – Present · Ho Chi Minh City
-    Domain: Core Banking · Open Banking · Payment Systems
+    Tháng 7/2024 – Hiện tại | Ho Chi Minh City
+    Lĩnh vực: Core Banking · Open Banking · Payment Systems
 
-    - Contributed to the CI/CD maturity journey that reduced total
-      Temenos T24 upgrade window from 2 weeks (R17/2017) → 3 days
-      (R25/2026) — through pipeline automation, Helm-based modular
-      deployments, and continuous process improvement across multiple
-      release cycles.
+  • Đóng góp vào việc giúp Sacombank trở thành ngân hàng đầu tiên tại
+    Việt Nam go-live trên Temenos T24 R25 — thông qua tự động hóa
+    pipeline, triển khai Helm modular, và cải tiến quy trình liên tục
+    qua nhiều release cycle (thời gian upgrade: 2 tuần ở R17/2017
+    → 3 ngày ở R25/2026).
 
-    - Delivered the first Temenos T24 deployment on OpenShift at
-      Sacombank; authored Helm umbrella charts for modular, independent
-      component upgrades (ENQ, WEB channels), enabling isolated rollouts
-      without cross-component coupling.
+  • Triển khai Temenos T24 lần đầu tiên trên OpenShift tại Sacombank;
+    thiết kế Helm umbrella chart cho phép upgrade từng component độc
+    lập (kênh ENQ, WEB...), không ảnh hưởng các thành phần khác.
 
-    - Built Temenos T24 CI/CD pipeline from scratch, migrating workloads
-      from on-premises to OpenShift OCP with rolling zero-downtime
-      deployments — one of a team of 4 supporting ~300 production
-      projects across WebSphere, OCP, and JBoss.
+  • Thiết kế lại JBoss domain topology cho hệ thống AML (Chống rửa
+    tiền): tách 1 server group thành 2 server group độc lập kết hợp
+    cấu hình lại load balancer, loại bỏ ~10 phút downtime khi deploy.
 
-    - Reduced end-to-end deployment lead time by 50% (commit → server)
-      and release frequency by 75% through Jenkins and GitLab CI
-      pipeline optimization and automation.
+  • Kiến trúc CI/CD strategy theo nhánh Git kết hợp ITSM change
+    management và thông báo real-time qua Microsoft Teams:
+    - develop  → auto deploy lên môi trường DEV
+    - release/x.y → auto deploy lên môi trường SIT
+    - Git tag  → email thông báo tự động tới QA/stakeholder kèm
+                 link approve một chạm
+    - master   → tạo phiếu ITSM, sau khi hạ tầng xác nhận sẽ trigger
+                 Jenkins → Ansible → trả trạng thái về ITSM + Teams
 
-    - Architected approval-gated deployment pipelines integrated with
-      ITSM change management (ServiceNow-equivalent) — enabling
-      one-click deployments post-approval with full audit trail; opted
-      for controlled Jenkins/GitLab CI over full GitOps (ArgoCD) to
-      satisfy banking change control requirements where leadership
-      sign-off via ticketing system is mandatory before any production
-      release.
+  • Phụ trách onboarding CI/CD pipeline cho project mới: thu thập
+    yêu cầu (repo, namespace, ngôn ngữ, version build) → áp dụng
+    template chuẩn cho OCP/WebSphere/JBoss, hoặc tự nghiên cứu và
+    implement từ đầu với target mới — ví dụ tự xây dựng toàn bộ
+    CI/CD pipeline và Ansible deployment logic cho WSO2 API Manager.
 
-    - Implemented Database CI/CD using Flyway and custom Bash scripts
-      for schema migration, version control, and automated rollback
-      across banking databases.
+  • Là 1 trong 4 kỹ sư quản lý CI/CD cho ~400 source code; triển khai
+    Database CI/CD với Flyway; tích hợp security scanning (SonarQube,
+    Aqua Scanner, Coverity, BlackDuck) vào tất cả các stage pipeline
+    đáp ứng yêu cầu tuân thủ quy định ngân hàng.
 
-    - Integrated security scanning (SonarQube, Aqua Scanner, Coverity,
-      BlackDuck) into all pipeline stages, ensuring compliance with
-      banking regulatory requirements.
+  • Đảm bảo vận hành ổn định: tự động hóa cleanup Jenkins workspace
+    qua Grafana disk alert; tư vấn team không lưu binary trên GitLab
+    (git history bloat); duy trì 99% uptime SLA qua stack Grafana,
+    Prometheus, Datadog, Zabbix, Kibana.
 
-    - Led GitLab credential exposure incident response: rotated access
-      keys, restored Jenkins/Ansible integrations, identified root
-      cause, and drove team security awareness program.
-
-    - Operated monitoring stack (Grafana, Prometheus, Datadog, Zabbix)
-      to maintain 99% uptime SLA across Core Banking and Payment services.
-
-    - Automated infrastructure and operational workflows using
-      self-written Ansible playbooks and Bash/Python scripts for
-      configuration management and deployment orchestration.
-
-    [ ADD MORE? ]
-    -
-    -
+  • Chủ trì xử lý sự cố lộ GitLab credentials: rotate access key,
+    khôi phục tích hợp Jenkins/Ansible, xác định nguyên nhân gốc rễ
+    và triển khai chương trình nâng cao nhận thức bảo mật cho team.
 
 
 [2] DevOps Engineer · DXC Technology Vietnam
-    Sep 2022 – Jul 2024 · Ho Chi Minh City
-    Clients: Allianz Philippines · AIA · PSMBFI
+    Tháng 9/2022 – Tháng 7/2024 | Ho Chi Minh City
+    Khách hàng: Allianz Philippines · AIA · PSMBFI
 
-    - Delivered end-to-end DevOps pipeline implementation for enterprise
-      insurance clients in regulated financial environments.
+  • Là người thực thi DevOps chính cho các khách hàng bảo hiểm doanh
+    nghiệp trên AWS — chịu trách nhiệm kỹ thuật toàn bộ việc xây dựng
+    và vận hành CI/CD pipeline cho Allianz Philippines, AIA, PSMBFI.
 
-    - Completed critical platform delivery within 100 days, receiving
-      formal recognition from Allianz Philippines for delivery quality
-      and timeliness.
+  • Hoàn thành dự án triển khai nền tảng cho Allianz Philippines trong
+    100 ngày, nhận được ghi nhận chính thức về chất lượng và tiến độ.
 
-    - Automated infrastructure provisioning and configuration management
-      using Ansible; developed Groovy-based Jenkins pipeline scripts for
-      multi-environment deployments.
+  • Giảm chi phí môi trường non-production trên AWS 40% thông qua
+    giám sát tài nguyên, rightsizing instance, auto-scaling policy,
+    và spot instance cho các môi trường dev, FT, UAT, staging.
 
-    - Built artifact management workflows with Nexus and JFrog
-      Artifactory; implemented CI/CD compliance gates for regulated
-      financial services clients.
+  • Provision hạ tầng cloud bằng Terraform; tự động hóa configuration
+    management với Ansible và Jenkins pipeline script (Groovy) cho
+    multi-environment deployment.
 
-    [ ADD MORE? ]
-    -
-    -
+  • Xây dựng artifact management workflow với Nexus và JFrog Artifactory;
+    triển khai CI/CD compliance gate cho khách hàng dịch vụ tài chính
+    trong môi trường có kiểm soát.
 
 
-TECHNICAL SKILLS
-----------------
-CI/CD               : Jenkins, GitLab CI, Groovy Pipeline as Code
-Container & Orch.   : OpenShift OCP, Kubernetes, Docker, Helm
-Automation & IaC    : Ansible, Bash, Python
-Cloud (AWS)         : EC2, S3, Lambda, API Gateway, RDS, ECS
+KỸ NĂNG KỸ THUẬT
+-----------------
+CI/CD               : Jenkins, GitLab CI, Groovy Pipeline as Code,
+                      Microsoft Teams Workflow Automation, n8n
+Container & Orch.   : OpenShift OCP, Kubernetes, Docker,
+                      Helm (Umbrella Charts)
+Automation & IaC    : Ansible, Terraform, Bash, Python
+Cloud (AWS)         : EC2, S3, RDS, ECS, Auto Scaling, Spot Instances
 Database CI/CD      : Flyway, Custom Migration & Backup Scripts
-Monitoring          : Grafana, Prometheus, Datadog, Zabbix
+Monitoring & Log    : Grafana, Prometheus, Datadog, Zabbix, Kibana
 Security            : SonarQube, Aqua Scanner, Coverity, BlackDuck
 Artifact Mgmt       : Nexus, JFrog Artifactory
-Banking Systems     : Temenos T24, Open Banking, Payment Systems,
-                      WebSphere, JBoss
-
-[ ADD MORE SKILLS? ]
--
+App Servers         : WebSphere, JBoss (Domain Mode), Apache Tomcat
+Banking Systems     : Temenos T24 (tcompile, ppc64le/QEMU builds),
+                      Open Banking, Payment Systems, WSO2 API Manager
 
 
-EDUCATION
----------
-B.Sc. Information Technology
-University of Information Technology (UIT) — Ho Chi Minh City
-Graduated: 2022
+HỌC VẤN
+--------
+Cử nhân Công nghệ Thông tin
+Trường Đại học Công nghệ Thông tin (UIT) — TP. Hồ Chí Minh
+Tốt nghiệp: 2022
 
 
-================================================================
-  CÂU HỎI BỔ SUNG — để hoàn thiện CV DevOps Engineer
-  Trả lời ngắn gọn, tôi sẽ rewrite thành bullet CV chuẩn.
-================================================================
-
-[ A. INFRASTRUCTURE & IaC ]
-  A1. Bạn có dùng Terraform hoặc tool IaC nào khác không?
-      Nếu có: dùng cho infra nào, cloud hay on-prem?
-      → Trả lời: ...
-
-  A2. Networking: bạn có xử lý load balancer, VPN, DNS,
-      firewall rules, network policy trên OCP/K8s không?
-      → Trả lời: ...
-
-  A3. Disaster recovery / backup: bạn có thiết kế hoặc
-      vận hành DR plan, backup strategy cho hệ thống nào không?
-      → Trả lời: ...
+CHỨNG CHỈ
+----------
+AWS Partner: Accreditation (Technical) — Amazon Web Services, 5/2024
 
 
-[ B. INCIDENT & ON-CALL ]
-  B1. Ngoài vụ GitLab credential, bạn có xử lý incident
-      production nào đáng kể không? (outage, data issue,
-      pipeline failure ở giờ cao điểm...)
-      → Trả lời: ...
+DỰ ÁN CÁ NHÂN
+--------------
+drgdevlab.com
+  Portfolio DevOps cá nhân; xây dựng bằng Astro + Tailwind CSS,
+  triển khai qua CI/CD pipeline.
 
-  B2. Bạn có on-call rotation không? Dùng tool gì để
-      alert/escalate (PagerDuty, OpsGenie, hay tự build)?
-      → Trả lời: ...
+ChatOps Deployment Bot
+  Lab cá nhân: Telegram bot + n8n workflow automation + GPT để trigger
+  Jenkins job bằng ngôn ngữ tự nhiên — ví dụ: "deploy demo_helm lên
+  UAT" được route qua n8n → Jenkins API và trả kết quả về Telegram.
 
-
-[ C. COLLABORATION & PROCESS ]
-  C1. Bạn làm việc trực tiếp với Dev team, QA, hay Security
-      team không? Có quy trình handoff / review gì không?
-      → Trả lời: ...
-
-  C2. Bạn có viết runbook, playbook, hay tài liệu kỹ thuật
-      nào cho team không?
-      → Trả lời: ...
-
-  C3. Bạn có mentor hoặc hỗ trợ junior trong team không?
-      → Trả lời: ...
-
-
-[ D. CLOUD & COST ]
-  D1. Mức độ sử dụng AWS hiện tại: chủ yếu là gì?
-      Production workload hay chỉ dev/staging?
-      → Trả lời: ...
-
-  D2. Bạn có tự tay làm cost optimization không, hay
-      con số 40% (đã xóa) đến từ đâu?
-      → Trả lời: ...
-
-
-[ E. SECURITY & COMPLIANCE ]
-  E1. Ngoài scanning tools, bạn có làm secret management
-      (Vault, AWS Secrets Manager...) không?
-      → Trả lời: ...
-
-  E2. Bạn có tham gia audit, pen test, hoặc compliance
-      review (PCI-DSS, ISO 27001...) không?
-      → Trả lời: ...
-
-
-[ F. TOOLING & SELF-IMPROVEMENT ]
-  F1. Bạn có certifications nào không?
-      (CKA, AWS SAA, GitLab CI, RedHat OCP...)
-      → Trả lời: ...
-
-  F2. Có side project, open source contribution, hay
-      lab cá nhân nào liên quan DevOps không?
-      → Trả lời: ...
-
-  F3. Tool hoặc tech nào bạn đang học / muốn học tiếp?
-      (Terraform, ArgoCD, Crossplane, eBPF...)
-      → Trả lời: ...
-
-
-[ G. DXC — cần làm rõ hơn ]
-  G1. Ở DXC, bạn deploy lên cloud hay on-prem?
-      Stack cụ thể của Allianz / AIA là gì?
-      → Trả lời: ...
-
-  G2. Team size ở DXC? Bạn là DevOps duy nhất hay
-      trong một team lớn hơn?
-      → Trả lời: ...
-
-  G3. Có achievement nào khác ngoài 100-day delivery
-      ở Allianz không?
-      → Trả lời: ...
+VPN Automation Client
+  Tool tự động hóa kết nối VPN cá nhân.
+  github.com/devsecopslonghn/vpnclient
 
 
 ================================================================
-  Ghi chú: Bổ sung vào dòng "[ ADD MORE? ]" hoặc trả lời
-  các câu hỏi trên, sau đó gửi lại để tôi cập nhật vào website.
+  PHIÊN BẢN TIẾNG ANH (cho LinkedIn / nộp nước ngoài)
+  -------------------------------------------------------
+  → Dùng nội dung từ cv.astro (trang /cv trên website)
+  → In PDF: mở drgdevlab.com/cv → Ctrl+P → Save as PDF
 ================================================================
