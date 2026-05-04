@@ -274,6 +274,9 @@
             <li>Led GitLab credential exposure incident response: rotated access keys, restored Jenkins/Ansible integrations, identified root cause, and drove team security awareness program.</li>
             <li>Operated monitoring stack (Grafana, Prometheus, Datadog, Zabbix) to maintain <strong>99% uptime SLA</strong>; integrated Jenkins pipeline logs into Kibana for centralized observability.</li>
             <li>Authored technical documentation for Temenos T24 build process (tcompile) and QEMU-based cross-architecture image builds (ppc64le) for T24 containerization on OCP.</li>
+            <li>Built proactive Jenkins workspace management: Grafana disk-usage alerts trigger automated cleanup jobs scoped to active agent types — preventing build failures from full-disk conditions without manual intervention.</li>
+            <li>Identified and advised against storing binary artifacts in GitLab repositories — flagged Git history bloat issue (binaries persist in history even after deletion), redirecting teams to proper artifact management via Nexus/JFrog.</li>
+            <li>Owned CI/CD pipeline onboarding for new projects: structured intake (Git repo, target namespace, language, build version) → applied standard templates for known targets (OCP, WebSphere, JBoss) or researched and implemented from scratch for novel targets — e.g. independently built full CI/CD pipeline and Ansible deployment logic for <strong>WSO2 API Manager</strong>.</li>
           </ul>
         </div>
 
