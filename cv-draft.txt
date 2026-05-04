@@ -36,10 +36,11 @@ EXPERIENCE
     Jul 2024 – Present · Ho Chi Minh City
     Domain: Core Banking · Open Banking · Payment Systems
 
-    - Led Temenos Core T24 R25 go-live (major version upgrade of core
-      banking platform) with full CI/CD automation — compressed total
-      system upgrade window (core + non-core) from 2 weeks → 3 days
-      vs. the R17 upgrade in 2017, a ~79% reduction.
+    - Contributed to the CI/CD maturity journey that reduced total
+      Temenos T24 upgrade window from 2 weeks (R17/2017) → 3 days
+      (R25/2026) — through pipeline automation, Helm-based modular
+      deployments, and continuous process improvement across multiple
+      release cycles.
 
     - Delivered the first Temenos T24 deployment on OpenShift at
       Sacombank; authored Helm umbrella charts for modular, independent
