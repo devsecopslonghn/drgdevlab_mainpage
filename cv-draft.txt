@@ -34,7 +34,7 @@ KINH NGHIỆM LÀM VIỆC
 ---------------------
 
 [1] DevOps Engineer · Sacombank
-    Tháng 7/2024 – Hiện tại | Ho Chi Minh City
+    Tháng 11/2024 – Hiện tại | Ho Chi Minh City
     Lĩnh vực: Core Banking · Open Banking · Payment Systems
 
   • Đóng góp vào việc giúp Sacombank trở thành ngân hàng đầu tiên tại
@@ -81,7 +81,18 @@ KINH NGHIỆM LÀM VIỆC
     và triển khai chương trình nâng cao nhận thức bảo mật cho team.
 
 
-[2] DevOps Engineer · DXC Technology Vietnam
+[2] Monitoring DevOps Engineer · Accenture
+    Tháng 7/2024 – Tháng 10/2024 | Ho Chi Minh City
+    Khách hàng: LVMH Louis Vuitton · OVH Cloud
+
+  • Giám sát hạ tầng cho các khách hàng doanh nghiệp toàn cầu gồm
+    LVMH Louis Vuitton và OVH Cloud sử dụng Datadog và Zabbix.
+
+  • Xây dựng và vận hành alert logic pipeline: tổng hợp incident từ
+    monitoring stack và tự động tạo ticket cho các đội partner xử lý.
+
+
+[3] DevOps Engineer · DXC Technology Vietnam
     Tháng 9/2022 – Tháng 7/2024 | Ho Chi Minh City
     Khách hàng: Allianz Philippines · AIA · PSMBFI
 
