@@ -137,6 +137,97 @@ Graduated: 2022
 
 
 ================================================================
-  Ghi chú: Bổ sung vào dòng "[ ADD MORE? ]" hoặc chỉnh sửa trực tiếp,
-  sau đó gửi lại để tôi cập nhật vào website.
+  CÂU HỎI BỔ SUNG — để hoàn thiện CV DevOps Engineer
+  Trả lời ngắn gọn, tôi sẽ rewrite thành bullet CV chuẩn.
+================================================================
+
+[ A. INFRASTRUCTURE & IaC ]
+  A1. Bạn có dùng Terraform hoặc tool IaC nào khác không?
+      Nếu có: dùng cho infra nào, cloud hay on-prem?
+      → Trả lời: ...
+
+  A2. Networking: bạn có xử lý load balancer, VPN, DNS,
+      firewall rules, network policy trên OCP/K8s không?
+      → Trả lời: ...
+
+  A3. Disaster recovery / backup: bạn có thiết kế hoặc
+      vận hành DR plan, backup strategy cho hệ thống nào không?
+      → Trả lời: ...
+
+
+[ B. INCIDENT & ON-CALL ]
+  B1. Ngoài vụ GitLab credential, bạn có xử lý incident
+      production nào đáng kể không? (outage, data issue,
+      pipeline failure ở giờ cao điểm...)
+      → Trả lời: ...
+
+  B2. Bạn có on-call rotation không? Dùng tool gì để
+      alert/escalate (PagerDuty, OpsGenie, hay tự build)?
+      → Trả lời: ...
+
+
+[ C. COLLABORATION & PROCESS ]
+  C1. Bạn làm việc trực tiếp với Dev team, QA, hay Security
+      team không? Có quy trình handoff / review gì không?
+      → Trả lời: ...
+
+  C2. Bạn có viết runbook, playbook, hay tài liệu kỹ thuật
+      nào cho team không?
+      → Trả lời: ...
+
+  C3. Bạn có mentor hoặc hỗ trợ junior trong team không?
+      → Trả lời: ...
+
+
+[ D. CLOUD & COST ]
+  D1. Mức độ sử dụng AWS hiện tại: chủ yếu là gì?
+      Production workload hay chỉ dev/staging?
+      → Trả lời: ...
+
+  D2. Bạn có tự tay làm cost optimization không, hay
+      con số 40% (đã xóa) đến từ đâu?
+      → Trả lời: ...
+
+
+[ E. SECURITY & COMPLIANCE ]
+  E1. Ngoài scanning tools, bạn có làm secret management
+      (Vault, AWS Secrets Manager...) không?
+      → Trả lời: ...
+
+  E2. Bạn có tham gia audit, pen test, hoặc compliance
+      review (PCI-DSS, ISO 27001...) không?
+      → Trả lời: ...
+
+
+[ F. TOOLING & SELF-IMPROVEMENT ]
+  F1. Bạn có certifications nào không?
+      (CKA, AWS SAA, GitLab CI, RedHat OCP...)
+      → Trả lời: ...
+
+  F2. Có side project, open source contribution, hay
+      lab cá nhân nào liên quan DevOps không?
+      → Trả lời: ...
+
+  F3. Tool hoặc tech nào bạn đang học / muốn học tiếp?
+      (Terraform, ArgoCD, Crossplane, eBPF...)
+      → Trả lời: ...
+
+
+[ G. DXC — cần làm rõ hơn ]
+  G1. Ở DXC, bạn deploy lên cloud hay on-prem?
+      Stack cụ thể của Allianz / AIA là gì?
+      → Trả lời: ...
+
+  G2. Team size ở DXC? Bạn là DevOps duy nhất hay
+      trong một team lớn hơn?
+      → Trả lời: ...
+
+  G3. Có achievement nào khác ngoài 100-day delivery
+      ở Allianz không?
+      → Trả lời: ...
+
+
+================================================================
+  Ghi chú: Bổ sung vào dòng "[ ADD MORE? ]" hoặc trả lời
+  các câu hỏi trên, sau đó gửi lại để tôi cập nhật vào website.
 ================================================================
