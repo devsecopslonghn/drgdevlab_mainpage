@@ -1,0 +1,133 @@
+================================================================
+  LONG HO — DevOps Engineer CV (Draft for review)
+  Last updated: 2026-05-04
+================================================================
+
+CONTACT
+-------
+Email   : longhn0710@gmail.com
+Phone   : +84 332 792 848
+Location: Ho Chi Minh City, Vietnam
+LinkedIn: linkedin.com/in/longhn0710
+GitHub  : github.com/devsecopslonghn
+Website : drgdevlab.com
+
+
+SUMMARY
+-------
+DevOps Engineer with 3+ years of experience in banking and financial
+systems, specializing in CI/CD automation, container orchestration,
+and infrastructure reliability. At Sacombank, supporting ~300
+production projects across Core T24, Open Banking, and Payment systems.
+Delivered measurable impact through pipeline engineering, infrastructure
+optimization, and security incident response in regulated environments.
+
+Key Metrics:
+  - 50%    Faster deployments
+  - 75%    Release frequency increase
+  - 2w→3d  Temenos T24 upgrade window (R17/2017 → R25/2026)
+  - 99%    System uptime
+
+
+EXPERIENCE
+----------
+
+[1] DevOps Engineer · Sacombank
+    Jul 2024 – Present · Ho Chi Minh City
+    Domain: Core Banking · Open Banking · Payment Systems
+
+    - Led Temenos Core T24 R25 go-live (major version upgrade of core
+      banking platform) with full CI/CD automation — compressed total
+      system upgrade window (core + non-core) from 2 weeks → 3 days
+      vs. the R17 upgrade in 2017, a ~79% reduction.
+
+    - Delivered the first Temenos T24 deployment on OpenShift at
+      Sacombank; authored Helm umbrella charts for modular, independent
+      component upgrades (ENQ, WEB channels), enabling isolated rollouts
+      without cross-component coupling.
+
+    - Built Temenos T24 CI/CD pipeline from scratch, migrating workloads
+      from on-premises to OpenShift OCP with rolling zero-downtime
+      deployments — one of a team of 4 supporting ~300 production
+      projects across WebSphere, OCP, and JBoss.
+
+    - Reduced end-to-end deployment lead time by 50% (commit → server)
+      and release frequency by 75% through Jenkins and GitLab CI
+      pipeline optimization and automation.
+
+    - Implemented Database CI/CD using Flyway and custom Bash scripts
+      for schema migration, version control, and automated rollback
+      across banking databases.
+
+    - Integrated security scanning (SonarQube, Aqua Scanner, Coverity,
+      BlackDuck) into all pipeline stages, ensuring compliance with
+      banking regulatory requirements.
+
+    - Led GitLab credential exposure incident response: rotated access
+      keys, restored Jenkins/Ansible integrations, identified root
+      cause, and drove team security awareness program.
+
+    - Operated monitoring stack (Grafana, Prometheus, Datadog, Zabbix)
+      to maintain 99% uptime SLA across Core Banking and Payment services.
+
+    - Automated infrastructure and operational workflows using
+      self-written Ansible playbooks and Bash/Python scripts for
+      configuration management and deployment orchestration.
+
+    [ ADD MORE? ]
+    -
+    -
+
+
+[2] DevOps Engineer · DXC Technology Vietnam
+    Sep 2022 – Jul 2024 · Ho Chi Minh City
+    Clients: Allianz Philippines · AIA · PSMBFI
+
+    - Delivered end-to-end DevOps pipeline implementation for enterprise
+      insurance clients in regulated financial environments.
+
+    - Completed critical platform delivery within 100 days, receiving
+      formal recognition from Allianz Philippines for delivery quality
+      and timeliness.
+
+    - Automated infrastructure provisioning and configuration management
+      using Ansible; developed Groovy-based Jenkins pipeline scripts for
+      multi-environment deployments.
+
+    - Built artifact management workflows with Nexus and JFrog
+      Artifactory; implemented CI/CD compliance gates for regulated
+      financial services clients.
+
+    [ ADD MORE? ]
+    -
+    -
+
+
+TECHNICAL SKILLS
+----------------
+CI/CD               : Jenkins, GitLab CI, Groovy Pipeline as Code
+Container & Orch.   : OpenShift OCP, Kubernetes, Docker, Helm
+Automation & IaC    : Ansible, Bash, Python
+Cloud (AWS)         : EC2, S3, Lambda, API Gateway, RDS, ECS
+Database CI/CD      : Flyway, Custom Migration & Backup Scripts
+Monitoring          : Grafana, Prometheus, Datadog, Zabbix
+Security            : SonarQube, Aqua Scanner, Coverity, BlackDuck
+Artifact Mgmt       : Nexus, JFrog Artifactory
+Banking Systems     : Temenos T24, Open Banking, Payment Systems,
+                      WebSphere, JBoss
+
+[ ADD MORE SKILLS? ]
+-
+
+
+EDUCATION
+---------
+B.Sc. Information Technology
+University of Information Technology (UIT) — Ho Chi Minh City
+Graduated: 2022
+
+
+================================================================
+  Ghi chú: Bổ sung vào dòng "[ ADD MORE? ]" hoặc chỉnh sửa trực tiếp,
+  sau đó gửi lại để tôi cập nhật vào website.
+================================================================
