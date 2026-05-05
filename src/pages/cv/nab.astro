@@ -1,0 +1,240 @@
+---
+// NAB — Senior DevOps Engineer — tailored CV
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Long Ho — CV · NAB Senior DevOps Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #13ec80;
+      --dark: #0d1410;
+      --text: #1a1a1a;
+      --muted: #555;
+      --border: #e0e0e0;
+    }
+    body { font-family: 'Inter', sans-serif; font-size: 10.5pt; color: var(--text); background: #fff; line-height: 1.5; }
+    .page-wrapper { max-width: 800px; margin: 0 auto; padding: 24px; }
+    .print-bar {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 24px; background: var(--dark); color: #fff; font-size: 13px; z-index: 100; gap: 12px;
+    }
+    .print-bar span { color: #aaa; font-size: 12px; }
+    .btn-print { display: flex; align-items: center; gap: 8px; background: var(--green); color: #0d1410; font-weight: 700; font-size: 13px; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; text-decoration: none; }
+    .btn-print:hover { opacity: 0.9; }
+    .btn-back { color: #aaa; text-decoration: none; font-size: 12px; }
+    .btn-back:hover { color: #fff; }
+    .cv { margin-top: 56px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 40px 44px; }
+    .cv-header { border-bottom: 2px solid #1a1a1a; padding-bottom: 16px; margin-bottom: 20px; }
+    .cv-name { font-size: 26pt; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; line-height: 1.1; }
+    .cv-title { font-size: 11pt; font-weight: 500; color: var(--muted); margin-top: 4px; letter-spacing: 0.2px; }
+    .cv-contacts { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font-size: 9pt; color: var(--muted); }
+    .cv-contacts a { color: var(--muted); text-decoration: none; }
+    .cv-contacts span::before { content: '•'; margin-right: 6px; color: #999; }
+    .cv-section { margin-bottom: 18px; }
+    .section-title { font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #1a1a1a; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; margin-bottom: 12px; }
+    .summary-text { font-size: 10pt; color: var(--muted); line-height: 1.65; }
+    .summary-text strong { color: var(--dark); font-weight: 600; }
+    .job { margin-bottom: 14px; }
+    .job:last-child { margin-bottom: 0; }
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 2px; }
+    .job-title { font-size: 11pt; font-weight: 700; color: var(--dark); }
+    .job-company { font-size: 10pt; font-weight: 600; color: #1a1a1a; }
+    .job-period { font-size: 9pt; color: var(--muted); white-space: nowrap; text-align: right; }
+    .job-domain { font-size: 9pt; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+    .job ul { padding-left: 14px; }
+    .job li { font-size: 9.5pt; color: var(--muted); margin-bottom: 3.5px; line-height: 1.55; }
+    .job li strong { color: var(--dark); font-weight: 600; }
+    .skills-grid { display: grid; grid-template-columns: 150px 1fr; gap: 5px 12px; font-size: 9.5pt; }
+    .skill-label { font-weight: 600; color: var(--dark); }
+    .skill-value { color: var(--muted); }
+    .edu-row { display: flex; justify-content: space-between; align-items: center; }
+    .edu-name { font-weight: 600; font-size: 10pt; color: var(--dark); }
+    .edu-school { font-size: 9.5pt; color: var(--muted); }
+    .edu-year { font-size: 9pt; color: var(--muted); }
+    @media print {
+      @page { margin: 14mm 14mm 14mm 14mm; size: A4; }
+      .print-bar { display: none !important; }
+      body { font-size: 9.5pt; }
+      .cv { margin-top: 0; border: none; border-radius: 0; padding: 0; }
+      .page-wrapper { padding: 0; max-width: 100%; }
+      .cv-name { font-size: 22pt; }
+      a { color: inherit !important; text-decoration: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <a href="/cv" class="btn-back">← Back to CVs</a>
+    <span>NAB — Senior DevOps Engineer · Ctrl+P → Save as PDF · A4, No margins, Background graphics ON</span>
+    <button class="btn-print" onclick="window.print()">⬇ Download PDF</button>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="cv">
+
+      <!-- HEADER -->
+      <div class="cv-header">
+        <div class="cv-name">Long Ho</div>
+        <div class="cv-title">DevOps Engineer — Cloud & Banking Systems</div>
+        <div class="cv-contacts">
+          <span>longhn0710@gmail.com</span>
+          <span>+84 332 792 848</span>
+          <span>Ho Chi Minh City, Vietnam</span>
+          <span><a href="https://linkedin.com/in/longhn0710">linkedin.com/in/longhn0710</a></span>
+          <span><a href="https://github.com/devsecopslonghn">github.com/devsecopslonghn</a></span>
+          <span><a href="https://drgdevlab.com">drgdevlab.com</a></span>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="cv-section">
+        <div class="section-title">Summary</div>
+        <p class="summary-text">
+          DevOps Engineer with <strong>3+ years of experience</strong> in banking and financial systems, specializing in CI/CD pipeline engineering, cloud infrastructure (AWS), container orchestration, and compliance-driven automation. Hands-on AWS experience provisioning and optimizing cloud environments at DXC Technology; container expertise via <strong>OpenShift OCP (enterprise Kubernetes)</strong> at scale. Contributed to the <strong>first Temenos T24 R25 go-live in Vietnam</strong> at Sacombank. Strong track record delivering in regulated financial environments — aligns directly with NAB's cloud-first transformation goals.
+        </p>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="cv-section">
+        <div class="section-title">Experience</div>
+
+        <!-- Sacombank -->
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">DevOps Engineer</span>
+              &nbsp;·&nbsp;
+              <span class="job-company">Sacombank</span>
+            </div>
+            <div class="job-period">Nov 2024 – Present · Ho Chi Minh City</div>
+          </div>
+          <div class="job-domain">Core Banking · Open Banking · Payment Systems · API Management</div>
+          <ul>
+            <li>Contributed to enabling <strong>Sacombank to become the first bank in Vietnam to go-live on Temenos T24 R25</strong> — through CI/CD pipeline automation, Helm-based modular deployments, and process improvement (upgrade window: 2 weeks → 3 days).</li>
+            <li>Deployed and operated containerized workloads on <strong>OpenShift OCP (enterprise Kubernetes)</strong>; authored Helm umbrella charts for modular, independent component upgrades — directly applicable to AKS/EKS environments.</li>
+            <li>Independently implemented full CI/CD pipeline and Ansible deployment logic for <strong>WSO2 API Manager</strong> — demonstrating hands-on API management and microservice deployment experience.</li>
+            <li>Architected <strong>branch-based CI/CD strategy</strong> with ITSM-gated production deployments: develop → DEV; release/x.y → SIT; Git tag → QA approval email; master → ITSM change ticket → Jenkins → Ansible.</li>
+            <li>Led <strong>production incident response</strong> (GitLab credential exposure): rotated secrets, restored pipeline integrations, identified root cause, and drove security awareness program — demonstrating proactive risk management.</li>
+            <li>One of 4 engineers managing CI/CD for <strong>~400 source codes</strong>; integrated security scanning (<strong>SonarQube, Aqua Scanner, Coverity, BlackDuck</strong>) for banking regulatory compliance.</li>
+            <li>Drove operational reliability: automated Jenkins workspace cleanup via Grafana alerts; maintained <strong>99% uptime SLA</strong> via Grafana, Prometheus, Kibana observability stack.</li>
+          </ul>
+        </div>
+
+        <!-- Accenture -->
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">Monitoring DevOps Engineer</span>
+              &nbsp;·&nbsp;
+              <span class="job-company">Accenture</span>
+            </div>
+            <div class="job-period">Jul 2024 – Oct 2024 · Ho Chi Minh City</div>
+          </div>
+          <div class="job-domain">Clients: LVMH Louis Vuitton · OVH Cloud</div>
+          <ul>
+            <li>Monitored enterprise infrastructure for global clients including <strong>LVMH Louis Vuitton</strong> and <strong>OVH Cloud</strong> using <strong>Datadog</strong> and <strong>Zabbix</strong>.</li>
+            <li>Built alert logic pipeline: aggregated incidents from monitoring stack and auto-created structured tickets for partner response teams.</li>
+          </ul>
+        </div>
+
+        <!-- DXC -->
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">DevOps Engineer</span>
+              &nbsp;·&nbsp;
+              <span class="job-company">DXC Technology Vietnam</span>
+            </div>
+            <div class="job-period">Sep 2022 – Jul 2024 · Ho Chi Minh City</div>
+          </div>
+          <div class="job-domain">Clients: Allianz Philippines · AIA · PSMBFI — AWS Cloud</div>
+          <ul>
+            <li>Primary DevOps implementer for enterprise insurance clients on <strong>AWS</strong> — sole technical executor for end-to-end CI/CD, infrastructure provisioning, and cloud operations across Allianz Philippines, AIA, and PSMBFI.</li>
+            <li>Provisioned and managed <strong>AWS infrastructure using Terraform</strong> (EC2, ECS, S3, RDS, Auto Scaling Groups); configured <strong>CloudWatch</strong> dashboards and alarms for production monitoring.</li>
+            <li>Reduced AWS non-production costs by <strong>40%</strong> through CloudWatch-driven resource monitoring, instance rightsizing, Auto Scaling policies, and Spot Instance adoption across dev, FT, UAT, staging environments.</li>
+            <li>Completed Allianz Philippines platform delivery <strong>within 100 days</strong>, receiving formal client recognition for quality and timeliness.</li>
+            <li>Automated configuration management with <strong>Ansible</strong> and Groovy-based Jenkins pipelines; built artifact workflows with <strong>Nexus</strong> and <strong>JFrog Artifactory</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="cv-section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-grid">
+          <span class="skill-label">Cloud (AWS)</span>
+          <span class="skill-value">EC2, ECS, S3, RDS, Auto Scaling, Spot Instances, CloudWatch</span>
+
+          <span class="skill-label">Container & Orchestration</span>
+          <span class="skill-value">OpenShift OCP (enterprise K8s), Kubernetes, Docker, Helm (Umbrella Charts)</span>
+
+          <span class="skill-label">IaC & Automation</span>
+          <span class="skill-value">Terraform, Ansible, Bash, Python</span>
+
+          <span class="skill-label">CI/CD</span>
+          <span class="skill-value">Jenkins, GitLab CI, GitHub, Groovy Pipeline as Code, n8n</span>
+
+          <span class="skill-label">Artifact Management</span>
+          <span class="skill-value">JFrog Artifactory, Nexus</span>
+
+          <span class="skill-label">Monitoring & Logging</span>
+          <span class="skill-value">Grafana, Prometheus, Datadog, Zabbix, Kibana, CloudWatch</span>
+
+          <span class="skill-label">Security & Compliance</span>
+          <span class="skill-value">SonarQube, Aqua Scanner, Coverity, BlackDuck, ITSM change control</span>
+
+          <span class="skill-label">API Management</span>
+          <span class="skill-value">WSO2 API Manager, Open Banking</span>
+
+          <span class="skill-label">Database CI/CD</span>
+          <span class="skill-value">Flyway, Custom Migration & Backup Scripts</span>
+
+          <span class="skill-label">Banking Systems</span>
+          <span class="skill-value">Temenos T24, Core Banking, Payment Systems</span>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="cv-section">
+        <div class="section-title">Education</div>
+        <div class="edu-row">
+          <div>
+            <div class="edu-name">B.Sc. Information Technology</div>
+            <div class="edu-school">University of Information Technology (UIT) — Ho Chi Minh City</div>
+          </div>
+          <div class="edu-year">2022</div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS -->
+      <div class="cv-section">
+        <div class="section-title">Certifications</div>
+        <div style="font-size: 9.5pt; color: var(--muted);">
+          AWS Partner: Accreditation (Technical) — Amazon Web Services, May 2024
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="cv-section">
+        <div class="section-title">Projects</div>
+        <div style="font-size: 9.5pt; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
+          <div><strong style="color: var(--dark);">ChatOps Deployment Bot</strong> — Telegram + n8n + GPT → Jenkins API; natural-language deployment triggers (personal lab)</div>
+          <div><strong style="color: var(--dark);">drgdevlab.com</strong> — Personal DevOps portfolio; Astro + Tailwind, deployed via CI/CD pipeline</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

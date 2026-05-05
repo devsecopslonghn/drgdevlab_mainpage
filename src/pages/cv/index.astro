@@ -1,0 +1,107 @@
+---
+const cvList = [
+  {
+    slug: 'root',
+    label: 'General CV',
+    description: 'Bản CV tổng quát — dùng cho hầu hết các vị trí DevOps.',
+    tags: ['CI/CD', 'Banking', 'OpenShift', 'Ansible'],
+    color: '#13ec80',
+  },
+  {
+    slug: 'nab',
+    label: 'NAB — Senior DevOps Engineer',
+    description: 'Tailored cho NAB Vietnam. Nhấn mạnh AWS, cloud-first, Terraform, K8s.',
+    tags: ['AWS', 'Terraform', 'K8s', 'Cloud-First'],
+    color: '#58a6ff',
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Long Ho — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .header { text-align: center; margin-bottom: 48px; }
+    .header-label { color: #13ec80; font-family: monospace; font-size: 13px; margin-bottom: 8px; }
+    .header-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+    .header-sub { color: #8b949e; font-size: 14px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 760px;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, transform .2s;
+      display: block;
+    }
+    .card:hover { transform: translateY(-2px); }
+    .card-label { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .card-desc { font-size: 13px; color: #8b949e; line-height: 1.6; margin-bottom: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: monospace;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+    .footer { margin-top: 48px; font-family: monospace; font-size: 12px; color: #8b949e; }
+    .footer a { color: #13ec80; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-label mono">~/cv</div>
+    <div class="header-title">Long Ho — CVs</div>
+    <div class="header-sub">Chọn phiên bản CV phù hợp với vị trí apply</div>
+  </div>
+
+  <div class="grid">
+    {cvList.map(cv => (
+      <a href={`/cv/${cv.slug}`} class="card" style={`border-color: ${cv.color}30;`}>
+        <div class="card-label" style={`color: ${cv.color}`}>{cv.label}</div>
+        <div class="card-desc">{cv.description}</div>
+        <div class="tags">
+          {cv.tags.map(tag => (
+            <span class="tag" style={`color: ${cv.color}; border-color: ${cv.color}40; background: ${cv.color}10;`}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="footer">
+    <a href="/">← drgdevlab.com</a>
+  </div>
+
+</body>
+</html>
