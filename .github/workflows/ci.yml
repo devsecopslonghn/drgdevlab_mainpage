@@ -15,6 +15,7 @@ jobs:
     with:
       node_version: "20"
       install_command: npm install
+      npm_cache: false
       quality_command: npm run check
       build_command: npm run build
       image_name: ghcr.io/devsecopslonghn/drgdevlab-mainpage
