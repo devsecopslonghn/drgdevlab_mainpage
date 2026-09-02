@@ -1,0 +1,23 @@
+name: Build and publish portfolio
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    uses: devsecopslonghn/.github/.github/workflows/node-container.yml@master
+    with:
+      node_version: "20"
+      install_command: npm install
+      quality_command: npm run check
+      build_command: npm run build
+      image_name: ghcr.io/devsecopslonghn/drgdevlab-mainpage
+      dockerfile: Dockerfile
+      publish_image: true
+    secrets: inherit

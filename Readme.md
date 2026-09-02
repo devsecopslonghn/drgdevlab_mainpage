@@ -2,7 +2,7 @@
 
 I build CI/CD platforms, deployment automation, and reliability tooling for banking and enterprise systems.
 
-Currently focused on Core Banking, Open Banking, Payment Systems, OpenShift, Jenkins, GitLab CI, Ansible, Helm, and database release automation.
+Currently focused on Core Banking, Open Banking, Payment Systems, OpenShift, GitHub Actions, Ansible, Helm, and database release automation.
 
 [Website](https://drgdevlab.com) | [LinkedIn](https://www.linkedin.com/in/longhn0710) | [GitHub](https://github.com/devsecopslonghn) | [Email](mailto:longhn0710@gmail.com)
 
@@ -39,7 +39,7 @@ My work is centered around secure and auditable delivery:
 
 | Area | Tools |
 | --- | --- |
-| CI/CD | Jenkins, GitLab CI, GitHub Actions, Groovy Pipeline as Code |
+| CI/CD | GitHub Actions, GitLab CI, Ansible, release automation |
 | Containers | Docker, Kubernetes, OpenShift OCP, Helm |
 | Automation | Ansible, Terraform, Bash, Python |
 | Database Delivery | Flyway, SQL versioning, migration and rollback scripts |
