@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Long Ho — DevOps Engineer CV</title>
+  <title>Long Ho — DevSecOps & CI/CD Platform Engineer CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -221,7 +221,7 @@
       <!-- HEADER -->
       <div class="cv-header">
         <div class="cv-name">Long Ho</div>
-        <div class="cv-title">DevOps Engineer — Banking & Financial Systems</div>
+        <div class="cv-title">DevSecOps & CI/CD Platform Engineer</div>
         <div class="cv-contacts">
           <span>longhn0710@gmail.com</span>
           <span>+84 332 792 848</span>
@@ -236,7 +236,7 @@
       <div class="cv-section">
         <div class="section-title">Summary</div>
         <p class="summary-text">
-          DevOps Engineer with <strong>3+ years of experience</strong> in banking and financial systems, specializing in CI/CD pipeline engineering, container-based deployments, and application release automation. Part of a 4-person team at Sacombank managing CI/CD for <strong>~400 source codes</strong> across Core Banking, Open Banking, and Payment systems — contributing to the <strong>first Temenos T24 R25 go-live in Vietnam</strong>. Proven track record delivering in regulated financial environments across Sacombank and DXC Technology.
+          DevSecOps / CI-CD Platform Engineer with <strong>4 years of experience</strong> across banking, insurance, and enterprise environments. Specializes in reusable delivery platforms, secure software supply chains, OpenShift/Kubernetes, release engineering, and infrastructure automation. One of a 4-person team supporting CI/CD for <strong>~400 source repositories</strong> at Sacombank, with direct contribution to the <strong>first successful Temenos T24 R25 core banking upgrade in Vietnam</strong> and active maintenance of the <strong>Jenkins Ansible Tower plugin</strong> in the Jenkins open-source ecosystem.
         </p>
 
       </div>
@@ -256,14 +256,14 @@
           </div>
           <div class="job-domain">Core Banking · Open Banking · Payment Systems</div>
           <ul>
-            <li>Contributed to enabling <strong>Sacombank to become the first bank in Vietnam to go-live on Temenos T24 R25</strong> — through pipeline automation, Helm-based modular deployments, and continuous process improvement (total upgrade window: 2 weeks in R17/2017 → 3 days in R25/2026).</li>
-            <li>Delivered the <strong>first Temenos T24 deployment on OpenShift</strong> at Sacombank; authored <strong>Helm umbrella charts</strong> for modular, independent component upgrades (ENQ, WEB channels), enabling isolated rollouts without cross-component coupling.</li>
-            <li>Redesigned <strong>JBoss domain topology for the AML system</strong>: split single server group into 2 independent server groups with load balancer reconfiguration, eliminating ~10-minute deployment downtime.</li>
+            <li>Contributed to <strong>Sacombank's successful Temenos T24 R25 production upgrade</strong> — the first successful T24 R25 core banking upgrade in Vietnam — through CI/CD automation, Helm-based modular deployment, release standardization, and production go-live support (upgrade window reduced from 2 weeks in R17/2017 to 3 days in R25/2026).</li>
+            <li>Built the <strong>T24 R25 Transact umbrella Helm architecture</strong> on OpenShift with reusable templates and <strong>18 component/workload charts</strong>, supporting environment-specific delivery across Develop, SIT, UAT, Staging, DR, and Production.</li>
+            <li>Designed <strong>high-availability release patterns</strong> across OpenShift and traditional middleware using rolling, canary, blue-green, and controlled node-by-node deployment strategies; redesigned JBoss AML server groups and load-balancer flow to remove avoidable deployment downtime.</li>
             <li>Architected <strong>branch-based CI/CD strategy</strong> with ITSM-gated production deployments and Microsoft Teams real-time notifications: develop → DEV; release/x.y → SIT; Git tag → QA email with one-click approval; master → ITSM change ticket → Jenkins → Ansible.</li>
             <li>Owned <strong>CI/CD pipeline onboarding</strong> for new projects: structured intake (repo, namespace, language, build version) → standard templates for OCP/WebSphere/JBoss, or researched and built from scratch — e.g. independently implemented full CI/CD and Ansible deployment logic for <strong>WSO2 API Manager</strong>.</li>
-            <li>One of 4 engineers managing CI/CD for <strong>~400 source codes</strong>; implemented Database CI/CD with <strong>Flyway</strong> and integrated security scanning (<strong>SonarQube, Aqua Scanner, Coverity, BlackDuck</strong>) for banking regulatory compliance.</li>
-            <li>Drove operational reliability: automated <strong>Jenkins workspace cleanup</strong> via Grafana disk-usage alerts; advised teams on GitLab binary storage bloat; maintained <strong>99% uptime SLA</strong> via Grafana, Prometheus, Kibana.</li>
-            <li>Led <strong>GitLab credential exposure incident response</strong>: rotated access keys, restored Jenkins/Ansible integrations, identified root cause, and drove team security awareness program.</li>
+            <li>One of 4 engineers supporting CI/CD for <strong>~400 source repositories</strong> across OpenShift microservices, WebSphere, JBoss, and other enterprise application platforms; integrated <strong>Coverity, SonarQube, Black Duck, Aqua, OWASP ZAP, Zimperium, Katalon</strong>, and approval gates into delivery workflows.</li>
+            <li>Improved operational reliability through <strong>Jenkins workspace cleanup automation</strong>, monitoring-driven capacity management, release health checks, rollback design, and observability with Grafana, Prometheus, Kibana, Datadog, and Zabbix.</li>
+            <li>Participated in the <strong>2026 ISO 27001:2022 internal audit</strong> for the DevOps/CI-CD scope, supporting reviews of pipeline controls, release governance, security processes, and audit evidence.</li>
           </ul>
         </div>
 
@@ -308,13 +308,13 @@
         <div class="section-title">Technical Skills</div>
         <div class="skills-grid">
           <span class="skill-label">CI/CD</span>
-          <span class="skill-value">Jenkins, GitLab CI, Groovy Pipeline as Code, Microsoft Teams Workflow Automation, n8n</span>
+          <span class="skill-value">Jenkins, Jenkins Pipeline, Groovy Shared Pipeline/Stage, GitLab CI, GitHub Actions, Git, MR governance, GitOps</span>
 
           <span class="skill-label">Container & Orchestration</span>
-          <span class="skill-value">OpenShift OCP, Kubernetes, Docker, Helm (Umbrella Charts)</span>
+          <span class="skill-value">OpenShift OCP, Kubernetes, Docker, Helm, Argo CD, OpenTelemetry annotations</span>
 
           <span class="skill-label">Automation & IaC</span>
-          <span class="skill-value">Ansible, Terraform, Bash, Python</span>
+          <span class="skill-value">Ansible, Terraform, Bash, Python, PowerShell, Groovy</span>
 
           <span class="skill-label">Cloud (AWS)</span>
           <span class="skill-value">EC2, S3, RDS, ECS, Auto Scaling, Spot Instances</span>
@@ -326,16 +326,16 @@
           <span class="skill-value">Grafana, Prometheus, Datadog, Zabbix, Kibana</span>
 
           <span class="skill-label">Security</span>
-          <span class="skill-value">SonarQube, Aqua Scanner, Coverity, BlackDuck</span>
+          <span class="skill-value">Coverity, SonarQube, Black Duck, Aqua, OWASP ZAP, Zimperium</span>
 
           <span class="skill-label">Artifact Management</span>
           <span class="skill-value">Nexus, JFrog Artifactory</span>
 
           <span class="skill-label">App Servers</span>
-          <span class="skill-value">WebSphere, JBoss (Domain Mode), Apache Tomcat</span>
+          <span class="skill-value">WebSphere, JBoss, WebLogic, IIS, WSO2, Apache Tomcat</span>
 
           <span class="skill-label">Banking Systems</span>
-          <span class="skill-value">Temenos T24 (tcompile, ppc64le/QEMU builds), Open Banking, Payment Systems</span>
+          <span class="skill-value">Temenos T24 R25, Core Banking, Open Banking, Payment Systems, ppc64le/QEMU builds</span>
         </div>
       </div>
 
@@ -363,9 +363,9 @@
       <div class="cv-section">
         <div class="section-title">Projects</div>
         <div style="font-size: 9.5pt; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
-          <div><strong style="color: var(--dark);">drgdevlab.com</strong> — Personal DevOps portfolio site; built with Astro + Tailwind CSS, deployed via CI/CD pipeline</div>
-          <div><strong style="color: var(--dark);">ChatOps Deployment Bot</strong> — Personal lab: Telegram bot + n8n workflow automation + GPT for natural-language Jenkins job triggers; enables plain-text deployment commands (e.g. "deploy demo_helm to UAT") routed through n8n → Jenkins API</div>
-          <div style="margin-top: 4px;"><strong style="color: var(--dark);">VPN Automation Client</strong> — Personal tool for automated VPN connection management · <a href="https://github.com/devsecopslonghn/vpnclient">github.com/devsecopslonghn/vpnclient</a></div>
+          <div><strong style="color: var(--dark);">T24 R25 Transact Delivery Platform</strong> — Umbrella Helm architecture with reusable templates, 18 workloads, 6 environments, resource controls, image promotion, and CI/CD integration for Core Banking delivery</div>
+          <div><strong style="color: var(--dark);">Jenkins Ansible Tower Plugin</strong> — Maintainer in the Jenkins open-source ecosystem; recent work spans AAP/AWX polling resilience, Jenkins compatibility, diagnostics/logging, Job DSL compatibility, security scanning, and regression coverage · <a href="https://github.com/jenkinsci/ansible-tower-plugin">github.com/jenkinsci/ansible-tower-plugin</a></div>
+          <div style="margin-top: 4px;"><strong style="color: var(--dark);">Secure Delivery Lab</strong> — Reusable GitHub Actions for Java/Node/Python and Helm validation, with immutable image practices, SBOM/provenance design, Trivy/Gitleaks scanning, and GitOps-oriented delivery contracts</div>
         </div>
       </div>
 
