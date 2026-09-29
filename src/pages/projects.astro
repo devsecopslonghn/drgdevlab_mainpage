@@ -1,66 +1,141 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Navbar from '@components/Navbar.astro';
-import Projects from '@components/Projects.astro';
-import Terminal from '@components/Terminal.astro';
 import Footer from '@components/Footer.astro';
+
+const cases = [
+  {
+    id: 't24',
+    index: '01',
+    label: 'Core banking modernization',
+    title: 'Temenos T24 R25 delivery platform',
+    context: 'Sacombank upgraded its core banking platform to Temenos T24 R25. The delivery challenge combined a multi-component system, strict environment promotion, OpenShift deployment, and production cutover.',
+    responsibility: 'CI/CD automation, Helm architecture, artifact and image promotion, environment-specific delivery, release standardization, and production go-live support.',
+    engineering: [
+      'Umbrella Helm architecture for T24 R25 Transact / Transact Servlite.',
+      '18 component/workload charts with reusable templates for deployments, services, configuration, volumes, probes, and resources.',
+      'Delivery across Develop, SIT, UAT, Staging, DR, and Production.',
+      'Image/tag promotion, configuration separation, resource controls, and OpenTelemetry annotations.'
+    ],
+    evidence: ['18 workloads', '6 environments', '2 weeks → 3 days upgrade window'],
+    source: 'https://www.sacombank.com.vn/trang-chu/tin-tuc/tin-sacombank/2026/sacombank-nang-cap-thanh-cong-core-banking-t24-r25-moi-nhat-toan-cau.html',
+    sourceLabel: 'Sacombank official announcement'
+  },
+  {
+    id: 'cicd',
+    index: '02',
+    label: 'CI/CD platform engineering',
+    title: 'Enterprise delivery platform for ~400 repositories',
+    context: 'A large banking application estate spans OpenShift microservices, WebSphere, JBoss, .NET/IIS, mobile, integration, and specialized application platforms.',
+    responsibility: 'Shared Jenkins/Groovy delivery design, onboarding, build/test/security orchestration, artifact management, approvals, and environment promotion.',
+    engineering: [
+      'Reusable shared pipelines and stages driven by project configuration instead of repository-specific duplication.',
+      'Build paths for Maven, Gradle, Ant, Node.js, .NET, Python, Flutter, Android/iOS, and specialized workloads.',
+      'Security integration with Coverity, SonarQube, Black Duck, Aqua, OWASP ZAP, Zimperium, plus automated testing with Katalon.',
+      'Artifact and image management through Nexus with controlled promotion between environments.'
+    ],
+    evidence: ['~400 repositories', 'Multi-stack delivery', 'Security gates', 'DEV → PROD governance']
+  },
+  {
+    id: 'jenkins',
+    index: '03',
+    label: 'Open source engineering',
+    title: 'Jenkins Ansible Tower Plugin',
+    context: 'The plugin connects Jenkins jobs and pipelines to Ansible Tower, AWX, and Ansible Automation Platform. Reliability and compatibility matter because it sits directly in deployment workflows.',
+    responsibility: 'Plugin maintenance and modernization in the Jenkins project.',
+    engineering: [
+      'Improved workflow polling resilience and transient-failure handling for AAP/AWX.',
+      'Improved build-console diagnostics while keeping logs secret-safe.',
+      'Fixed Job DSL data-binding compatibility around importTowerLogs.',
+      'Modernized Jenkins/JDK baselines, regression coverage, UTF-8 request handling, and security scanning.'
+    ],
+    evidence: ['Jenkins project', 'Public code & reviews', 'Compatibility engineering'],
+    source: 'https://github.com/jenkinsci/ansible-tower-plugin',
+    sourceLabel: 'View repository'
+  },
+  {
+    id: 'release',
+    index: '04',
+    label: 'Release & availability engineering',
+    title: 'High-availability rollout across mixed platforms',
+    context: 'Banking workloads run on both container platforms and traditional clustered middleware. A single rollout model is not sufficient.',
+    responsibility: 'Design deployment strategies around the failure modes and traffic topology of each platform.',
+    engineering: [
+      'Rolling, canary, and blue-green strategies for OpenShift/Kubernetes workloads.',
+      'Node-by-node and server-group rollout for WebSphere/JBoss with traffic drain, deployment, validation, and restoration.',
+      'JBoss AML topology redesign using independent server groups and load-balancer coordination to reduce deployment disruption.',
+      'Health validation, rollback paths, observability, and release gates integrated into deployment flow.'
+    ],
+    evidence: ['OpenShift', 'WebSphere', 'JBoss', 'Controlled traffic transition']
+  }
+];
 ---
 
 <BaseLayout
-  title="Projects — Long Ho"
-  description="Banking DevOps projects including CI/CD pipelines, database automation, and OpenShift deployment platforms."
+  title="Selected Work — Long Ho"
+  description="Selected engineering work in Temenos T24 R25, enterprise CI/CD platforms, Jenkins open source, and high-availability release engineering."
 >
-  <div class="relative min-h-screen bg-background-dark text-white font-display overflow-x-hidden">
+  <div class="min-h-screen bg-background-dark text-white">
     <Navbar />
     <main>
-      <!-- Page header -->
-      <div class="px-6 pt-12 pb-2 lg:px-20 border-b border-border-dark">
-        <div class="mx-auto max-w-[1200px]">
-          <div class="flex items-center gap-2 font-mono text-xs text-text-muted mb-3">
-            <a href="/" class="hover:text-primary transition-colors">longho.dev</a>
-            <span>/</span>
-            <span class="text-primary">projects</span>
-          </div>
-          <h1 class="text-3xl font-black text-white lg:text-4xl mb-2">
-            Projects & <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Terminal</span>
-          </h1>
-          <p class="font-body text-text-muted text-sm mb-6">Banking DevOps projects built for production. Try the interactive terminal below.</p>
+      <section class="site-shell pb-16 pt-16 md:pb-20 md:pt-24">
+        <div class="max-w-4xl">
+          <div class="eyebrow">Selected work</div>
+          <h1 class="mt-4 text-4xl font-semibold tracking-[-0.045em] text-white md:text-5xl lg:text-6xl">Case studies, not project cards.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-text-muted">
+            Each case separates system context, my responsibility, the engineering approach, and the evidence I can defend.
+          </p>
         </div>
-      </div>
+      </section>
 
-      <Projects />
-      <Terminal />
+      <section class="border-t border-border-dark">
+        <div class="site-shell">
+          {cases.map(item => (
+            <article id={item.id} class="scroll-mt-24 border-b border-border-dark py-14 md:py-16">
+              <div class="grid gap-10 lg:grid-cols-[180px_1fr]">
+                <div>
+                  <div class="font-mono text-xs text-text-subtle">{item.index}</div>
+                  <div class="mt-4 eyebrow">{item.label}</div>
+                </div>
+                <div>
+                  <h2 class="max-w-3xl text-3xl font-semibold tracking-[-0.035em] text-white md:text-4xl">{item.title}</h2>
+
+                  <div class="mt-10 grid gap-8 md:grid-cols-2">
+                    <div>
+                      <h3 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-subtle">Context</h3>
+                      <p class="mt-3 text-sm leading-7 text-text-muted">{item.context}</p>
+                    </div>
+                    <div>
+                      <h3 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-subtle">My responsibility</h3>
+                      <p class="mt-3 text-sm leading-7 text-text-muted">{item.responsibility}</p>
+                    </div>
+                  </div>
+
+                  <div class="mt-10">
+                    <h3 class="text-xs font-semibold uppercase tracking-[0.12em] text-text-subtle">Engineering</h3>
+                    <div class="mt-4 border-t border-border-dark">
+                      {item.engineering.map(point => (
+                        <div class="grid grid-cols-[18px_1fr] gap-3 border-b border-border-dark py-4 text-sm leading-6 text-text-muted">
+                          <span class="mt-[9px] h-1 w-1 rounded-full bg-primary"></span>
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+                    {item.evidence.map(e => <span class="text-xs text-text-subtle">{e}</span>)}
+                    {item.source && (
+                      <a href={item.source} target="_blank" rel="noreferrer" class="text-sm font-medium text-white hover:text-primary">{item.sourceLabel} ↗</a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
     <Footer />
   </div>
 </BaseLayout>
-
-<script>
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-  );
-  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
-</script>
-
-<style is:global>
-  html { scroll-behavior: smooth; }
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: #111814; }
-  ::-webkit-scrollbar-thumb { background: #283930; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #13ec80; }
-  #term-output::-webkit-scrollbar { width: 4px; }
-  #term-output::-webkit-scrollbar-thumb { background: #283930; }
-</style>
