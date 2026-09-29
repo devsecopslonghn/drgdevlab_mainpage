@@ -1,133 +1,78 @@
 ---
+const path = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Profile' },
+  { href: '/projects', label: 'Selected work' },
+  { href: '/experience', label: 'Experience' },
+];
 ---
-<nav id="navbar" class="sticky top-0 z-50 flex w-full items-center justify-between border-b border-border-dark bg-background-dark/95 backdrop-blur-sm px-6 py-4 lg:px-20 transition-all duration-300">
-  <a href="/" class="flex items-center gap-3 group">
-    <div class="flex size-8 items-center justify-center rounded bg-surface-dark border border-primary/30 text-primary">
-      <span class="material-symbols-outlined text-base">terminal</span>
-    </div>
-    <span class="font-bold text-white text-lg tracking-tight">longho<span class="text-primary">.</span></span>
-  </a>
 
-  <div class="hidden md:flex items-center gap-6 font-mono text-sm text-text-muted">
-    <a href="/#about" data-astro-reload class="hover:text-primary transition-colors duration-200">About</a>
-    <a href="/experience" class="hover:text-primary transition-colors duration-200">Experience</a>
-    <a href="/experience#banking" data-astro-reload class="hover:text-primary transition-colors duration-200">Banking</a>
-    <a href="/projects" class="hover:text-primary transition-colors duration-200">Projects</a>
-    <a href="/experience#skills" data-astro-reload class="hover:text-primary transition-colors duration-200">Skills</a>
-    <a href="/projects#terminal" data-astro-reload class="hover:text-primary transition-colors duration-200">Terminal</a>
-    <a href="/#contact" data-astro-reload class="hover:text-primary transition-colors duration-200">Contact</a>
-  </div>
-
-  <div class="hidden md:flex items-center gap-3">
-    <div class="flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 font-mono text-[10px] text-primary">
-      <span class="relative flex h-1.5 w-1.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
-      </span>
-      AVAILABLE
-    </div>
-
-    <!-- Theme toggle -->
-    <button
-      id="theme-toggle"
-      aria-label="Toggle theme"
-      class="flex size-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-text-muted hover:border-primary/30 hover:text-primary transition-colors"
-    >
-      <span class="material-symbols-outlined text-base" id="theme-icon">light_mode</span>
-    </button>
-
-    <a
-      href="/cv"
-      class="flex items-center gap-1.5 rounded-lg border border-border-dark bg-surface-dark px-4 py-2 text-xs font-bold text-white hover:border-primary/30 hover:text-primary transition-colors"
-    >
-      <span class="material-symbols-outlined text-sm">description</span>
-      Resume
+<header class="sticky top-0 z-50 border-b border-border-dark/80 bg-background-dark/90 backdrop-blur-xl">
+  <div class="site-shell flex h-16 items-center justify-between">
+    <a href="/" class="flex items-center gap-3 text-white">
+      <span class="flex h-8 w-8 items-center justify-center rounded-full border border-border-dark bg-surface-dark text-xs font-semibold">LH</span>
+      <span class="text-sm font-semibold tracking-[-0.02em]">Long Ho</span>
     </a>
+
+    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary navigation">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-sm transition-colors',
+            path === link.href ? 'text-white' : 'text-text-muted hover:text-white'
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="https://github.com/jenkinsci/ansible-tower-plugin" target="_blank" rel="noreferrer" class="text-sm text-text-muted hover:text-white transition-colors">
+        Open source ↗
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" aria-label="Toggle color theme" class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-dark text-text-muted hover:text-white">
+        <span class="material-symbols-outlined text-[18px]" id="theme-icon">light_mode</span>
+      </button>
+      <a href="/cv/root" class="hidden rounded-lg border border-border-dark px-3.5 py-2 text-sm font-medium text-white transition-colors hover:border-primary/40 sm:block">
+        Resume
+      </a>
+      <button id="menu-toggle" aria-label="Open navigation" class="flex h-9 w-9 items-center justify-center text-text-muted md:hidden">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
   </div>
 
-  <div class="md:hidden flex items-center gap-2">
-    <button
-      id="theme-toggle-mobile"
-      aria-label="Toggle theme"
-      class="flex size-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-text-muted hover:text-primary transition-colors"
-    >
-      <span class="material-symbols-outlined text-base" id="theme-icon-mobile">light_mode</span>
-    </button>
-    <button id="mobile-menu-btn" class="text-text-muted hover:text-primary transition-colors">
-      <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
-    </button>
+  <div id="mobile-menu" class="hidden border-t border-border-dark bg-background-dark md:hidden">
+    <nav class="site-shell flex flex-col py-4" aria-label="Mobile navigation">
+      {links.map(link => <a href={link.href} class="py-3 text-sm text-text-muted hover:text-white">{link.label}</a>)}
+      <a href="https://github.com/jenkinsci/ansible-tower-plugin" target="_blank" rel="noreferrer" class="py-3 text-sm text-text-muted hover:text-white">Open source ↗</a>
+      <a href="/cv/root" class="py-3 text-sm text-primary">Resume</a>
+    </nav>
   </div>
-</nav>
-
-<div id="mobile-menu" class="hidden fixed top-[65px] inset-x-0 z-40 bg-background-dark/98 backdrop-blur-md border-b border-border-dark px-6 py-6 font-mono text-sm">
-  <div class="flex flex-col gap-5">
-    <a href="/#about" data-astro-reload class="text-text-muted hover:text-primary transition-colors">About</a>
-    <a href="/experience" class="text-text-muted hover:text-primary transition-colors">Experience</a>
-    <a href="/experience#banking" data-astro-reload class="text-text-muted hover:text-primary transition-colors">Banking</a>
-    <a href="/projects" class="text-text-muted hover:text-primary transition-colors">Projects</a>
-    <a href="/experience#skills" data-astro-reload class="text-text-muted hover:text-primary transition-colors">Skills</a>
-    <a href="/projects#terminal" data-astro-reload class="text-text-muted hover:text-primary transition-colors">Terminal</a>
-    <a href="/#contact" data-astro-reload class="text-text-muted hover:text-primary transition-colors">Contact</a>
-    <a href="/cv" class="text-primary font-bold border-t border-border-dark pt-4">↓ View Resume</a>
-  </div>
-</div>
+</header>
 
 <script>
-  // ── Mobile menu ──────────────────────────────────────────
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const icon = document.getElementById('mobile-menu-icon');
-  let open = false;
-  btn?.addEventListener('click', () => {
-    open = !open;
-    menu?.classList.toggle('hidden', !open);
-    if (icon) icon.textContent = open ? 'close' : 'menu';
-  });
-  menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      open = false;
-      menu.classList.add('hidden');
-      if (icon) icon.textContent = 'menu';
-    });
-  });
-
-  // ── Theme toggle ─────────────────────────────────────────
-  function applyTheme(theme: string) {
-    const html = document.documentElement;
-    if (theme === 'light') {
-      html.classList.remove('dark');
-      html.classList.add('light');
-    } else {
-      html.classList.remove('light');
-      html.classList.add('dark');
-    }
-    const icon = theme === 'dark' ? 'light_mode' : 'dark_mode';
-    const desktopIcon = document.getElementById('theme-icon');
-    const mobileIcon = document.getElementById('theme-icon-mobile');
-    if (desktopIcon) desktopIcon.textContent = icon;
-    if (mobileIcon) mobileIcon.textContent = icon;
+  function syncThemeIcon() {
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
   }
-
   function toggleTheme() {
-    const isDark = document.documentElement.classList.contains('dark');
-    const next = isDark ? 'light' : 'dark';
+    const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+    document.documentElement.classList.remove('dark', 'light');
+    document.documentElement.classList.add(next);
     localStorage.setItem('theme', next);
-    applyTheme(next);
+    syncThemeIcon();
   }
-
-  // Sync icon on every page load (including ViewTransitions navigation)
-  function syncIcon() {
-    const saved = localStorage.getItem('theme') || 'dark';
-    const icon = saved === 'dark' ? 'light_mode' : 'dark_mode';
-    const desktopIcon = document.getElementById('theme-icon');
-    const mobileIcon = document.getElementById('theme-icon-mobile');
-    if (desktopIcon) desktopIcon.textContent = icon;
-    if (mobileIcon) mobileIcon.textContent = icon;
+  function bindNavigation() {
+    syncThemeIcon();
+    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+    const button = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    button?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+    menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
   }
-
-  syncIcon();
-  document.addEventListener('astro:page-load', syncIcon);
-
-  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
-  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+  bindNavigation();
+  document.addEventListener('astro:page-load', bindNavigation);
 </script>
